@@ -1,8 +1,9 @@
 button{
-    margin-top: 20px;
 width: 100px;
 height: 50px;
 border-radius: 50%;
+float: right;
+margin-top:-30px;
 }
 
 .card-body{
@@ -18,3 +19,8 @@ h3,h1{
     color: white;
     padding: 10px;
 }
+
+.form-check{
+    margin-top:20px;
+}
+
