@@ -27,6 +27,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -102,5 +103,8 @@
       }
     }
   },
-  "defaultProject": "dotnetwithangular"
+  "defaultProject": "dotnetwithangular",
+  "cli": {
+    "analytics": "f51748fb-b979-4b2b-9285-bfea5f336e04"
+  }
 }
