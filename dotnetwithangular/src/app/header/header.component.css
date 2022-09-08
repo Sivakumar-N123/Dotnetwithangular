@@ -1,0 +1,12 @@
+.bg-primary
+{
+    color: white;
+    background-color:rgb(17, 20, 245)!important ;
+    font-size: larger;
+    font-weight: 600;
+    height: 60px;
+}
+.header
+{
+    margin-left: 10px;
+}
