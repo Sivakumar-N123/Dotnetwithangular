@@ -1,4 +1,174 @@
+<!-- 
 
-        <button type="button" class="btn btn-primary" value="Submit">Submit</button>
+  <div class="k-block">
+    <button kendoButton [look]="'default'">
+      Default Buttons
+    </button>
+  </div>
+
+  <kendo-grid [data]="gridData">
+    <kendo-grid-column field="ProductID" title="ID"> </kendo-grid-column>
+    <kendo-grid-column field="ProductName" title="Name"> </kendo-grid-column>
+    <kendo-grid-column field="Category.CategoryName" title="Category"> </kendo-grid-column>
+    <kendo-grid-column field="UnitPrice" title="Price"> </kendo-grid-column>
+</kendo-grid> -->
+
+
+<div class="container class0">
+  <div class="row">
+    <div class="col-8">
+      <h2>COURSE  DETAILS </h2>
+    </div>
+    <div class="col-4">
+      <button type="button" class="btn btn-primary course" data-toggle="modal" data-target="#exampleModal" (click)="add1()"> + Add Course </button>
+    </div>
+  </div>
+</div>
+
+  <div class="class1">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog class1" role="document">
+        <div class="modal-content">
+          <div class="modal-header" *ngIf="header">
+            <h5 class="modal-title" id="exampleModalToggleLabel">Enter the Course Name</h5>
+          </div>
+          <div class="modal-header" *ngIf="header1">
+            <h5 class="modal-title" id="exampleModalToggleLabel"> Enter the Course Name</h5>
+          </div>
+          <div class="modal-body" *ngIf="body">
+            <p>Course Name:<br>
+              <input type="text" name="coursename" ng-model="coursename" required/>
+          </div>
+          <div class="modal-body" *ngIf="body1">
+            <h3>Do you wants to delete</h3>
+          </div>
+          <div class="modal-body1" *ngIf="body2">
+            <h3>Deleted successfully....!!!!</h3>
+          </div>
+        </div> 
+        <div class="modal-footer " *ngIf="add" >
+          <button type="button" class="btn btn-primary"> Save </button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>   
+        </div>
+        <div class="modal-footer " *ngIf="edit">
+          <button type="button" class="btn btn-primary"> Save </button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>   
+        </div>
+        <div class="modal-footer" *ngIf="delete">
+          <button type="button" class="btn btn-primary" (click)="myfun()"> Yes</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>   
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Id</th>
+            <th>Course Name</th>
+            <th>Action</th>
+          </tr>
+      </thead>
+      <tbody>
+        <tr  *ngFor="let arr of array">
+          <td>{{arr.Id}}</td>
+          <td>{{arr.Name}}</td>
+          <td>
+            <button type="button" class="btn btn-primary course" data-toggle="modal" data-target="#exampleModal" (click)="edit1()"> Edit </button>
+            <button type="button" class="btn btn-danger course1" data-toggle="modal" data-target="#exampleModal" (click)="delete1()"> Delete </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div> 
+
+
+
+
+ <!-- <div class="container">
+        <div class="row">
+                <div class="col-4">
+                  <input type="text" value="course"class="secondrow" name="courses"/>
+                </div>
+                <div class="col-2">
+                  <button type="button" class="btn btn-primary course" data-toggle="modal" data-target="#exampleModal" (click)="edit1()"> Edit </button>
+                  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="coursetitle">
+                      Course Name:
+                    </h5>
+                    <div class="container">
+                      <div class="row">
+                        <input type="text" class="col2" name="course name" value=""/>
+                      </div>
+                    </div> 
+                        </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-primary"> Save </button>
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                        </div>
+                        </div>
+                </div>                
+                <div class="col-2">
+                    <button type="button" class="btn btn-danger course" data-toggle="modal" data-target="#exampleModal" (click)="delete1()"> Delete </button>
+                </div>
+        </div>
+</div> -->
+
+
+
+
+        
+
+  
+ 
+ 
 
     
+
+
+
+
+
+  <!-- <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalToggleLabel">Modal 1</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Show a second modal and hide this one with the button below.
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Open second modal</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalToggleLabel2">Modal 2</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Hide this modal and show the first with the button below.
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal">Back to first</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="btn btn-primary" data-bs-toggle="modal"  role="button">Open first modal</a>  -->
