@@ -28,7 +28,6 @@ export class LoginComponent implements OnInit {
     });
   }
 
-
   log()
   {
     const checkbox = document.getElementById('subscribe',) as HTMLInputElement | null;
@@ -41,8 +40,6 @@ export class LoginComponent implements OnInit {
       console.log('Checkbox is NOT checked');
     }
     this.router.navigateByUrl('/update');
-  }
-
-  
+  } 
 
 }
