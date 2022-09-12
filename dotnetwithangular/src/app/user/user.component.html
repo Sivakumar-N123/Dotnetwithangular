@@ -19,7 +19,7 @@ data-toggle="modal" data-target="#exampleModal">+Add User</button>
             <th scope="row">{{i+1}}</th>
             <td>{{name.name}}</td>
             <td>{{name.userName}}</td>
-            <td><button class="btn btn-primary">edit</button>
+            <td><button class="btn btn-primary" (click)="edit(i)">edit</button>
                 <button class="btn btn-danger">cancel</button></td>
           </tr>
         </tbody>
@@ -55,10 +55,10 @@ aria-hidden="true">
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary"
-            data-dismiss="modal">
+            data-dismiss="modal" >
             Close
         </button>
-        <button type="button"  class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">
+        <button type="button"  class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal" (click)="">
             Save changes
         </button>
     </div>
