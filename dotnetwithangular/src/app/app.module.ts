@@ -10,6 +10,8 @@ import { SpecificationComponent } from './specification/specification.component'
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserComponent } from './user/user.component';
+import { UpdatepwdComponent } from './updatepwd/updatepwd.component';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { UserComponent } from './user/user.component';
     LoginComponent,
     HeaderComponent,
     SpecificationComponent,
-    UserComponent
+    UserComponent,
+    UpdatepwdComponent
   ],
   imports: [
     BrowserModule,
@@ -27,6 +30,8 @@ import { UserComponent } from './user/user.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
