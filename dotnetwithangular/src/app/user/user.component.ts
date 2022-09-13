@@ -8,7 +8,7 @@ import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/fo
 })
 export class UserComponent implements OnInit {
   submitted = false;
-  data: any[] = [{id:0, name: "Sivakumar N", userName: "sivakumar123" },
+  userdata: any[] = [{id:0, name: "Sivakumar N", userName: "sivakumar123" },
   {id:1, name: "Rajesh", userName: "rajesh123" },
   {id:2, name: "Mahima", userName: "mahima123" },
   {id:3, name:"Praveenraj",userName:"praveenraj123"},
@@ -31,11 +31,11 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  get f(): { [key: string]: AbstractControl } { return this.Form.controls; }
+  get f() { return this.Form.controls; }
   
   edit(id:any)
   {
-    id
+    console.log(id);
   }
   onSubmit()
   {

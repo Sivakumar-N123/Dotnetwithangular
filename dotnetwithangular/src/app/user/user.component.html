@@ -24,7 +24,7 @@
         </tbody>
     </table>
 
-    <kendo-grid [data]="data" style="margin:50px;">
+    <kendo-grid [data]="userdata" style="margin:50px;">
       <kendo-grid-column
         title="S.No"
         field="id" >
@@ -40,7 +40,7 @@
       <kendo-grid-column
       field="Discontinued" title="Action" >
       <ng-template kendoGridCellTemplate let-dataItem>
-        <button kendoGridEditCommand themeColor="info">edit</button>
+        <button themeColor="info" (click)="edit(userdata.id)">edit</button>
         <button kendoButton themeColor="error">delete</button>
       </ng-template>
       </kendo-grid-column>
