@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-user',
@@ -7,14 +7,23 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-  data: any[] = [{id:0, name: "Sivakumar N", userName: "sivakumar123" },
+  submitted = false;
+  userdata: any[] = [{id:0, name: "Sivakumar N", userName: "sivakumar123" },
   {id:1, name: "Rajesh", userName: "rajesh123" },
-  {id:0, name: "Mahima", userName: "mahima123" },
-  {id:0, name:"Praveenraj",userName:"praveenraj123"},
+  {id:2, name: "Mahima", userName: "mahima123" },
+  {id:3, name:"Praveenraj",userName:"praveenraj123"},
   ];
   Form = new FormGroup({
-    name: new FormControl(''),
-    userName: new FormControl(''),
+    name: new FormControl('',[
+      Validators.required,
+      Validators.minLength(1),
+      Validators.maxLength(20),
+    ]),
+    userName: new FormControl('',[
+      Validators.required,
+      Validators.minLength(1),
+      Validators.maxLength(20),
+    ]),
   });
 
   constructor() { }
@@ -22,4 +31,20 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  get f() { return this.Form.controls; }
+  
+  edit(id:any)
+  {
+    console.log(id);
+  }
+  onSubmit()
+  {
+    console.log(this.Form);
+    
+  }
+
+  reset()
+  {
+    this.Form.reset();
+  }
 }

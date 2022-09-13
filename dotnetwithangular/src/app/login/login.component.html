@@ -1,18 +1,42 @@
 <div class="card mb-3 w-50 h-50 container p-0" >
   <h3 class="card-header">Login to continue</h3>
+  <form [formGroup]="stuform" (submit)="log()">
   <div class="card-body text-dark">
-      <div class="card-body">
           <div class="card-text">
-            <div class="form-floating mb-2">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+              <div class="form-floating mb-2">
+                <input type="text" class="form-control" id="floatingInput" formControlName="name" name="floatingInput" [(ngModel)]='stu.name' required>
                 <label for="floatingInput">Email address</label>
               </div>
-              <div class="form-floating">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+              <div *ngIf="stuform.controls['name'].errors?.['required']">           
+                <div class="alert alert-danger" role="alert">
+                  <p>This field is mandatory</p>
+                </div>
+              </div>
+              
+              <div class="form-floating" >
+                <input type="password" class="form-control" id="floatingPassword" name="floatingPassword"  formControlName="pass"  required>
                 <label for="floatingPassword">Password</label>
               </div>
-          </div>
-          <button type="button" class="btn btn-primary">Login</button>
+              
+              <div *ngIf="stuform.controls['pass'].errors?.['minlength']">           
+                <div class="alert alert-danger" role="alert">
+                  <p>Password length minimum of 8 charcters with the combination of minimum of 1caps 1small 1number 1 symbol.</p>
+                </div>
+              </div>                    
         </div>
   </div> 
+
+          <div class="form-check">
+            <input type="checkbox" name="subscribe" id="subscribe" />
+            <label class="form-check-label" for="flexCheckDefault">keep me sign in</label>
+          </div>      
+
+          <button type="submit" id="logbtn">Click Here!</button>
+
+           <!-- <div class="example">
+            <button kendoButton [primary]="true">Default</button>
+        </div>  -->
+       
+   
+</form>
 </div>

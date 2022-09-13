@@ -1,4 +1,114 @@
+<!-- heading -->
+<div class="row" style="margin-top: 40px;">
+  <div class="col-9" style="padding-left: 40px;">
+    <h2>COURSE  DETAILS </h2>
+  </div>
+  <div class="col-3">
+    <button
+      kendoButton
+     fillMode="outline"
+      themeColor="info"
+      [toggleable]="false"
+      (click)="update()"
+      data-toggle="modal"
+      data-target="#exampleModal" > + Add Course 
+    </button>
+  </div>
+</div>
 
-        <button type="button" class="btn btn-primary" value="Submit">Submit</button>
+<!-- kendogrid -->
+<kendo-grid [data]="gridData" [resizable]="true" style="margin:50px;">
+  <kendo-grid-column field="CourseID" title="ID"> </kendo-grid-column>
+  <kendo-grid-column field="CourseName" title="Name"> </kendo-grid-column>
+  <kendo-grid-column field="Action" title="Action">
+    <ng-template kendoGridCellTemplate let-isNew="isNew">
+      <button
+        kendoButton
+        fillMode="outline"
+        themeColor="info"
+        [toggleable]="false"
+        (click)="update()"data-toggle="modal"
+        data-target="#exampleModal" 
+        style="margin-right: 10px;" >  Edit
+      </button>
+      <button
+        kendoButton
+        fillMode="outline"
+        themeColor="error"
+        [toggleable]="false"
+        data-dismiss="modal" (click)="onButtonClick()" > Remove 
+      </button>
+    </ng-template> 
+  </kendo-grid-column>
+</kendo-grid>
 
-    
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Course Name</h5>
+      </div>
+      <div class="modal-body" *ngIf="body">
+        <input type="text" name="course name" value=""/>
+      </div>
+      <div class="modal-body" *ngIf="body2">
+        <p>Do you wants to delete</p>
+      </div>
+      <div class="modal-body" *ngIf="body3">
+        <input type="text" name="course name" value="coursename"/>
+      </div>
+      <div class="modal-footer" *ngIf="added">
+        <button
+          kendoButton
+          fillMode="outline"
+          themeColor="info"
+          [toggleable]="true"
+          data-toggle="modal" 
+          data-target="#exampleModal" > Save
+        </button>
+        <button
+          kendoButton
+          fillMode="outline"
+          themeColor="error"
+          [toggleable]="true"
+          data-dismiss="modal" > Close
+        </button>
+      </div>
+      <div class="modal-footer" *ngIf="edited">
+        <button
+          kendoButton
+          fillMode="outline"
+          themeColor="info"
+          [toggleable]="false" 
+          data-toggle="modal" 
+          data-target="#exampleModal"> Update
+        </button>
+        <button
+          kendoButton
+          fillMode="outline"
+          themeColor="error"
+          [toggleable]="true"
+          data-dismiss="modal" > Close
+        </button>
+      </div>
+      <div class="modal-footer" *ngIf="deleted">
+        <button
+          kendoButton
+          fillMode="outline"
+          themeColor="info"
+          [toggleable]="true"
+          (click)="onButtonClick()" > Yes
+        </button>
+        <button
+          kendoButton
+          fillMode="outline"
+          themeColor="error"
+          [toggleable]="true"
+          data-dismiss="modal" > No
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
