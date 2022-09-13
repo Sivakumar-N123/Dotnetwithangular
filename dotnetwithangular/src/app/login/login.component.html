@@ -1,13 +1,13 @@
 <div class="card mb-3 w-50 h-50 container p-0" >
   <h3 class="card-header">Login to continue</h3>
-  <form [formGroup]="stuform">
+  <form [formGroup]="stuform" (submit)="log()">
   <div class="card-body text-dark">
           <div class="card-text">
               <div class="form-floating mb-2">
-                <input type="email" class="form-control" id="floatingInput" formControlName="email" name="floatingInput" [(ngModel)]='stu.email' required>
+                <input type="text" class="form-control" id="floatingInput" formControlName="name" name="floatingInput" [(ngModel)]='stu.name' required>
                 <label for="floatingInput">Email address</label>
               </div>
-              <div *ngIf="stuform.controls['email'].errors?.['required']">           
+              <div *ngIf="stuform.controls['name'].errors?.['required']">           
                 <div class="alert alert-danger" role="alert">
                   <p>This field is mandatory</p>
                 </div>
@@ -31,25 +31,14 @@
             <label class="form-check-label" for="flexCheckDefault">keep me sign in</label>
           </div>      
 
-          <!-- <a href="update" ><button  type="button" class="btn btn-primary" >Login</button></a> -->
-          <button type="button" (click)="log()" id="logbtn">Click Here!</button>
+          <button type="submit" id="logbtn">Click Here!</button>
 
+           <!-- <div class="example">
+            <button kendoButton [primary]="true">Default</button>
+        </div>  -->
+       
    
 </form>
 </div>
 
 <router-outlet></router-outlet>
-<div class="row">
-  <div class="col mb-2">
-    <label for="name" class="form-label">Name:</label>
-    
-    <input type="email" class="form-control" id="txtname" name="txtname" formControlName="email" name="floatingInput" [(ngModel)]='stu.email' class="form-control form-control-sm" [class.is-invalid]="name.invalid && (name.dirty || name.touched)"required>
-    <label for="floatingInput">Email address</label>
-    <!-- <input type="text"  formControlName="name" placeholder="Your name" required minlength="1" maxlength="250" class="form-control form-control-sm" [class.is-invalid]="name.invalid && (name.dirty || name.touched)"> -->
-    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="invalid-feedback">
-      <div *ngIf="email.errors?.['required']">
-        This field is required.
-      </div>
-    </div>
-  </div>
-</div>
