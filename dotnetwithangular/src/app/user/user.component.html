@@ -2,8 +2,7 @@
     <div class="container">
 
         <h3>User List</h3>
-<button class="btn btn-primary adduser float-right" type="button" 
-data-toggle="modal" data-target="#exampleModal">+Add User</button>
+<button class="btn btn-primary adduser float-right" type="button" data-toggle="modal" data-target="#exampleModal"  (click)="reset()">+Add User</button>
 <div class="list">
     <table class="table">
         <thead>
@@ -24,9 +23,32 @@ data-toggle="modal" data-target="#exampleModal">+Add User</button>
           </tr>
         </tbody>
     </table>
-</div> 
 
-          
+    <kendo-grid [data]="data" style="margin:50px;">
+      <kendo-grid-column
+        title="S.No"
+        field="id" >
+      </kendo-grid-column>
+      <kendo-grid-column
+        title="Name"
+        field="name">
+      </kendo-grid-column>
+      <kendo-grid-column
+        title="UserName"
+        field="userName">
+      </kendo-grid-column>
+      <kendo-grid-column
+      field="Discontinued" title="Action" >
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <button kendoGridEditCommand themeColor="info">edit</button>
+        <button kendoButton themeColor="error">delete</button>
+      </ng-template>
+      </kendo-grid-column>
+    </kendo-grid>
+
+</div>
+
+    <!-- modal-->
 <div class="modal fade" id="exampleModal" tabindex="-1"
 role="dialog" aria-labelledby="exampleModalLabel"
 aria-hidden="true">
@@ -41,27 +63,49 @@ aria-hidden="true">
             <span aria-hidden="true">×</span>
         </button>
     </div>
+
+    <form [formGroup]="Form" (ngSubmit)="onSubmit()">
     <div class="modal-body">
-        <form [formGroup]="Form">
+ 
             <div class="form-group">
                 <label for="exampleFormControlInput1" class="form-label">Name</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="name" placeholder=" Enter the name...">
+                <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="name" placeholder=" Enter the name..."  >
+                <!-- <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                    <small *ngIf="f.name.errors['required']">Username is required</small>
+                    <small *ngIf="f.name.errors['minlength']">
+                      Username must be at least 6 characters
+                    </small>
+                    <small *ngIf="f.name.error['maxlength']">
+                      Username must not exceed 20 characters
+                    </small>
+                  </div> -->
             </div>
             <div class="form-group">
                 <label for="exampleFormControlInput2" class="form-label">User Name</label>
-                <input type="text" class="form-control" id="exampleFormControlInput2" formControlName="userName" placeholder=" Enter the User name...">
+                <input type="text" class="form-control" id="exampleFormControlInput2" formControlName="userName" placeholder=" Enter the User name..."  >
+                <!-- <div *ngIf="submitted && f['userName'].errors" class="invalid-feedback">
+                    <div *ngIf="f['userName'].errors?.required">Username is required</div>
+                    <div *ngIf="f['userName'].errors?.minlength">
+                      Username must be at least 6 characters
+                    </div>
+                    <div *ngIf="f['userName'].errors['maxlength']">
+                      Username must not exceed 20 characters
+                    </div>
+                  </div> -->
             </div>
-        </form>
+  
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary"
             data-dismiss="modal" >
             Close
         </button>
-        <button type="button"  class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">
+        <button type="submit"  class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">
             Save changes
         </button>
     </div>
+  </form>
+
 </div>
 </div>
 </div>

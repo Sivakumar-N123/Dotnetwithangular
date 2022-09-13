@@ -7,12 +7,18 @@ import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
 import { SpecificationComponent } from './specification/specification.component';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserComponent } from './user/user.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormFieldModule, InputsModule } from '@progress/kendo-angular-inputs';
+import { LabelModule } from "@progress/kendo-angular-label";
+import { PopupModule } from '@progress/kendo-angular-popup';
+import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
 import { UpdatepwdComponent } from './updatepwd/updatepwd.component';
-import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GridModule } from '@progress/kendo-angular-grid';
+import { ButtonsModule } from '@progress/kendo-angular-buttons';
+
+
 
 
 
@@ -31,13 +37,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CommonModule,
+    LabelModule,
+    FormFieldModule,
+    InputsModule,
+    DateInputsModule,
+    PopupModule,
     FormsModule,
     ReactiveFormsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    ButtonsModule,
-    BrowserAnimationsModule
+    InputsModule,
+    BrowserAnimationsModule,
+    GridModule,
+    ButtonsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
