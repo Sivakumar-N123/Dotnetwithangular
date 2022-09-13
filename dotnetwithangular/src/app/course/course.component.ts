@@ -39,6 +39,7 @@ export class CourseComponent implements OnInit {
     console.log("click");
     alert("Do you want to delete");
   }
+ 
   adding(){
     this.body=true;
     this.body2=false;
