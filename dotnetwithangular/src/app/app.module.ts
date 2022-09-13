@@ -10,6 +10,12 @@ import { SpecificationComponent } from './specification/specification.component'
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserComponent } from './user/user.component';
+import { ButtonsModule } from '@progress/kendo-angular-buttons';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GridModule } from '@progress/kendo-angular-grid';
+
+
+
 
 @NgModule({
   declarations: [
@@ -27,6 +33,9 @@ import { UserComponent } from './user/user.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    ButtonsModule,
+    BrowserAnimationsModule,
+    GridModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
