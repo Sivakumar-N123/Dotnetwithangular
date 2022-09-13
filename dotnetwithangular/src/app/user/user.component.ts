@@ -9,8 +9,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class UserComponent implements OnInit {
   data: any[] = [{id:0, name: "Sivakumar N", userName: "sivakumar123" },
   {id:1, name: "Rajesh", userName: "rajesh123" },
-  {id:0, name: "Mahima", userName: "mahima123" },
-  {id:0, name:"Praveenraj",userName:"praveenraj123"},
+  {id:2, name: "Mahima", userName: "mahima123" },
+  {id:3, name:"Praveenraj",userName:"praveenraj123"},
   ];
   Form = new FormGroup({
     name: new FormControl(''),
@@ -20,6 +20,10 @@ export class UserComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+  edit(id:any)
+  {
+    id
   }
 
 }

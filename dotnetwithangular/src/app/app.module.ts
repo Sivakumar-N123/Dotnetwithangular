@@ -9,13 +9,14 @@ import { HeaderComponent } from './header/header.component';
 import { SpecificationComponent } from './specification/specification.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserComponent } from './user/user.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { FormFieldModule, InputsModule } from '@progress/kendo-angular-inputs';
 import { LabelModule } from "@progress/kendo-angular-label";
 import { PopupModule } from '@progress/kendo-angular-popup';
 import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
+import { UpdatepwdComponent } from './updatepwd/updatepwd.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
     HeaderComponent,
     SpecificationComponent,
     UserComponent,
+    UpdatepwdComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +41,10 @@ import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
     FormFieldModule,
     InputsModule,
     DateInputsModule,
-    PopupModule
+    PopupModule,
+    ReactiveFormsModule,
+    FormsModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
