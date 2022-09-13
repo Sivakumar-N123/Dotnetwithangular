@@ -7,7 +7,9 @@ import { SpecificationComponent } from './specification/specification.component'
 import { UserComponent } from './user/user.component';
 import { UpdatepwdComponent } from './updatepwd/updatepwd.component';
 
-let routes: Routes = [
+
+
+const routes: Routes = [
   {path:"course",component:CourseComponent},
  {path:"admin",component:AdminComponent},
  {path:"",component:LoginComponent},
@@ -15,6 +17,8 @@ let routes: Routes = [
  {path:"user", component:UserComponent},
  {path:"login",component:LoginComponent},
  {path:"update",component:UpdatepwdComponent} 
+
+
  
 ]
 

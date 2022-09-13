@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { fakeAsync } from '@angular/core/testing';
 
 @Component({
   selector: 'app-course',
@@ -7,67 +8,60 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CourseComponent implements OnInit {
 
-  constructor() { }
-  edit:boolean=false;
-  delete:boolean=false;
-  add:boolean=true;
-  body1 :boolean = true;
-  header1 :boolean =true;
-  header:boolean=true;
+ 
+
+   public gridData: any []= [
+    {
+      CourseID: 1,CourseName:"Chai"
+    },
+    {
+      CourseID: 2,CourseName:"Chang"
+    },
+    {
+      CourseID: 3,CourseName:"Aniseed Syrup"
+    },
+  ];
+
+
+  constructor() { 
+  }
+  edited:boolean=false;
+  deleted:boolean=false;
+  added:boolean=true;
   body:boolean=true;
-  body2:boolean=true;
+  body2:boolean=false;
+  header:boolean=true;
+  body3:boolean=false;
+
   ngOnInit(): void {
   }
-  array=[
-    { 
-      Id:1,
-      Name:"mahi"
-    }
-  ]
-  delete1(){
-    this.edit=false
-    this.delete=true
-    this.add=false
-    this.body1=true
-    this.header1=false
-    this.body=false
-    this.header=false
-    this.body2=false
+  public onButtonClick(): void {
+    console.log("click");
+    alert("Do you want to delete");
   }
-  myfun(){
-    alert("Deleted Successfully");
+  adding(){
+    this.body=true;
+    this.body2=false;
+    this.body3=false;
+    this.added=true;
+    this.edited=false;
+    this.deleted=false;
   }
-  edit1(){
-    this.edit=true
-    this.delete=false
-    this.add=false
-    this.body1=false
-    this.header1=false
-    this.body=true
-    this.header=true
-    this.body2=false
+  update(){
+   this.body=false;
+   this.body2=false;
+   this.body3=true;
+   this.edited=true;
+   this.added=false;
+   this.deleted=false
   }
-  add1(){
-    this.add=true
-    this.body=true
-    this.header=true
-    this.body1=false
-    this.header1=false
-    this.delete=false
-    this.edit=false
-    this.body2=false
+  delete(){
+   this.deleted=true;
+   this.edited=false;
+   this.added=false;
+   this.body2=true;
+   this.body=false;
+   this.body3=false;
   }
-
-  // header1(){
-  //   this.header1=true
-  //   this.delete=false
-  //   this.edit=false
-  // }
-  // body1(){
-  //   this.body1=true
-  //   this.delete=false
-  //   this.edit=false
-  // }
-  
-
+ 
 }
