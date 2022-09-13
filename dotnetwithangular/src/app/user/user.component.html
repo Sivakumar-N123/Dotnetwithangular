@@ -14,7 +14,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let name of data;let i=index">
+          <tr *ngFor="let name of userdata;let i=index">
             <th scope="row">{{i+1}}</th>
             <td>{{name.name}}</td>
             <td>{{name.userName}}</td>
@@ -40,7 +40,7 @@
       <kendo-grid-column
       field="Discontinued" title="Action" >
       <ng-template kendoGridCellTemplate let-dataItem>
-        <button themeColor="info" (click)="edit(userdata.id)">edit</button>
+        <button themeColor="info">edit</button>
         <button kendoButton themeColor="error">delete</button>
       </ng-template>
       </kendo-grid-column>
