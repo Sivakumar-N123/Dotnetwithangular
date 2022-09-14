@@ -6,10 +6,10 @@
   <div class="col-3">
     <button
       kendoButton
-     fillMode="outline"
+      fillMode="outline"
       themeColor="info"
       [toggleable]="false"
-      (click)="update()"
+      (click)="update1()"
       data-toggle="modal"
       data-target="#exampleModal" > + Add Course 
     </button>
@@ -17,15 +17,15 @@
 </div>
 
 <!-- kendogrid -->
-<kendo-grid [data]="gridData" [resizable]="true" style="margin:50px;">
-  <kendo-grid-column field="CourseID" title="ID"> </kendo-grid-column>
-  <kendo-grid-column field="CourseName" title="Name"> </kendo-grid-column>
+<kendo-grid [kendoGridBinding]="CourseDetails" [resizable]="true" style="margin:50px;font-size: 18px;" >
+  <kendo-grid-column title="ID" field="CourseID"></kendo-grid-column>
+  <kendo-grid-column field="CourseName" title="Name" required> </kendo-grid-column>
   <kendo-grid-column field="Action" title="Action">
     <ng-template kendoGridCellTemplate let-isNew="isNew">
       <button
         kendoButton
         fillMode="outline"
-        themeColor="info"
+        themeColor="warning"
         [toggleable]="false"
         (click)="update()"data-toggle="modal"
         data-target="#exampleModal" 
@@ -35,61 +35,60 @@
         kendoButton
         fillMode="outline"
         themeColor="error"
-        [toggleable]="false"
-        data-dismiss="modal" (click)="onButtonClick()" > Remove 
+        [toggleable]="false"data-toggle="modal"
+        data-target="#exampleModal"  (click)="deleting()"  > Delete 
       </button>
     </ng-template> 
   </kendo-grid-column>
 </kendo-grid>
 
-
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header" *ngIf="header">
         <h5 class="modal-title" id="exampleModalLabel">Course Name</h5>
       </div>
-      <div class="modal-body" *ngIf="body">
-        <input type="text" name="course name" value=""/>
-      </div>
+      <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
+        <div class="modal-body" *ngIf="body">
+          <input type="text" #box placeholder="Course Name" formControlName="user"> <br><br>
+          <span *ngIf="user && user.invalid && user.touched" style="color:red;">*Course name is required</span>
+        </div>
+        <div class="modal-footer" *ngIf="added">
+          <button
+            kendoButton
+            fillMode="outline"
+            themeColor="info"
+            [toggleable]="false"
+            data-toggle="modal" 
+            data-target="#exampleModal" (click)="onButtonClick1()" [disabled]="loginForm.invalid"> Save
+          </button>
+          <button
+            kendoButton
+            fillMode="outline"
+            themeColor="error"
+            [toggleable]="false"
+            data-dismiss="modal" > Close
+          </button>
+        </div>
+      </form>
       <div class="modal-body" *ngIf="body2">
         <p>Do you wants to delete</p>
       </div>
-      <div class="modal-body" *ngIf="body3">
-        <input type="text" name="course name" value="coursename"/>
-      </div>
-      <div class="modal-footer" *ngIf="added">
-        <button
-          kendoButton
-          fillMode="outline"
-          themeColor="info"
-          [toggleable]="true"
-          data-toggle="modal" 
-          data-target="#exampleModal" > Save
-        </button>
-        <button
-          kendoButton
-          fillMode="outline"
-          themeColor="error"
-          [toggleable]="true"
-          data-dismiss="modal" > Close
-        </button>
-      </div>
-      <div class="modal-footer" *ngIf="edited">
+      <div class="modal-footer" *ngIf="edited"> 
         <button
           kendoButton
           fillMode="outline"
           themeColor="info"
           [toggleable]="false" 
           data-toggle="modal" 
-          data-target="#exampleModal"> Update
+          data-target="#exampleModal" (click)="onButtonClick2()" > Update
         </button>
         <button
           kendoButton
           fillMode="outline"
           themeColor="error"
-          [toggleable]="true"
+          [toggleable]="false"
           data-dismiss="modal" > Close
         </button>
       </div>
@@ -98,17 +97,24 @@
           kendoButton
           fillMode="outline"
           themeColor="info"
-          [toggleable]="true"
+          [toggleable]="false"
+          data-toggle="modal" 
+          data-target="#exampleModal"
           (click)="onButtonClick()" > Yes
         </button>
         <button
           kendoButton
           fillMode="outline"
           themeColor="error"
-          [toggleable]="true"
+          [toggleable]="false"
           data-dismiss="modal" > No
         </button>
       </div>
     </div>
   </div>
 </div>
+
+
+
+
+
