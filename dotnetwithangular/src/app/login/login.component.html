@@ -1,42 +1,89 @@
 <div class="card mb-3 w-50 h-50 container p-0" >
-  <h3 class="card-header">Login to continue</h3>
-  <form [formGroup]="stuform" (submit)="log()">
+  <h3 class="card-header">User Login</h3>
+  <form [formGroup]="logform" (submit)="onsubmit()">
   <div class="card-body text-dark">
           <div class="card-text">
-              <div class="form-floating mb-2">
-                <input type="text" class="form-control" id="floatingInput" formControlName="name" name="floatingInput" [(ngModel)]='stu.name' required>
-                <label for="floatingInput">Email address</label>
-              </div>
-              <div *ngIf="stuform.controls['name'].errors?.['required']">           
-                <div class="alert alert-danger" role="alert">
-                  <p>This field is mandatory</p>
+            <div class="form-group">
+              <label for="username">User Name</label>
+              <input type="text" formControlName="username" [ngClass]="{'is-invalid':submitted && logform.controls['username'].errors}" class="form-control">
+              <div *ngIf="submitted && logform.controls['username'].errors" class="text-danger">
+                <div *ngIf="submitted && logform.controls['username'].errors['required']">
+                    This field is required
                 </div>
               </div>
-              
-              <div class="form-floating" >
-                <input type="password" class="form-control" id="floatingPassword" name="floatingPassword"  formControlName="pass"  required>
-                <label for="floatingPassword">Password</label>
+          </div>
+      
+          <div class="form-group">
+            <label for="password">Password</label>
+       
+            <div class="form-group1">
+              <input [type]="changetype?'password':'text'" class="form-control" placeholder="Enter your password" formControlName="pass"  [ngClass]="{'is-invalid':submitted && logform.controls['pass'].errors}" >
+              <span class="eyeicon" (click)="viewpass()"><i [ngClass]="visible?'fa fa-eye':'fa fa-eye-slash'"></i>
+              </span>
+            </div>
+
+            <div *ngIf="submitted && logform.controls['pass'].errors" class="text-danger">
+              <div *ngIf="submitted && logform.controls['pass'].errors['required']">
+                  This field is required
               </div>
-              
-              <div *ngIf="stuform.controls['pass'].errors?.['minlength']">           
-                <div class="alert alert-danger" role="alert">
-                  <p>Password length minimum of 8 charcters with the combination of minimum of 1caps 1small 1number 1 symbol.</p>
-                </div>
-              </div>                    
+              <div *ngIf="submitted && logform.controls['pass'].errors['minlength']">
+                Password length minimum of 8 charcters with the combination of minimum of 1caps 1small 1number 1 symbol
+              </div>
+              <div *ngIf="submitted && logform.controls['pass'].errors['maxlength']">
+                Password length maximum is 12
+              </div>
+            </div>
         </div>
   </div> 
 
           <div class="form-check">
             <input type="checkbox" name="subscribe" id="subscribe" />
             <label class="form-check-label" for="flexCheckDefault">keep me sign in</label>
-          </div>      
-
-          <button type="submit" id="logbtn">Click Here!</button>
-
-           <!-- <div class="example">
-            <button kendoButton [primary]="true">Default</button>
-        </div>  -->
-       
+          </div>  
+          
+               
+        <div class="form-group">
+          <button kendoButton themeColor="info" id="logbtn">Login</button>          
+        </div>                    
+        </div>
    
 </form>
 </div>
+
+
+<!-- 
+<div class="container">
+  <form [formGroup]="logform" (submit)="onsubmit()">
+    <div class="form-group">
+        <label for="username">User Name</label>
+        <input type="text" formControlName="username" [ngClass]="{'is-invalid':submitted && logform.controls['username'].errors}" class="form-control">
+        <div *ngIf="submitted && logform.controls['username'].errors" class="text-danger">
+          <div *ngIf="submitted && logform.controls['username'].errors['required']">
+              This field is required
+          </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" formControlName="pass" [ngClass]="{'is-invalid':submitted && logform.controls['pass'].errors}"  class="form-control">
+
+      <div *ngIf="submitted && logform.controls['pass'].errors" class="text-danger">
+        <div *ngIf="submitted && logform.controls['pass'].errors['required']">
+            This field is required
+        </div>
+        <div *ngIf="submitted && logform.controls['pass'].errors['minlength']">
+          Password length minimum of 8 charcters with the combination of minimum of 1caps 1small 1number 1 symbol
+        </div>
+        <div *ngIf="submitted && logform.controls['pass'].errors['maxlength']">
+          Password length maximum is 12
+        </div>
+      </div>
+  </div>
+
+  <div class="form-group">
+    <button class="btn btn-primary">Login</button>
+  </div>
+
+  </form>
+</div> -->

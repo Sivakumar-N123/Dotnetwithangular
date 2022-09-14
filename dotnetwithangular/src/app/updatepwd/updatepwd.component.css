@@ -22,3 +22,26 @@ h3,h1
     color: white;
     padding: 10px;
 }   
+
+
+.form-group1 {
+    position: relative;
+    width: 700px;
+}
+
+.form-group1 input {
+    border: 1px solid #ddd;
+    height: 40px;
+    padding: 0 15px;
+    border-radius: 5px;
+    font-size: 15px;
+    width: 100%;
+}
+
+.eyeicon {
+    position: absolute;
+    right: 30px;
+    top: 5px;
+    cursor: pointer;
+    font-size: 22px;
+}

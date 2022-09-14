@@ -2,7 +2,6 @@ button{
     margin-top: 20px;
 width: 100px;
 height: 50px;
-border-radius: 50px;
 }
 
 .card-body{
@@ -20,8 +19,7 @@ h3,h1{
 }
 .form-check
 {
-    top: -30px;
-    left: 30px;
+    left: -20px;
 }
 
 a
@@ -33,12 +31,33 @@ a
 #logbtn
 {
     float: right;
-    margin-right: 50px;
     margin-bottom: 50px;
-    margin-top: -50px;
+    margin-top: -10px;
 }
 
 .form-check-label
 {
  padding-left: 5px;   
+}
+
+.form-group1 {
+    position: relative;
+    width: 700px;
+}
+
+.form-group1 input {
+    border: 1px solid #ddd;
+    height: 40px;
+    padding: 0 15px;
+    border-radius: 5px;
+    font-size: 15px;
+    width: 100%;
+}
+
+.eyeicon {
+    position: absolute;
+    right: 30px;
+    top: 5px;
+    cursor: pointer;
+    font-size: 22px;
 }

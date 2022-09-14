@@ -1,27 +1,90 @@
 <div class="card mb-3 w-50 h-50 container p-0" >
-    <form>
-    <h3 class="card-header">Update Password</h3>
-    <div class="card-body text-dark">
-        <div class="card-body">
-            <div class="card-text">
-              <div class="pass1 mb-3" >
-                <input type="password" style="height: 50px;" class="form-control" id="floatingPassword1" placeholder="Password" data-toggle="password"  placeholder="Enter the password">
-                  
-                </div>
-              <div class="pass1 mb-3">
-                <input type="password" style="height: 50px;" class="form-control" id="floatingPassword2" placeholder="Password" data-toggle="password"  placeholder="Enter the password">
-                  
-                </div>
-                <div class="pass1 mb-3">
-                  <input type="password" style="height: 50px;" class="form-control" id="floatingPassword3" placeholder="Password" data-toggle="password"  placeholder="Enter the password">
-                </div>
-            </div>                       
-            <button type="button" class="btn btn-primary" >Update Password</button>
-          </div>
-        </div> 
-    </form>
+  <h3 class="card-header">User Login</h3>
+  <form [formGroup]="pwd" (submit)="onsubmit()">
+  <div class="card-body text-dark">
+          <div class="card-text">    
+            
+            
+          <div class="form-group">
+            <label for="password">Old Password</label>
+      
+            <div class="form-group1">
+              <input [type]="changetype?'password':'text'" class="form-control" placeholder="Enter your password" formControlName="oldpass"  [ngClass]="{'is-invalid':submitted1 && pwd.controls['oldpass'].errors}" >
+              <span class="eyeicon" (click)="viewpass1()"><i [ngClass]="visible?'fa fa-eye':'fa fa-eye-slash'"></i>
+              </span>
+            </div>
+
+            <div *ngIf="submitted1 && pwd.controls['oldpass'].errors" class="text-danger">
+              <div *ngIf="submitted1 && pwd.controls['oldpass'].errors['required']">
+                  This field is required
+              </div>
+              <div *ngIf="submitted1 && pwd.controls['oldpass'].errors['minlength']">
+                Password length minimum of 8 charcters with the combination of minimum of 1caps 1small 1number 1 symbol
+              </div>
+              <div *ngIf="submitted1 && pwd.controls['oldpass'].errors['maxlength']">
+                Password length maximum is 12
+              </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+          <label for="password">New Password</label>
     
+          <div class="form-group1">
+            <input [type]="changetype1?'password':'text'" class="form-control" placeholder="Enter your password" formControlName="newpass"  [ngClass]="{'is-invalid':submitted1 && pwd.controls['newpass'].errors}" >
+            <span class="eyeicon" (click)="viewpass2()"><i [ngClass]="visible1?'fa fa-eye':'fa fa-eye-slash'"></i>
+            </span>
+          </div>
+
+          <div *ngIf="submitted1 && pwd.controls['newpass'].errors" class="text-danger">
+            <div *ngIf="submitted1 && pwd.controls['newpass'].errors['required']">
+                This field is required
+            </div>
+            <div *ngIf="submitted1 && pwd.controls['newpass'].errors['minlength']">
+              Password length minimum of 8 charcters with the combination of minimum of 1caps 1small 1number 1 symbol
+            </div>
+            <div *ngIf="submitted1 && pwd.controls['newpass'].errors['maxlength']">
+              Password length maximum is 12
+            </div>
+          </div>
+      </div>
+
+
+
+
+      <div class="form-group">
+        <label for="password">confirmation Password</label>
+   
+        <div class="form-group1">
+          <input [type]="changetype2?'password':'text'" class="form-control" placeholder="Enter your password" formControlName="oldpass"  [ngClass]="{'is-invalid':submitted1 && pwd.controls['confirmpass'].errors}" >
+          <span class="eyeicon" (click)="viewpass3()"><i [ngClass]="visible2?'fa fa-eye':'fa fa-eye-slash'"></i>
+          </span>
+        </div>
+
+        <div *ngIf="submitted1 && pwd.controls['confirmpass'].errors" class="text-danger">
+          <div *ngIf="submitted1 && pwd.controls['confirmpass'].errors['required']">
+              This field is required
+          </div>
+          <div *ngIf="submitted1 && pwd.controls['confirmpass'].errors['minlength']">
+            Password length minimum of 8 charcters with the combination of minimum of 1caps 1small 1number 1 symbol
+          </div>
+          <div *ngIf="submitted1 && pwd.controls['confirmpass'].errors['maxlength']">
+            Password length maximum is 12
+          </div>
+        </div>
+    </div>
+
+
+  </div> 
+       
+               
+        <div class="form-group">
+          <button kendoButton themeColor="info" id="logbtn">Login</button>          
+        </div>                    
+        </div>
+   
+</form>
 </div>
 
 
-<!-- <input type="password" class="form-control" id="floatingPassword" placeholder="Password" data-toggle="password"  placeholder="Enter the password"> -->
