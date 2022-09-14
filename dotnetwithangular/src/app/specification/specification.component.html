@@ -1,79 +1,113 @@
-<h1>Specification </h1>
-<div class="container left">
-<div class="row">
-    <div class="col-6">
-        <label >Specification Name:</label>
-        <input type="text" placeholder="Specification Name"/>
-    </div>
-    <div class="col-3">
-        <button class="btn btn-danger">Edit</button>
-    </div>
-    <div class="col-3">
-        <button class="btn btn-warning">Delete</button>
-    </div>
-</div>
-</div>
-<button class="btn btn-success addSpec">Add Specification</button>
-
-<button type="button" class="btn btn-success"
-data-toggle="modal" data-target="#exampleModal">
-Add Specification
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1"
-role="dialog" aria-labelledby="exampleModalLabel"
-aria-hidden="true">
-<div class="modal-dialog" role="document">
-<div class="modal-content">
-    <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">
-            Title over here!
-        </h5>
-        <button type="button" class="close"
-            data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-        </button>
-    </div>
-    <div class="modal-body">
-        All the content!
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary"
-            data-dismiss="modal">
-            Close
-        </button>
-        <button type="button" class="btn btn-primary">
-            Save changes
-        </button>
-    </div>
-</div>
-</div>
-</div>
-
-<!-- Button trigger modal -->
-<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    Add Specification
-  </button> -->
-  
-  <!-- Modal -->
-  <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<h3>Specifications for the Student course</h3>
+<div class="container">
+   <div class="modal fade" id="exampleModal" tabindex="-1"
+      role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
     <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Specification</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+   <div class="modal-content">
+   <div class="modal-header">
+   <h5 class="modal-title" id="exampleModalLabel" *ngIf="title">
+     Specification
+   </h5>
+   <h5 class="modal-title" id="exampleModalLabel" *ngIf="title1">
+    Confirmation
+  </h5>
+   <button type="button" class="close"data-dismiss="modal" aria-label="Close">
+     <span aria-hidden="true">×</span>
+   </button>
+</div>
+   <div class="modal-body" *ngIf="body">
+     <label >Specification Name:</label>
+     <input type="text" placeholder="Specification Name"/>
+   </div>
+   <div class="modal-body" *ngIf="body1">
+    <label >Do you want to Delete ?</label>
+   </div>
+   <div class="modal-footer" *ngIf="footer">
+      <button kendoButton fillMode="outline"themeColor="info" [toggleable]="true">
+            Save
+      </button>
+      <button kendoButton fillMode="outline"themeColor="success" [toggleable]="true" data-dismiss="modal">
+        Close
+      </button>
+   </div>
+   <div class="modal-footer" *ngIf="footer1">
+    <button kendoButton fillMode="outline"themeColor="info" [toggleable]="true">
+      Yes
+    </button>
+    <button kendoButton fillMode="outline"themeColor="success" [toggleable]="true" data-dismiss="modal">
+      No
+    </button>
+   </div>
+</div>
+</div>
+</div>
+</div>
+
+   <button
+      kendoButton
+      fillMode="outline"
+      themeColor="info"
+      [toggleable]="true"
+      data-toggle="modal"  class="addSpec" data-toggle="modal" data-target="#exampleModal"(click)="edit1()"
+      >
+      Add Specification
+    </button>
+
+
+  <!-- <div class="container">
+<table class="table">
+    <thead>
+       <th>Id</th>
+       <th>Specification Name</th>
+       <th>Action</th>
+   </thead>
+ <tbody>
+    <tr>
+        <td>1</td>
+        <td>EEE</td>
+        <td> <button kendoButton [primary]="true"  data-toggle="modal" data-target="#exampleModal"(click)="edit1()">
+            Edit
           </button>
-        </div>
-        <div class="modal-body">
-            <label >Specification Name:</label>
-            <input type="text" placeholder="Specification Name"/>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save</button>
-        </div>
-      </div>
-    </div>
-  </div> -->
+          <button kendoButton [primary]="true" class="del" data-toggle="modal" data-target="#exampleModal" (click)="delete1()">
+            Delete
+            </button>
+        </td>
+     </tr>
+  </tbody>
+</table>
+</div> -->
+<br><br>
+
+<div class="container">
+<kendo-grid [data]="gridData">
+  <kendo-grid-column field="ID" title="ID"> </kendo-grid-column>
+  <kendo-grid-column field="SpecificationName" title="Specification Name"> </kendo-grid-column>
+  <kendo-grid-column field="Action" title="Action">
+    <ng-template kendoGridCellTemplate let-isNew="isNew">
+    <button
+      kendoButton
+      fillMode="outline"
+      themeColor="info"
+      [toggleable]="true"
+      data-toggle="modal" data-target="#exampleModal"(click)="edit1()"
+      >
+      Edit
+    </button>
+      <button
+      kendoButton
+      fillMode="outline"
+      themeColor="primary"
+      [toggleable]="true"
+      data-toggle="modal" class="del" data-target="#exampleModal"(click)="delete1()"
+    >
+      Delete
+    </button>
+    
+    </ng-template> 
+     </kendo-grid-column>
+ </kendo-grid>
+</div>
+
+
+
