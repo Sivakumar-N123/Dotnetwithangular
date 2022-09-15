@@ -1,4 +1,46 @@
 <h3>Specifications for the Student course</h3>
+
+ <button
+      kendoButton
+      themeColor="info"
+      [toggleable]="false"
+      data-toggle="modal" fillMode="outline" class="addSpec" 
+      data-toggle="modal" data-target="#exampleModal"(click)="add1()"
+      >
+      + Add Specification
+  </button>
+
+<!-- kendo grid -->
+<div class="container">
+<kendo-grid [data]="gridData">
+  <kendo-grid-column field="ID" title="ID"> </kendo-grid-column>
+  <kendo-grid-column field="SpecificationName" title="Specification Name"> </kendo-grid-column>
+  <kendo-grid-column field="Action" title="Action">
+    <ng-template kendoGridCellTemplate let-isNew="isNew">
+    <button
+      kendoButton
+      fillMode="outline"
+      themeColor="warning"
+      [toggleable]="false"
+      data-toggle="modal" data-target="#exampleModal"(click)="edit1()"
+      >
+      Edit
+    </button>
+      <button
+      kendoButton
+      fillMode="outline"
+      themeColor="primary"
+      [toggleable]="false"
+      data-toggle="modal" class="del" data-target="#exampleModal"(click)="delete1()"
+    >
+      Delete
+    </button>
+  </ng-template> 
+     </kendo-grid-column>
+ </kendo-grid>
+</div>
+
+<!-- modal -->
 <div class="container">
    <div class="modal fade" id="exampleModal" tabindex="-1"
       role="dialog" aria-labelledby="exampleModalLabel"
@@ -16,26 +58,47 @@
      <span aria-hidden="true">×</span>
    </button>
 </div>
-   <div class="modal-body" *ngIf="body">
-     <label >Specification Name:</label>
-     <input type="text" placeholder="Specification Name"/>
-   </div>
+  <div class="modal-body" *ngIf="body">
+  <form [formGroup]="specForm" (submit)="onSubmit()">
+     <div class="form-group">
+      <label for="Specification Name">   Specification Name:</label>
+      <input type="text" formControlName="specName" placeholder="Enter Specification Name"
+        [ngClass]="{'is-invalid':submitted && specForm.controls['specName'].errors}"
+        class="form-control"
+      />
+      <div *ngIf="submitted && specForm.controls['specName'].errors" class="text-danger">
+        <div *ngIf="submitted && specForm.controls['specName'].errors['required']">
+           Specification name is mandatory
+        </div>
+      </div>
+     </div>
+      <div class="modal-footer" *ngIf="footer">
+        <button kendoButton fillMode="outline"themeColor="info" [toggleable]="false">
+              Save
+        </button>
+        <button kendoButton fillMode="outline"themeColor="primary" [toggleable]="false" data-dismiss="modal">
+          Close
+        </button>
+     </div>
+  </form> 
+  </div>
+
    <div class="modal-body" *ngIf="body1">
-    <label >Do you want to Delete ?</label>
+      <label >Do you want to Delete ?</label>
    </div>
-   <div class="modal-footer" *ngIf="footer">
-      <button kendoButton fillMode="outline"themeColor="info" [toggleable]="true">
-            Save
+   <div class="modal-footer" *ngIf="editfooter">
+      <button kendoButton fillMode="outline"themeColor="info" [toggleable]="false" (click)="update()">
+        Update
       </button>
-      <button kendoButton fillMode="outline"themeColor="success" [toggleable]="true" data-dismiss="modal">
+      <button kendoButton fillMode="outline"themeColor="primary" [toggleable]="false" data-dismiss="modal">
         Close
       </button>
    </div>
    <div class="modal-footer" *ngIf="footer1">
-    <button kendoButton fillMode="outline"themeColor="info" [toggleable]="true">
+    <button kendoButton fillMode="outline"themeColor="info" [toggleable]="false" (click)="yes()">
       Yes
     </button>
-    <button kendoButton fillMode="outline"themeColor="success" [toggleable]="true" data-dismiss="modal">
+    <button kendoButton fillMode="outline"themeColor="primary" [toggleable]="false" data-dismiss="modal">
       No
     </button>
    </div>
@@ -44,70 +107,5 @@
 </div>
 </div>
 
-   <button
-      kendoButton
-      fillMode="outline"
-      themeColor="info"
-      [toggleable]="true"
-      data-toggle="modal"  class="addSpec" data-toggle="modal" data-target="#exampleModal"(click)="edit1()"
-      >
-      Add Specification
-    </button>
-
-
-  <!-- <div class="container">
-<table class="table">
-    <thead>
-       <th>Id</th>
-       <th>Specification Name</th>
-       <th>Action</th>
-   </thead>
- <tbody>
-    <tr>
-        <td>1</td>
-        <td>EEE</td>
-        <td> <button kendoButton [primary]="true"  data-toggle="modal" data-target="#exampleModal"(click)="edit1()">
-            Edit
-          </button>
-          <button kendoButton [primary]="true" class="del" data-toggle="modal" data-target="#exampleModal" (click)="delete1()">
-            Delete
-            </button>
-        </td>
-     </tr>
-  </tbody>
-</table>
-</div> -->
-<br><br>
-
-<div class="container">
-<kendo-grid [data]="gridData">
-  <kendo-grid-column field="ID" title="ID"> </kendo-grid-column>
-  <kendo-grid-column field="SpecificationName" title="Specification Name"> </kendo-grid-column>
-  <kendo-grid-column field="Action" title="Action">
-    <ng-template kendoGridCellTemplate let-isNew="isNew">
-    <button
-      kendoButton
-      fillMode="outline"
-      themeColor="info"
-      [toggleable]="true"
-      data-toggle="modal" data-target="#exampleModal"(click)="edit1()"
-      >
-      Edit
-    </button>
-      <button
-      kendoButton
-      fillMode="outline"
-      themeColor="primary"
-      [toggleable]="true"
-      data-toggle="modal" class="del" data-target="#exampleModal"(click)="delete1()"
-    >
-      Delete
-    </button>
-    
-    </ng-template> 
-     </kendo-grid-column>
- </kendo-grid>
-</div>
-
-
+   
 
