@@ -18,7 +18,7 @@
             <th scope="row">{{i+1}}</th>
             <td>{{name.name}}</td>
             <td>{{name.userName}}</td>
-            <td><button class="btn btn-primary" (click)="edit()">edit</button>
+            <td><button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"(click)="edit(i)">edit</button>
                 <button class="btn btn-danger">cancel</button></td>
           </tr>
         </tbody>
@@ -42,8 +42,8 @@
       <kendo-grid-column
       field="Discontinued" title="Action" >
       <ng-template kendoGridCellTemplate let-dataItem>
-        <button kendoButton themeColor="warning" style="margin-right:10px;" (click)="edit()">edit</button>
-        <button kendoButton themeColor="error">delete</button>
+        <button kendoButton themeColor="warning" style="margin-right:10px;" data-toggle="modal" data-target="#exampleModal" >edit</button>
+        <button kendoButton themeColor="error" data-toggle="modal" data-target="#exampleModal1" >delete</button>
       </ng-template>
       </kendo-grid-column>
     </kendo-grid>
@@ -71,29 +71,33 @@ aria-hidden="true">
  
             <div class="form-group">
                 <label for="exampleFormControlInput1" class="form-label">Name</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="name" placeholder=" Enter the name..."  >
-                <!-- <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
-                    <small *ngIf="f.name.errors['required']">Username is required</small>
-                    <small *ngIf="f.name.errors['minlength']">
-                      Username must be at least 6 characters
-                    </small>
-                    <small *ngIf="f.name.error['maxlength']">
-                      Username must not exceed 20 characters
-                    </small>
-                  </div> -->
+                <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="name" placeholder=" Enter the name..."  [class.is-invalid]="name.invalid && (name.dirty || name.touched)">
+                <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger">
+                  <div *ngIf="name.errors?.['required']">
+                    This field is required.
+                  </div>
+                  <div *ngIf="name.errors?.['minlength']">
+                    This field must have at least 2 character.
+                  </div>
+                  <div *ngIf="name.errors?.['maxlength']">
+                    This field must have at most 20 characters.
+                  </div>
+                </div>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlInput2" class="form-label">User Name</label>
-                <input type="text" class="form-control" id="exampleFormControlInput2" formControlName="userName" placeholder=" Enter the User name..."  >
-                <!-- <div *ngIf="submitted && f['userName'].errors" class="invalid-feedback">
-                    <div *ngIf="f['userName'].errors?.required">Username is required</div>
-                    <div *ngIf="f['userName'].errors?.minlength">
-                      Username must be at least 6 characters
-                    </div>
-                    <div *ngIf="f['userName'].errors['maxlength']">
-                      Username must not exceed 20 characters
-                    </div>
-                  </div> -->
+                <input type="text" class="form-control" id="exampleFormControlInput2" formControlName="userName" placeholder=" Enter the User name..." [class.is-invalid]="userName.invalid && (userName.dirty || userName.touched)" >
+                <div *ngIf="userName.invalid && (userName.dirty || userName.touched)" class="text-danger">
+                  <div *ngIf="userName.errors?.['required']">
+                    This field is required.
+                  </div>
+                  <div *ngIf="userName.errors?.['minlength']">
+                    This field must have at least 2 character.
+                  </div>
+                  <div *ngIf="userName.errors?.['maxlength']">
+                    This field must have at most 20 characters.
+                  </div>
+                </div>
             </div>
   
     </div>
@@ -101,15 +105,55 @@ aria-hidden="true">
         <button type="button" class="btn btn-secondary"
             data-dismiss="modal" >
             Close
-        </button>
-        <button type="submit"  class="btn btn-primary" (click)="add()" data-dismiss="modal" aria-label="Close">
+        </button>  
+        <button type="submit" *ngIf="editable" class="btn btn-primary" [disabled]="Form.controls['name' && 'userName'].invalid" data-dismiss="modal" (click)="update()" >
+          update changes
+       </button>
+        <button type="submit" *ngIf="!editable"  [disabled]="Form.controls['name' && 'userName'].invalid"  class="btn btn-primary" data-dismiss="modal" (click)="add()" >
             Save changes
         </button>
+     
     </div>
   </form>
 
 </div>
 </div>
 </div>
+<!-- modal1 -->
+<div class="modal fade" id="exampleModal1" tabindex="-1"
+role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+            deleting User
+        </h5>
+        <button type="button" class="close"
+            data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
 
+    <div class="modal-body">
+ 
+          
+            Do you want to delete the data?
+  
+    </div>
+    <div class="modal-footer">
+      <button type="submit"  class="btn btn-primary" >
+         yes
+    </button>
+        <button type="button" class="btn btn-secondary"
+            data-dismiss="modal" >
+            no
+        </button>
+        
+    </div>
+ 
+
+</div>
+</div>
+</div>
 </div>

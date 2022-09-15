@@ -12,6 +12,7 @@ interface userData{
 })
 export class UserComponent implements OnInit {
   submitted = false;
+  editable:boolean = false;
   userdata: userData[] = [{id:0, name: "Sivakumar N", userName: "sivakumar123" },
   {id:1, name: "Rajesh", userName: "rajesh123" },
   {id:2, name: "Mahima", userName: "mahima123" },
@@ -20,26 +21,47 @@ export class UserComponent implements OnInit {
   Form = new FormGroup({
     name: new FormControl('',[
       Validators.required,
-      Validators.minLength(1),
+      Validators.minLength(2),
       Validators.maxLength(20),
     ]),
     userName: new FormControl('',[
       Validators.required,
-      Validators.minLength(1),
+      Validators.minLength(2),
       Validators.maxLength(20),
     ]),
   });
-
+  updateid: any;
+  get name() {
+    return this.Form.get('name')!;
+  }
+  get userName() {
+    return this.Form.get('userName')!;
+  }
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  get f() { return this.Form.controls; }
+  // get f() { return this.Form.controls; }
   
-  edit()
+  edit(id:any)
   {
+    this.updateid=id
+    this.editable=true;
+    this.Form.controls['name'].setValue(this.userdata[id].name)
+    this.Form.controls['userName'].setValue(this.userdata[id].userName)
+  }
+  update()
+  {
+    // this.editable=false;
+    if(this.userdata.length && this.Form.value.userName){
 
+   
+        this.userdata[this.updateid].name=this.Form.value.name,
+        this.userdata[this.updateid].userName=this.Form.value.userName
+     
+      this.Form.reset();
+    }
   }
   onSubmit()
   {
@@ -48,14 +70,20 @@ export class UserComponent implements OnInit {
   }
   add()
   {
-    this.userdata.push({
-      id: this.userdata.length,
-      name: this.Form.value.name,
-      userName:this.Form.value.userName
-    })
+   
+    if(this.userdata.length && this.Form.value.userName){
+      this.userdata.push({
+        id: this.userdata.length,
+        name: this.Form.value.name,
+        userName:this.Form.value.userName
+      })
+      this.Form.reset();
+    }
+    
   }
   reset()
   {
+    this.editable=false;
     this.Form.reset();
   }
 }
