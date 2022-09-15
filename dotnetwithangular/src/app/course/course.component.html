@@ -4,8 +4,7 @@
     <h2>COURSE  DETAILS </h2>
   </div>
   <div class="col-3">
-    <button
-      kendoButton
+    <button kendoButton
       fillMode="outline"
       themeColor="info"
       [toggleable]="false"
@@ -15,7 +14,6 @@
     </button>
   </div>
 </div>
-
 <!-- kendogrid -->
 <kendo-grid [kendoGridBinding]="CourseDetails" [resizable]="true" style="margin:50px;font-size: 18px;" >
   <kendo-grid-column title="ID" field="CourseID"></kendo-grid-column>
@@ -27,7 +25,7 @@
         fillMode="outline"
         themeColor="warning"
         [toggleable]="false"
-        (click)="update()"data-toggle="modal"
+        (click)="update1()"data-toggle="modal"
         data-target="#exampleModal" 
         style="margin-right: 10px;"> Edit
       </button>
@@ -41,7 +39,6 @@
     </ng-template> 
   </kendo-grid-column>
 </kendo-grid>
-
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -61,6 +58,7 @@
             themeColor="info"
             [toggleable]="false"
             data-toggle="modal" 
+            (click)="update1"
             data-target="#exampleModal" (click)="onButtonClick1()" [disabled]="loginForm.invalid"> Save
           </button>
           <button
@@ -68,7 +66,7 @@
             fillMode="outline"
             themeColor="error"
             [toggleable]="false"
-            data-dismiss="modal" > Close
+            data-dismiss="modal"  > Close
           </button>
         </div>
       </form>
@@ -113,8 +111,3 @@
     </div>
   </div>
 </div>
-
-
-
-
-

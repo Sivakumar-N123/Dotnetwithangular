@@ -27,11 +27,6 @@ export class CourseComponent implements OnInit {
       this.displayVal=val;
    }
 
-
-
-
-
-
   CourseDetails: any []= [
     
     {
@@ -75,6 +70,7 @@ export class CourseComponent implements OnInit {
   public onButtonClick1(): void {
     console.log("click");
     alert("Added Successfully....!");
+    this.body=true;
     this.CourseDetails.push({CourseID: this.CourseDetails.length+1,CourseName:this.loginForm.value.user})
 
   }
@@ -92,6 +88,7 @@ export class CourseComponent implements OnInit {
     this.header=true;
   }
   update(){
+    this.CourseDetails.pop();
    this.body=false;
    this.body2=false;
    this.body3=true;
