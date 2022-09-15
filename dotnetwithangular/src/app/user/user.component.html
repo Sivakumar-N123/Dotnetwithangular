@@ -26,7 +26,6 @@
 
     <kendo-grid [data]="userdata" style="margin:50px;">
       <kendo-grid-column
-      
         title="S.No"
         field="id"
         [width]="60"  >
@@ -36,13 +35,23 @@
         field="name">
       </kendo-grid-column>
       <kendo-grid-column
-        title="UserName"
+        title="User Name"
         field="userName">
       </kendo-grid-column>
+      <!-- <kendo-grid-column field="action" title="Action" [width]="115">
+        <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+            <ul class="list-inline mb-0 text-nowrap action-items">
+                <li class="list-inline-item mr-2"ngbTooltip="Edit" container="body">
+                     <img src="/gems-styling/assets/images/edit-active.svg"  alt="Edit"  (click)="editRow(dataItem)" class="cursor-pointer">
+                 </li>
+               
+            </ul>
+        </ng-template>
+    </kendo-grid-column> -->
       <kendo-grid-column
       field="Discontinued" title="Action" >
       <ng-template kendoGridCellTemplate let-dataItem>
-        <button kendoButton themeColor="warning" style="margin-right:10px;" data-toggle="modal" data-target="#exampleModal" >edit</button>
+        <button kendoButton themeColor="warning" style="margin-right:10px;" data-toggle="modal" data-target="#exampleModal" (click)="edit(dataItem)">edit</button>
         <button kendoButton themeColor="error" data-toggle="modal" data-target="#exampleModal1" >delete</button>
       </ng-template>
       </kendo-grid-column>
@@ -66,7 +75,7 @@ aria-hidden="true">
         </button>
     </div>
 
-    <form [formGroup]="Form" (ngSubmit)="onSubmit()">
+    <form [formGroup]="Form">
     <div class="modal-body">
  
             <div class="form-group">
