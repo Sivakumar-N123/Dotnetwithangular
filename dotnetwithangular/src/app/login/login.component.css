@@ -2,6 +2,7 @@ button{
     margin-top: 20px;
 width: 100px;
 height: 50px;
+font-size: 18px;
 }
 
 .card-body{
@@ -60,4 +61,24 @@ a
     top: 5px;
     cursor: pointer;
     font-size: 22px;
+}
+
+
+kendo-card
+{
+    margin-left: 350px;
+    margin-top: 100px;
+}
+
+kendo-card-header div h1{
+    background-color: blue;
+    font-size: 22px;
+}
+
+kendo-card-header{
+    background-color: blue;
+}
+
+label{
+    font-size: 18px;
 }

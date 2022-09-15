@@ -1,90 +1,98 @@
-<div class="card mb-3 w-50 h-50 container p-0" >
-  <h3 class="card-header">User Login</h3>
-  <form [formGroup]="pwd" (submit)="onsubmit()">
-  <div class="card-body text-dark">
-          <div class="card-text">    
-            
-            
-          <div class="form-group">
-            <label for="password">Old Password</label>
-      
-            <div class="form-group1">
-              <input [type]="changetype?'password':'text'" class="form-control" placeholder="Enter your password" formControlName="oldpass"  [ngClass]="{'is-invalid':submitted1 && pwd.controls['oldpass'].errors}" >
-              <span class="eyeicon" (click)="viewpass1()"><i [ngClass]="visible?'fa fa-eye':'fa fa-eye-slash'"></i>
-              </span>
-            </div>
 
-            <div *ngIf="submitted1 && pwd.controls['oldpass'].errors" class="text-danger">
-              <div *ngIf="submitted1 && pwd.controls['oldpass'].errors['required']">
-                  This field is required
-              </div>
-              <div *ngIf="submitted1 && pwd.controls['oldpass'].errors['minlength']">
-                Password length minimum of 8 charcters with the combination of minimum of 1caps 1small 1number 1 symbol
-              </div>
-              <div *ngIf="submitted1 && pwd.controls['oldpass'].errors['maxlength']">
-                Password length maximum is 12
-              </div>
-            </div>
-        </div>
-
-
-        <div class="form-group">
-          <label for="password">New Password</label>
-    
-          <div class="form-group1">
-            <input [type]="changetype1?'password':'text'" class="form-control" placeholder="Enter your password" formControlName="newpass"  [ngClass]="{'is-invalid':submitted1 && pwd.controls['newpass'].errors}" >
-            <span class="eyeicon" (click)="viewpass2()"><i [ngClass]="visible1?'fa fa-eye':'fa fa-eye-slash'"></i>
-            </span>
-          </div>
-
-          <div *ngIf="submitted1 && pwd.controls['newpass'].errors" class="text-danger">
-            <div *ngIf="submitted1 && pwd.controls['newpass'].errors['required']">
-                This field is required
-            </div>
-            <div *ngIf="submitted1 && pwd.controls['newpass'].errors['minlength']">
-              Password length minimum of 8 charcters with the combination of minimum of 1caps 1small 1number 1 symbol
-            </div>
-            <div *ngIf="submitted1 && pwd.controls['newpass'].errors['maxlength']">
-              Password length maximum is 12
-            </div>
-          </div>
+<kendo-card width="800px" >
+  <kendo-card-header class="k-hstack">
+      <div>
+          <h1 kendoCardTitle>Update password</h1>
       </div>
+  </kendo-card-header>
 
-
-
-
-      <div class="form-group">
-        <label for="password">confirmation Password</label>
-   
-        <div class="form-group1">
-          <input [type]="changetype2?'password':'text'" class="form-control" placeholder="Enter your password" formControlName="oldpass"  [ngClass]="{'is-invalid':submitted1 && pwd.controls['confirmpass'].errors}" >
-          <span class="eyeicon" (click)="viewpass3()"><i [ngClass]="visible2?'fa fa-eye':'fa fa-eye-slash'"></i>
-          </span>
-        </div>
-
-        <div *ngIf="submitted1 && pwd.controls['confirmpass'].errors" class="text-danger">
-          <div *ngIf="submitted1 && pwd.controls['confirmpass'].errors['required']">
-              This field is required
+  <kendo-scrollview
+      kendoCardMedia
+      width="100%"
+      height="50px">
+      <form [formGroup]="pwd" (submit)="onsubmit()">
+        <div class="card-body text-dark">
+                <div class="card-text">    
+                  
+                  
+                <div class="form-group">
+                  <label for="password">Old Password</label>
+            
+                  <div class="form-group1">
+                    <input [type]="changetype?'password':'text'" id="password" class="form-control" placeholder="Enter your password" formControlName="oldpass"  [ngClass]="{'is-invalid':submitted1 && pwd.controls['oldpass'].errors}" >
+                    <span class="eyeicon" (click)="viewpass1()"><i [ngClass]="visible?'fa fa-eye':'fa fa-eye-slash'"></i>
+                    </span>
+                  </div>
+      
+                  <div *ngIf="submitted1 && pwd.controls['oldpass'].errors" class="text-danger">
+                    <div *ngIf="submitted1 && pwd.controls['oldpass'].errors['required']">
+                        This field is required
+                    </div>
+      
+      
+                    <div *ngIf="submitted1 && pwd.controls['oldpass'].errors['pattern']">
+                      Password with the min-8 max-12 combination of minimum of 1caps 1small 1number 1 symbol
+                    </div>
+                  </div>
+              </div>
+      
+      
+              <div class="form-group">
+                <label for="password1">New Password</label>
+          
+                <div class="form-group1">
+                  <input [type]="changetype1?'password':'text'" id="password1" class="form-control" placeholder="Enter your password" formControlName="newpass"  [ngClass]="{'is-invalid':submitted1 && pwd.controls['newpass'].errors}" >
+                  <span class="eyeicon" (click)="viewpass2()"><i [ngClass]="visible1?'fa fa-eye':'fa fa-eye-slash'"></i>
+                  </span>
+                </div>
+      
+                <div *ngIf="submitted1 && pwd.controls['newpass'].errors" class="text-danger">
+                  <div *ngIf="submitted1 && pwd.controls['newpass'].errors['required']">
+                      This field is required
+                  </div>
+      
+                  <div *ngIf="submitted1 && pwd.controls['newpass'].errors['pattern']">
+                    Password with the min-8 max-12 combination of minimum of 1caps 1small 1number 1 symbol
+                  </div>
+                </div>
+            </div>
+      
+      
+      
+      
+            <div class="form-group">
+              <label for="password2">Confirmation Password</label>
+         
+              <div class="form-group1">
+                <input [type]="changetype2?'password':'text'" id="password2" class="form-control" placeholder="Enter your password" formControlName="confirmpass"  [ngClass]="{'is-invalid':submitted1 && pwd.controls['confirmpass'].errors}" >
+                <span class="eyeicon" (click)="viewpass3()"><i [ngClass]="visible2?'fa fa-eye':'fa fa-eye-slash'"></i>
+                </span>
+              </div>
+      
+              <div *ngIf="submitted1 && pwd.controls['confirmpass'].errors" class="text-danger">
+                <div *ngIf="submitted1 && pwd.controls['confirmpass'].errors['required']">
+                    This field is required
+                </div>
+      
+                <div *ngIf="submitted1 && pwd.controls['confirmpass'].errors['pattern']">
+                  Password with the min-8 max-12 combination of minimum of 1caps 1small 1number 1 symbol
+                </div>
+      
+                <div *ngIf="submitted1 && pwd.controls['confirmpass'].errors['mustMatch']">New password & Confirmation password must match</div>
+              </div>
           </div>
-          <div *ngIf="submitted1 && pwd.controls['confirmpass'].errors['minlength']">
-            Password length minimum of 8 charcters with the combination of minimum of 1caps 1small 1number 1 symbol
-          </div>
-          <div *ngIf="submitted1 && pwd.controls['confirmpass'].errors['maxlength']">
-            Password length maximum is 12
-          </div>
-        </div>
-    </div>
+      
+      
+        </div> 
+             
+                     
+              <div class="form-group">
+                <button kendoButton themeColor="info" id="logbtn">Update Password</button>          
+              </div>                    
+              </div>
+         
+      </form>
+  </kendo-scrollview>
 
 
-  </div> 
-       
-               
-        <div class="form-group">
-          <button kendoButton themeColor="info" id="logbtn">Login</button>          
-        </div>                    
-        </div>
-   
-</form>
-</div>
-
-
+</kendo-card>

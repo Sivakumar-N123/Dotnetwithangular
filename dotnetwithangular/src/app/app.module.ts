@@ -17,6 +17,8 @@ import { LabelModule } from "@progress/kendo-angular-label";
 import { PopupModule } from '@progress/kendo-angular-popup';
 import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
 import { UpdatepwdComponent } from './updatepwd/updatepwd.component';
+import { LayoutModule } from '@progress/kendo-angular-layout';
+
 
 
 
@@ -48,6 +50,7 @@ import { UpdatepwdComponent } from './updatepwd/updatepwd.component';
     ButtonsModule,
     BrowserAnimationsModule,
     GridModule,
+    LayoutModule
     
     
   ],

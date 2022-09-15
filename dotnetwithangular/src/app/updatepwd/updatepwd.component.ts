@@ -14,24 +14,40 @@ export class UpdatepwdComponent implements OnInit {
 
   stu1={oldpass:'',newpass:'',confirmpass:''};
 
+  constructor(private fb:FormBuilder) {}
 
-  constructor(private fb:FormBuilder)
-  {
-
-  }
   ngOnInit(): void {
     this.pwd = this.fb.group({
       
-      oldpass:['',[Validators.required,Validators.minLength(8),Validators.maxLength(12)]],
-      newpass:['',[Validators.required,Validators.minLength(8),Validators.maxLength(12)]],
-      confirmpass:['',[Validators.required,Validators.minLength(8),Validators.maxLength(12)]]
-    })
+      oldpass:['',[Validators.required,Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$")]],
+      newpass:['',[Validators.required,Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$")]],
+      confirmpass:['',[Validators.required,Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$")]]
+    }, {
+      validator: this.MustMatch('newpass', 'confirmpass')
+  });
   }
+
+  MustMatch(controlName: string, matchingControlName: string) {
+    return (formGroup: FormGroup) => {
+        const control = formGroup.controls[controlName];
+        const matchingControl = formGroup.controls[matchingControlName];
+
+        if (matchingControl.errors && !matchingControl.errors['mustMatch']) {
+            return;
+        }
+
+        if (control.value !== matchingControl.value) {
+            matchingControl.setErrors({ mustMatch: true });
+        } else {
+            matchingControl.setErrors(null);
+        }
+    } 
+}
 
   onsubmit(){
     this.submitted1 = true;
 
-      this.stu1 =this.pwd.value;
+    this.stu1 =this.pwd.value;
     console.log(this.stu1.oldpass);
     console.log(this.stu1.newpass);
     console.log(this.stu1.confirmpass);
@@ -41,7 +57,12 @@ export class UpdatepwdComponent implements OnInit {
       return;
     }
 
-    alert("login successfully");
+    if(this.stu1.newpass!=this.stu1.confirmpass)
+    {
+      return;
+    }
+
+    alert("Password update successfully");
  
   }
 
@@ -52,8 +73,6 @@ export class UpdatepwdComponent implements OnInit {
     this.visible = !this.visible;
     this.changetype = !this.changetype;
   }
-
-
 
   visible1:boolean = true;
   changetype1:boolean =true;
