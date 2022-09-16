@@ -8,9 +8,8 @@
       fillMode="outline"
       themeColor="info"
       [toggleable]="false"
-      (click)="update1()"
       data-toggle="modal"
-      data-target="#exampleModal" > + Add Course 
+      data-target="#exampleModal" (click)="add()"> + Add Course 
     </button>
   </div>
 </div>
@@ -19,14 +18,14 @@
   <kendo-grid-column title="ID" field="CourseID"></kendo-grid-column>
   <kendo-grid-column field="CourseName" title="Name" required> </kendo-grid-column>
   <kendo-grid-column field="Action" title="Action">
-    <ng-template kendoGridCellTemplate let-isNew="isNew">
+    <ng-template kendoGridCellTemplate let-dataItem="dataItem">
       <button
         kendoButton
         fillMode="outline"
         themeColor="warning"
         [toggleable]="false"
-        (click)="update1()"data-toggle="modal"
-        data-target="#exampleModal" 
+        (click)="edit(dataItem);"data-toggle="modal"
+        data-target="#exampleModal"
         style="margin-right: 10px;"> Edit
       </button>
       <button
@@ -34,80 +33,90 @@
         fillMode="outline"
         themeColor="error"
         [toggleable]="false"data-toggle="modal"
-        data-target="#exampleModal"  (click)="deleting()"  > Delete 
+        data-target="#exampleModal1" > Delete 
       </button>
     </ng-template> 
   </kendo-grid-column>
 </kendo-grid>
+
+
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header" *ngIf="header">
+      <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Course Name</h5>
       </div>
-      <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
-        <div class="modal-body" *ngIf="body">
+      <form [formGroup]="loginForm">
+        <div class="modal-body" >
           <input type="text" #box placeholder="Course Name" formControlName="user"> <br><br>
           <span *ngIf="user && user.invalid && user.touched" style="color:red;">*Course name is required</span>
         </div>
-        <div class="modal-footer" *ngIf="added">
+        <div class="modal-footer">
           <button
             kendoButton
             fillMode="outline"
             themeColor="info"
             [toggleable]="false"
             data-toggle="modal" 
-            (click)="update1"
-            data-target="#exampleModal" (click)="onButtonClick1()" [disabled]="loginForm.invalid"> Save
+            *ngIf="!editable"
+            data-dismiss="modal" (click)="AddClick()" [disabled]="loginForm.invalid"> Save
+          </button>
+          <button
+            kendoButton
+            fillMode="outline"
+            themeColor="info"
+            data-dismiss="modal" 
+            [toggleable]="false"
+            *ngIf="editable"
+            (click)="UpdateClick()" [disabled]="loginForm.invalid"> update
           </button>
           <button
             kendoButton
             fillMode="outline"
             themeColor="error"
             [toggleable]="false"
-            data-dismiss="modal"  > Close
+            data-dismiss="modal"> Close
           </button>
         </div>
       </form>
-      <div class="modal-body" *ngIf="body2">
-        <p>Do you wants to delete</p>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Course Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-      <div class="modal-footer" *ngIf="edited"> 
+      <div class="modal-body">
+       Do you wants to Delete
+      </div>
+      <div class="modal-footer">
+        <button 
+          kendoButton
+          fillMode="outline"
+          themeColor="info"
+          data-dismiss="modal" 
+          [toggleable]="false"
+          (click)="DeleteClick()"> Yes
+        </button>
         <button
           kendoButton
           fillMode="outline"
           themeColor="info"
-          [toggleable]="false" 
-          data-toggle="modal" 
-          data-target="#exampleModal" (click)="onButtonClick2()" > Update
-        </button>
-        <button
-          kendoButton
-          fillMode="outline"
-          themeColor="error"
+          data-dismiss="modal" 
           [toggleable]="false"
-          data-dismiss="modal" > Close
-        </button>
-      </div>
-      <div class="modal-footer" *ngIf="deleted">
-        <button
-          kendoButton
-          fillMode="outline"
-          themeColor="info"
-          [toggleable]="false"
-          data-toggle="modal" 
-          data-target="#exampleModal"
-          (click)="onButtonClick()" > Yes
-        </button>
-        <button
-          kendoButton
-          fillMode="outline"
-          themeColor="error"
-          [toggleable]="false"
-          data-dismiss="modal" > No
+          data-dismiss="modal">No
         </button>
       </div>
     </div>
   </div>
 </div>
+
+
+
