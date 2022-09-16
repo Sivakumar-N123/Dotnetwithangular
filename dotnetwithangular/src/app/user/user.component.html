@@ -38,7 +38,15 @@
         title="User Name"
         field="userName">
       </kendo-grid-column>
-      <!-- <kendo-grid-column field="action" title="Action" [width]="115">
+      <kendo-grid-column
+      field="Discontinued" title="Action" >
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <button kendoButton themeColor="warning" style="margin-right:10px;" data-toggle="modal" data-target="#exampleModal" (click)="edit(dataItem)">edit</button>
+        <button kendoButton themeColor="error" data-toggle="modal" data-target="#exampleModal1" (click)="delete(dataItem)">delete</button>
+      </ng-template>
+      </kendo-grid-column>
+    </kendo-grid>
+   <!-- <kendo-grid-column field="action" title="Action" [width]="115">
         <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
             <ul class="list-inline mb-0 text-nowrap action-items">
                 <li class="list-inline-item mr-2"ngbTooltip="Edit" container="body">
@@ -48,15 +56,6 @@
             </ul>
         </ng-template>
     </kendo-grid-column> -->
-      <kendo-grid-column
-      field="Discontinued" title="Action" >
-      <ng-template kendoGridCellTemplate let-dataItem>
-        <button kendoButton themeColor="warning" style="margin-right:10px;" data-toggle="modal" data-target="#exampleModal" (click)="edit(dataItem)">edit</button>
-        <button kendoButton themeColor="error" data-toggle="modal" data-target="#exampleModal1" >delete</button>
-      </ng-template>
-      </kendo-grid-column>
-    </kendo-grid>
-
 </div>
 
     <!-- modal-->
@@ -151,7 +150,7 @@ aria-hidden="true">
   
     </div>
     <div class="modal-footer">
-      <button type="submit"  class="btn btn-primary" >
+      <button type="submit"  class="btn btn-primary" (click)="remove()" data-dismiss="modal" >
          yes
     </button>
         <button type="button" class="btn btn-secondary"

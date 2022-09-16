@@ -61,7 +61,7 @@ export class UserComponent implements OnInit {
 
         this.userdata[this.updateid].name=this.Form.value.name,
         this.userdata[this.updateid].userName=this.Form.value.userName
-     
+     alert("updated successfully");
       this.Form.reset();
     }
   }
@@ -78,9 +78,18 @@ export class UserComponent implements OnInit {
         name: this.Form.value.name,
         userName:this.Form.value.userName
       })
+      alert("Added successfully")
       this.Form.reset();
     }
     
+  }
+  delete(row:any)
+  {
+    this.updateid=row.id
+  }
+  remove()
+  {
+    this.userdata.splice(this.updateid,1)
   }
   reset()
   {
