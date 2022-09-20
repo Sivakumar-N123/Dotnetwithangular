@@ -4,6 +4,11 @@ export class Product {
    
 }
 
+export interface Data {
+    CourseID: number | undefined;
+    CourseName:string;
+   
+}
 
 
 

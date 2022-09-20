@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { fakeAsync } from '@angular/core/testing';
-import { FormGroup,FormControl,FormControlName, Validators } from '@angular/forms';
-
+ import { FormGroup,FormControl, Validators } from '@angular/forms';
+import { Data } from '../model';
 @Component({
   selector: 'app-course',
   templateUrl: './course.component.html',
@@ -24,8 +23,9 @@ export class CourseComponent implements OnInit {
    getValue(val:String){
       console.warn(val);
       this.displayVal=val;
-   }
-  CourseDetails: any []= [
+   } 
+  
+  CourseDetails: Data []= [
     {CourseID: 1,CourseName:"Mahima"},
     {CourseID: 2,CourseName:"Aarthi"},
     {CourseID: 3,CourseName:"Shiva"},
@@ -35,8 +35,13 @@ export class CourseComponent implements OnInit {
   ];
   constructor() { 
   }
+  
+
+
+
 editable:boolean=false;
   ngOnInit(): void {
+   
   }
   public DeleteClick(): void {
     alert("Deleted successfully....!");
@@ -63,4 +68,13 @@ edit(row:any)
     this.updateid=row.CourseID;
     this.loginForm.controls['user'].patchValue(row.CourseName);
   }
+  delete(row:any)
+  {
+    this.updateid=row.CourseID
+  }
+  remove()
+  {
+    this.CourseDetails.splice(this.updateid-1,1)
+  }
+
 }

@@ -24,8 +24,6 @@ import { LayoutModule } from '@progress/kendo-angular-layout';
 
 
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,20 +37,19 @@ import { LayoutModule } from '@progress/kendo-angular-layout';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     LabelModule,
     FormFieldModule,
     InputsModule,
     DateInputsModule,
     PopupModule,
-    FormsModule,
     ReactiveFormsModule,
     ButtonsModule,
     BrowserAnimationsModule,
     GridModule,
     LayoutModule
-    
-    
+
   ],
   providers: [],
   bootstrap: [AppComponent]
