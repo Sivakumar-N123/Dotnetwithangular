@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
  import { FormGroup,FormControl, Validators } from '@angular/forms';
-import { Data } from '../model';
+import { data } from '../model';
+import { StudentAppserviceService } from '../Services/student-appservice.service';
 @Component({
   selector: 'app-course',
   templateUrl: './course.component.html',
@@ -12,36 +13,34 @@ export class CourseComponent implements OnInit {
     id : new FormControl(''),
     user :new FormControl('',[Validators.required]),
    })
+  editable:boolean=false;
   updateid: any;
+  allCourses: any;
    loginUser(){
     console.warn(this.loginForm.value)
    }
    get user(){
     return this.loginForm.get('user');
    } 
-   displayVal:String='';
-   getValue(val:String){
-      console.warn(val);
-      this.displayVal=val;
-   } 
-  
-  CourseDetails: Data []= [
-    {CourseID: 1,CourseName:"Mahima"},
-    {CourseID: 2,CourseName:"Aarthi"},
-    {CourseID: 3,CourseName:"Shiva"},
-    {CourseID: 4,CourseName:"Rajesh"},
-    {CourseID: 5,CourseName:"JayaPrakash"},
-    {CourseID: 6,CourseName:"Preethi"},
-  ];
-  constructor() { 
-  }
-  
-
-
-
-editable:boolean=false;
-  ngOnInit(): void {
    
+  
+  CourseDetails: data []= [];
+
+  constructor(private studentAppserviceService:StudentAppserviceService) { 
+  }
+
+
+  ngOnInit(): void {
+    this.getAllCourse()
+  }
+  getAllCourse()
+  {
+    this.studentAppserviceService.getAllCourses().subscribe((r:any)=>{
+      console.log(r);
+
+      this.allCourses=r;
+
+    });
   }
   public DeleteClick(): void {
     alert("Deleted successfully....!");

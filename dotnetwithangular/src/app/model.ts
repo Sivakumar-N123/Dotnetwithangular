@@ -4,7 +4,7 @@ export class Product {
    
 }
 
-export interface Data {
+export interface data {
     CourseID: number | undefined;
     CourseName:string;
    

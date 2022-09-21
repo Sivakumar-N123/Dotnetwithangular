@@ -18,6 +18,7 @@ import { PopupModule } from '@progress/kendo-angular-popup';
 import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
 import { UpdatepwdComponent } from './updatepwd/updatepwd.component';
 import { LayoutModule } from '@progress/kendo-angular-layout';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -48,8 +49,8 @@ import { LayoutModule } from '@progress/kendo-angular-layout';
     ButtonsModule,
     BrowserAnimationsModule,
     GridModule,
-    LayoutModule
-
+    LayoutModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

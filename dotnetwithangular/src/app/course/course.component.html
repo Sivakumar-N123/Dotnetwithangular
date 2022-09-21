@@ -13,9 +13,13 @@
   </div>
 </div>
 <!-- kendogrid -->
-<kendo-grid [kendoGridBinding]="CourseDetails" [resizable]="true" style="margin:50px;font-size: 18px;" >
-  <kendo-grid-column title="ID" field="CourseID"></kendo-grid-column>
-  <kendo-grid-column field="CourseName" title="Name" required> </kendo-grid-column>
+<kendo-grid [kendoGridBinding]="allCourses" [resizable]="true" style="margin:50px;font-size: 18px;" >
+  <kendo-grid-column title="ID" ><ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+      {{rowIndex+1}}
+  </ng-template> </kendo-grid-column>
+  <kendo-grid-column field="courseName" title="Course Name" required>
+    
+  </kendo-grid-column>
   <kendo-grid-column field="Action" title="Action">
     <ng-template kendoGridCellTemplate let-dataItem="dataItem">
       <button
