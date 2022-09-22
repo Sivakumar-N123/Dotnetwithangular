@@ -50,79 +50,81 @@ export class CourseComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllCourse();
-    this.route.paramMap.subscribe({
-      next:(params) => {
-        const id = params.get('id');
-        
-        if(id){
-          this.studentAppserviceService.getCourse(id)
-          .subscribe({
-            next:(response) => {
-              this.data = response;
-            }
-          });
-        }
-      }
-    })
-
+    
   }
-  getAllCourse()
+  getAllCourse() // getting course
   {
     this.studentAppserviceService.getAllCourses().subscribe((r:any)=>{
       console.log(r);
       this.allCourses=r;
     });
   }
+
+  edit(row:any)
+  { 
+    this.editable=true;
+    console.log(row);
+    this.updateid=row.courseId;
+    this.loginForm.controls['user'].patchValue(row.courseName);
+  }
   
-  updateCourse(){
-    this.studentAppserviceService.updateCourse(this.updateid)
+  updateCourse() // updating course
+  {
+    let request={
+    courseName:this.loginForm.value.user
+  }
+    this.studentAppserviceService.updateCourse(this.updateid,request)
     .subscribe(
       {
         next: (response) => {
-          this.router.navigate(['Course']);
+          console.log(response);
+          this.getAllCourse();
         }
       });
   }
-  deleteCourse(id:string){
-    this.studentAppserviceService.deleteCourse(id)
+
+//deleting course
+  delete(row:any)
+  {
+    this.updateid=row.courseId
+
+  }
+  deleteCourse() 
+  {
+    this.studentAppserviceService.deleteCourse(this.updateid)
     .subscribe({
       next: (response) => {
-        this.router.navigate(['course']);
+        console.log(response);
+        this.getAllCourse()
       }
     });
   }
 
-  public DeleteClick(): void {
-    alert("Deleted successfully....!");
-  }
-  public AddClick(): void {
-    alert("Added Successfully....!");
-    this.CourseDetails.push({CourseID: this.CourseDetails.length+1,CourseName:this.loginForm.value.user})
-  }
-  public UpdateClick(): void {  
-    alert("Updated Successfully....!");
-    if(this.CourseDetails.length && this.loginForm.value.user){
-      this.CourseDetails[this.updateid-1].CourseName=this.loginForm.value.user
-    }
-  }
-add()
+  //adding course
+  add()
 {
   this.editable=false;
   this.loginForm.reset();
 }
-edit(row:any)
-  { 
-    this.editable=true;
-    console.log(row);
-    this.updateid=row.CourseID;
-    this.loginForm.controls['user'].patchValue(row.CourseName);
-  }
-  delete(row:any)
+
+  AddCourse() 
   {
-    this.updateid=row.CourseID
+    let request={
+      courseName:this.loginForm.value.user
+    }
+
+    this.studentAppserviceService.addCourse(request).subscribe((r:any)=>{
+      console.log(r);
+
+      this.getAllCourse()
+
+    });
   }
-  remove()
-  {
-    this.CourseDetails.splice(this.updateid-1,1)
-  }
+ 
+  
+
+
+
+  
+ 
 }

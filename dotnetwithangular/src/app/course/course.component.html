@@ -61,7 +61,7 @@
             [toggleable]="false"
             data-toggle="modal" 
             *ngIf="!editable"
-            data-dismiss="modal" (click)="AddClick()" [disabled]="loginForm.invalid"> Save
+            data-dismiss="modal" (click)="AddCourse()" [disabled]="loginForm.invalid"> Save
           </button>
           <button
             kendoButton 
@@ -69,7 +69,7 @@
             data-dismiss="modal" 
             [toggleable]="false"
             *ngIf="editable"
-            (click)="UpdateClick()" [disabled]="loginForm.invalid"> update
+            (click)="updateCourse()" [disabled]="loginForm.invalid"> update
           </button>
           <button
             kendoButton 
@@ -101,7 +101,7 @@
           themeColor="info"
           data-dismiss="modal" 
           [toggleable]="false"
-          (click)="DeleteClick()" (click)="remove()"> Yes
+           (click)="deleteCourse()"> Yes
         </button>
         <button
           kendoButton

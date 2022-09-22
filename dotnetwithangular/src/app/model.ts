@@ -5,8 +5,8 @@ export class Product {
 }
 
 export interface data {
-    CourseID: number | undefined;
-    CourseName:string;
+    courseId?: number | undefined;
+    courseName:string;
    
 }
 

@@ -18,17 +18,12 @@ export class StudentAppserviceService {
   getAllCourses(): Observable<data[]>{
     return this.http.get<data[]>(this.baseApiUrl+"/api/Course");
   }
-  updateCourse(id:string):Observable<data>{
-    return this.http.get<data>(this.baseApiUrl + '/api/course' + id);
+  updateCourse(id:string,updatedata:data):Observable<data>{
+    return this.http.put<data>(this.baseApiUrl + '/api/course/' + id,updatedata);
 
   }
   addCourse(addCourseRequest:data): Observable<data>{
-    return this.http.post<data> (this.baseApiUrl+ 'api/course',
-    addCourseRequest);
-  }
-
-  getCourse(id:string):Observable<data>{
-    return this.http.get<data>(this.baseApiUrl+ 'api/course' + id);
+    return this.http.post<data> (this.baseApiUrl+ 'api/course', addCourseRequest);
   }
 
   deleteCourse(id:string):Observable<data>{
