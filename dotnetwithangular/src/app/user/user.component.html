@@ -3,40 +3,23 @@
 
         <h3>User List</h3>
 <button class="btn btn-primary adduser float-right" type="button" data-toggle="modal" data-target="#exampleModal"  (click)="reset()">+Add User</button>
-<div class="list">
-    <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">S.No</th>
-            <th scope="col">Name</th>
-            <th scope="col">username</th>
-            <th scope="col">action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let name of userdata;let i=index">
-            <th scope="row">{{i+1}}</th>
-            <td>{{name.name}}</td>
-            <td>{{name.userName}}</td>
-            <td><button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"(click)="edit(i)">edit</button>
-                <button class="btn btn-danger">cancel</button></td>
-          </tr>
-        </tbody>
-    </table>
 
-    <kendo-grid [data]="userdata" style="margin:50px;">
+<div class="list">
+
+
+    <kendo-grid [data]="allusers" style="margin:50px;">
       <kendo-grid-column
         title="S.No"
-        field="id"
         [width]="60"  >
+        <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">{{rowIndex+1}}</ng-template>
       </kendo-grid-column>
       <kendo-grid-column
         title="Name"
-        field="name">
+        field="userName">
       </kendo-grid-column>
       <kendo-grid-column
-        title="User Name"
-        field="userName">
+        title="Email Id"
+        field="email">
       </kendo-grid-column>
       <kendo-grid-column
       field="Discontinued" title="Action" >
@@ -79,22 +62,7 @@ aria-hidden="true">
  
             <div class="form-group">
                 <label for="exampleFormControlInput1" class="form-label">Name</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="name" placeholder=" Enter the name..."  [class.is-invalid]="name.invalid && (name.dirty || name.touched)">
-                <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger">
-                  <div *ngIf="name.errors?.['required']">
-                    This field is required.
-                  </div>
-                  <div *ngIf="name.errors?.['minlength']">
-                    This field must have at least 2 character.
-                  </div>
-                  <div *ngIf="name.errors?.['maxlength']">
-                    This field must have at most 20 characters.
-                  </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlInput2" class="form-label">User Name</label>
-                <input type="text" class="form-control" id="exampleFormControlInput2" formControlName="userName" placeholder=" Enter the User name..." [class.is-invalid]="userName.invalid && (userName.dirty || userName.touched)" >
+                <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="userName" placeholder=" Enter the name..."  [class.is-invalid]="userName.invalid && (userName.dirty || userName.touched)">
                 <div *ngIf="userName.invalid && (userName.dirty || userName.touched)" class="text-danger">
                   <div *ngIf="userName.errors?.['required']">
                     This field is required.
@@ -107,6 +75,18 @@ aria-hidden="true">
                   </div>
                 </div>
             </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput2" class="form-label">User Name</label>
+                <input type="text" class="form-control" id="exampleFormControlInput2" formControlName="email" placeholder=" Enter Email ID..." [class.is-invalid]="email.invalid && (email.dirty || email.touched)" >
+                <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
+                  <div *ngIf="email.errors?.['required']">
+                    This field is required.
+                  </div>
+                  <div *ngIf="email.errors?.['email']">
+                    Enter Valid Email Id in This field.
+                  </div>
+                </div>
+            </div>
   
     </div>
     <div class="modal-footer">
@@ -114,10 +94,10 @@ aria-hidden="true">
             data-dismiss="modal" >
             Close
         </button>  
-        <button type="submit" *ngIf="editable" class="btn btn-primary" [disabled]="Form.controls['name' && 'userName'].invalid" data-dismiss="modal" (click)="update()" >
+        <button type="submit" *ngIf="editable" class="btn btn-primary" [disabled]="Form.controls['email' && 'userName'].invalid"  (click)="update()" data-dismiss="modal" >
           update changes
        </button>
-        <button type="submit" *ngIf="!editable"  [disabled]="Form.controls['name' && 'userName'].invalid"  class="btn btn-primary" data-dismiss="modal" (click)="add()" >
+        <button type="submit" *ngIf="!editable"  [disabled]="Form.controls['email' && 'userName'].invalid"  class="btn btn-primary" (click)="add()" data-dismiss="modal"  >
             Save changes
         </button>
      

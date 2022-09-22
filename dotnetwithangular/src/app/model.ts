@@ -10,5 +10,13 @@ export interface data {
    
 }
 
+export interface userData{
+    id?:Number,
+    userName:string,
+    email:string,
+    password?:string,
+    isStudent?:boolean,
+    isActive?:boolean
+  }
 
 

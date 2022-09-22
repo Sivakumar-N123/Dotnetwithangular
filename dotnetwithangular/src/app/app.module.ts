@@ -50,7 +50,9 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     GridModule,
     LayoutModule,
-    HttpClientModule
+    HttpClientModule,
+    
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
