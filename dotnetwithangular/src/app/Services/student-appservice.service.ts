@@ -36,7 +36,6 @@ export class StudentAppserviceService {
     return this.http.get<userData>(this.baseApiUrl+"/api/User");
   }
 
-
   addUser(data:userData): Observable<userData>{
     return this.http.post<userData>(this.baseApiUrl+"/api/User",data);
   }
