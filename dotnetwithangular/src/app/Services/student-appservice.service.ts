@@ -22,8 +22,15 @@ export class StudentAppserviceService {
     return this.http.put<data>(this.baseApiUrl + '/api/course/' + id,updatedata);
 
   }
+
+
   addCourse(addCourseRequest:data): Observable<data>{
-    return this.http.post<data> (this.baseApiUrl+ 'api/course', addCourseRequest);
+    return this.http.post<data> (this.baseApiUrl+ 'api/course',
+    addCourseRequest);
+  }
+
+  getCourse(id:string):Observable<data>{
+    return this.http.get<data>(this.baseApiUrl+ 'api/course' + id);
   }
 
   deleteCourse(id:string):Observable<data>{
@@ -36,6 +43,7 @@ export class StudentAppserviceService {
     return this.http.get<userData>(this.baseApiUrl+"/api/User");
   }
 
+
   addUser(data:userData): Observable<userData>{
     return this.http.post<userData>(this.baseApiUrl+"/api/User",data);
   }
@@ -43,6 +51,10 @@ export class StudentAppserviceService {
   updateUser(id:any,data:userData): Observable<userData>{
     return this.http.put<userData>(this.baseApiUrl+"/api/User/"+id,data);
   }
+  deleteUser(id:string):Observable<data>{
+    return this.http.delete<data>(this.baseApiUrl + '/api/user/' + id);
+ 
+   }
 
   // For specification controller
 

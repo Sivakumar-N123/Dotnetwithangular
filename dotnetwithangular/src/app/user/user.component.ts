@@ -130,7 +130,12 @@ export class UserComponent implements OnInit {
     //   } 
     // }
     // console.log(this.userdata);
-    
+    this.studentAppserviceService.deleteUser(this.updateid).subscribe((r:any)=>{
+      console.log(r);
+
+      this.getAllUsers()
+
+    });
   }
   reset()
   {
