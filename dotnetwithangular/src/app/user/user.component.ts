@@ -63,14 +63,21 @@ export class UserComponent implements OnInit {
   }
   update()
   {
-    // if(this.userdata.length && this.Form.value.userName){
-
-    //     this.userdata[this.updateid].name=this.Form.value.name,
-    //     this.userdata[this.updateid].userName=this.Form.value.userName
-    //  alert("updated successfully");
+    if(this.Form.controls['email' && 'userName'].valid){
+      let request={
       
-    // }
+      userName:this.Form.value.userName,
+      email:this.Form.value.email,
+
+      }
+      this.studentAppserviceService.updateUser(this.updateid,request).subscribe((r:any)=>{
+        console.log(r);
+  
+        this.getAllUsers()
+  
+      });
   }
+}
 
   add()
   {
@@ -83,7 +90,7 @@ export class UserComponent implements OnInit {
       this.studentAppserviceService.addUser(request).subscribe((r:any)=>{
         console.log(r);
   
-        this.allusers=r;
+        this.getAllUsers()
   
       });
     }

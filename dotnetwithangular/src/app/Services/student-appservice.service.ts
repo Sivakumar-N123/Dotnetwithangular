@@ -42,8 +42,12 @@ export class StudentAppserviceService {
   }
 
 
-  addUser(data:userData){
+  addUser(data:userData): Observable<userData>{
     return this.http.post<userData>(this.baseApiUrl+"/api/User",data);
+  }
+
+  updateUser(id:any,data:userData): Observable<userData>{
+    return this.http.put<userData>(this.baseApiUrl+"/api/User/"+id,data);
   }
 
   // For specification controller
