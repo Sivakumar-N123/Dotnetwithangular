@@ -18,7 +18,23 @@ export class StudentAppserviceService {
   getAllCourses(): Observable<data[]>{
     return this.http.get<data[]>(this.baseApiUrl+"/api/Course");
   }
+  updateCourse(id:string):Observable<data>{
+    return this.http.get<data>(this.baseApiUrl + '/api/course' + id);
 
+  }
+  addCourse(addCourseRequest:data): Observable<data>{
+    return this.http.post<data> (this.baseApiUrl+ 'api/course',
+    addCourseRequest);
+  }
+
+  getCourse(id:string):Observable<data>{
+    return this.http.get<data>(this.baseApiUrl+ 'api/course' + id);
+  }
+
+  deleteCourse(id:string):Observable<data>{
+   return this.http.delete<data>(this.baseApiUrl + '/api/course/' + id);
+
+  }
 
   // For user controller
   getAllusers(): Observable<userData>{
