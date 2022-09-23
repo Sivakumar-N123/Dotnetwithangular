@@ -26,6 +26,8 @@ export class UserComponent implements OnInit {
     ]),
   });
   allusers: any;
+  name: any;
+  emailid: any;
   
 
   constructor(private studentAppserviceService:StudentAppserviceService) { }
@@ -34,6 +36,7 @@ export class UserComponent implements OnInit {
     this.getAllUsers()
   }
 
+//getting the user
   getAllUsers()
   {
     this.studentAppserviceService.getAllusers().subscribe((r:any)=>{
@@ -50,7 +53,7 @@ export class UserComponent implements OnInit {
     return this.Form.get('userName')!;
   }
 
-  
+  // updating the user
   edit(row:any)
   {
     console.log(row);
@@ -78,7 +81,13 @@ export class UserComponent implements OnInit {
       });
   }
 }
+// adding the user
 
+  reset()
+  {
+    this.editable=false;
+    this.Form.reset();
+  }
   add()
   {
     if(this.Form.controls['email' && 'userName'].valid){
@@ -95,51 +104,32 @@ export class UserComponent implements OnInit {
       });
     }
      
-    
-   
-   
-    
-    // if(this.userdata.length && this.Form.value.userName){
-    //   this.userdata.push({
-    //     id: this.userdata.length,
-    //     name: this.Form.value.name,
-    //     userName:this.Form.value.userName
-    //   })
-    //   alert("Added successfully")
-     
-    // }
-    
   }
+
   delete(row:any)
   {
     console.log(row);
     
     this.updateid=row.id
+    this.name=row.userName
+    this.emailid=row.email
+   
+    
   }
   remove()
   {
-    // this.userdata.splice(this.updateid,1)
-    // let count=0;
-    // for(let i=0;i=this.userdata.length;i++)
-    // {
-    //   if(i==this.userdata[i].id){
-
-    //     this.userdata[i].id=count;
-        
-    //     count++
-    //   } 
-    // }
-    // console.log(this.userdata);
-    this.studentAppserviceService.deleteUser(this.updateid).subscribe((r:any)=>{
+    let request={
+      
+      userName:this.name,
+      email:this.emailid,
+      isActive:false
+      }
+    this.studentAppserviceService.deleteUser(this.updateid,request).subscribe((r:any)=>{
       console.log(r);
 
       this.getAllUsers()
 
     });
   }
-  reset()
-  {
-    this.editable=false;
-    this.Form.reset();
-  }
+  
 }

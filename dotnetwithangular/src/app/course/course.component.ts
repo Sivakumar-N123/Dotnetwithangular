@@ -3,9 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { data } from '../model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StudentAppserviceService } from '../Services/student-appservice.service';
-import { Observable } from 'rxjs';
+
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
+
 
 
 
