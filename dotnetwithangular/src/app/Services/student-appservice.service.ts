@@ -14,10 +14,12 @@ export class StudentAppserviceService {
 
   constructor(private http: HttpClient) { }
 
+  
   // For course controller
   getAllCourses(): Observable<data[]>{
     return this.http.get<data[]>(this.baseApiUrl+"/api/Course");
   }
+
   updateCourse(id:string,updatedata:data):Observable<data>{
     return this.http.put<data>(this.baseApiUrl + '/api/course/' + id,updatedata);
   }
@@ -28,7 +30,6 @@ export class StudentAppserviceService {
 
   deleteCourse(id:string):Observable<data>{
    return this.http.delete<data>(this.baseApiUrl + '/api/course/' + id);
-
   }
 
   // For user controller
@@ -49,5 +50,7 @@ export class StudentAppserviceService {
    }
 
   // For specification controller
-
+  
+  
+  
 }

@@ -42,14 +42,15 @@ export class CourseComponent implements OnInit {
    } 
    
   
-  CourseDetails: data []= [];
+  CourseDetails:data []= [];
 
-  constructor(private studentAppserviceService:StudentAppserviceService,private route:ActivatedRoute,private router:Router) { 
+  constructor(private studentAppserviceService:StudentAppserviceService) { 
+    this.getAllCourse();
   }
 
 
   ngOnInit(): void {
-    this.getAllCourse();
+   
     
   }
   getAllCourse() // getting course
@@ -81,6 +82,7 @@ export class CourseComponent implements OnInit {
           this.getAllCourse();
         }
       });
+      alert ("updated sucessfully");
   }
 
 //deleting course
@@ -98,6 +100,7 @@ export class CourseComponent implements OnInit {
         this.getAllCourse()
       }
     });
+    alert ("deleted sucessfully");
   }
 
   //adding course
@@ -115,10 +118,9 @@ export class CourseComponent implements OnInit {
 
     this.studentAppserviceService.addCourse(request).subscribe((r:any)=>{
       console.log(r);
-
       this.getAllCourse()
-
     });
+    alert ("added sucessfully");
   }
  
   
