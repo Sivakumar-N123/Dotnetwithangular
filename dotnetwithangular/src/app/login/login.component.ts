@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute , Router} from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,15 +13,16 @@ export class LoginComponent implements OnInit {
   stu={pass:'',username:''};
   logform!:FormGroup;
   submitted = false;
-
-   router:any;
+  router:any;
   activateroute:any;
 
   constructor(private fb:FormBuilder,_r:Router,_a:ActivatedRoute)
   {
-      this.router = _r;
+    this.router = _r;
     this.activateroute = _a;
+  
   }
+
   ngOnInit(): void {
     this.logform = this.fb.group({
       username:['',[Validators.required]],
@@ -28,10 +30,11 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  onsubmit(){
+  onsubmit()
+  {
     this.submitted = true;
 
-    const checkbox = document.getElementById('subscribe',) as HTMLInputElement | null;
+    const checkbox = document.getElementById('subscribe') as HTMLInputElement | null;
     if (checkbox?.checked)
     {
       console.log('Checkbox is checked');
@@ -41,7 +44,7 @@ export class LoginComponent implements OnInit {
       console.log('Checkbox is NOT checked');
     }
 
-      this.stu =this.logform.value;
+    this.stu =this.logform.value;
     console.log(this.stu.pass);
     console.log(this.stu.username);
 
@@ -51,13 +54,15 @@ export class LoginComponent implements OnInit {
     }
 
     alert("login successfully");
+
     this.router.navigateByUrl("/update");
   }
 
   visible:boolean = true;
   changetype:boolean =true;
 
-  viewpass(){
+  viewpass()
+  {
     this.visible = !this.visible;
     this.changetype = !this.changetype;
   }

@@ -10,11 +10,16 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class UpdatepwdComponent implements OnInit {
 
   pwd!:FormGroup;
+  router:any;
+  activateroute:any;
   submitted1 = false;
 
   stu1={oldpass:'',newpass:'',confirmpass:''};
 
-  constructor(private fb:FormBuilder) {}
+  constructor(private fb:FormBuilder,_r:Router,_a:ActivatedRoute) {
+    this.router = _r;
+    this.activateroute = _a;
+  }
 
   ngOnInit(): void {
     this.pwd = this.fb.group({
@@ -63,13 +68,15 @@ export class UpdatepwdComponent implements OnInit {
     }
 
     alert("Password update successfully");
+    this.router.navigateByUrl("/updateprofile");
  
   }
 
   visible:boolean = true;
   changetype:boolean =true;
 
-  viewpass1(){
+  viewpass1()
+  {
     this.visible = !this.visible;
     this.changetype = !this.changetype;
   }
