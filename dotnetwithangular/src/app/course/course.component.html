@@ -13,9 +13,7 @@
   </div>
 </div>
 <!-- kendogrid -->
-<kendo-grid [kendoGridBinding]="allCourses" [resizable]="true" [pageSize]="5"
-[pageable]="true"
-[sortable]="true"
+<kendo-grid [kendoGridBinding]="allCourses" [resizable]="true" 
 [resizable]="true" style="margin:50px;font-size: 18px;" >
   <kendo-grid-column title="ID" ><ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
       {{rowIndex+1}}

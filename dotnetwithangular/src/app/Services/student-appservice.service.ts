@@ -17,7 +17,7 @@ export class StudentAppserviceService {
   
   // For course controller
   getAllCourses(): Observable<data[]>{
-    return this.http.get<data[]>(this.baseApiUrl+"/api/Course");
+    return this.http.get<data[]>(this.baseApiUrl+'/api/Course');
   }
 
   updateCourse(id:string,updatedata:data):Observable<data>{
@@ -51,26 +51,18 @@ export class StudentAppserviceService {
 
   // For specification controller
   getAllSpecification(): Observable<specData[]>{
-    return this.http.get<specData[]>(this.baseApiUrl+"/api/specification");
+    return this.http.get<specData[]>(this.baseApiUrl+'/api/specification');
   }
-  updateSpecification(id:string,updatedata:specData):Observable<specData>{
-    return this.http.put<specData>(this.baseApiUrl + '/api/specification/' + id,updatedata);
+  updateSpecification(id:any,updatedata:specData):Observable<specData>{
+    return this.http.put<specData>(this.baseApiUrl + '/api/specification/'+id,updatedata);
   }
 
   addSpecification(addSpecificationRequest:specData): Observable<specData>{
     return this.http.post<specData> (this.baseApiUrl+ '/api/specification',addSpecificationRequest);
   }
 
-  deleteSpecification(id:string):Observable<specData>{
+  deleteSpecification(id:any):Observable<specData>{
    return this.http.delete<specData>(this.baseApiUrl + '/api/specification/' + id);
-
-  }
-  
-  
-  //For SpecCourse Controller
-  
-  getAllCourse(): Observable<data[]>{
-    return this.http.get<data[]>(this.baseApiUrl+"/api/speccourse");
   }
 
 }
