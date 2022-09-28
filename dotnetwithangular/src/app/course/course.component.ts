@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
  import { FormGroup,FormControl, Validators } from '@angular/forms';
 import { data } from '../model';
-import { ActivatedRoute, Router } from '@angular/router';
+// import { ActivatedRoute, Router } from '@angular/router';
 import { StudentAppserviceService } from '../Services/student-appservice.service';
-
+// import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-
+// import { HttpClient } from '@angular/common/http';
 
 
 
@@ -48,10 +48,8 @@ export class CourseComponent implements OnInit {
     this.getAllCourse();
   }
 
-
   ngOnInit(): void {
    
-    
   }
   getAllCourse() // getting course
   {
@@ -80,16 +78,16 @@ export class CourseComponent implements OnInit {
         next: (response) => {
           console.log(response);
           this.getAllCourse();
+          alert ("updated sucessfully");
         }
       });
-      alert ("updated sucessfully");
+      
   }
 
 //deleting course
   delete(row:any)
   {
     this.updateid=row.courseId
-
   }
   deleteCourse() 
   {
@@ -97,10 +95,11 @@ export class CourseComponent implements OnInit {
     .subscribe({
       next: (response) => {
         console.log(response);
-        this.getAllCourse()
+        this.getAllCourse();
+        alert ("deleted sucessfully");
       }
     });
-    alert ("deleted sucessfully");
+    
   }
 
   //adding course
@@ -119,14 +118,8 @@ export class CourseComponent implements OnInit {
     this.studentAppserviceService.addCourse(request).subscribe((r:any)=>{
       console.log(r);
       this.getAllCourse()
+      alert ("added sucessfully");
     });
-    alert ("added sucessfully");
+    
   }
- 
-  
-
-
-
-  
- 
 }

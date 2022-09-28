@@ -25,7 +25,7 @@ export class StudentAppserviceService {
   }
 
   addCourse(addCourseRequest:data): Observable<data>{
-    return this.http.post<data> (this.baseApiUrl+ 'api/course',addCourseRequest);
+    return this.http.post<data> (this.baseApiUrl+ '/api/course',addCourseRequest);
   }
 
   deleteCourse(id:string):Observable<data>{
@@ -65,4 +65,12 @@ export class StudentAppserviceService {
    return this.http.delete<specData>(this.baseApiUrl + '/api/specification/' + id);
 
   }
+  
+  
+  //For SpecCourse Controller
+  
+  getAllCourse(): Observable<data[]>{
+    return this.http.get<data[]>(this.baseApiUrl+"/api/speccourse");
+  }
+
 }

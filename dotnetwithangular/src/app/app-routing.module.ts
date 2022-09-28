@@ -7,6 +7,7 @@ import { SpecificationComponent } from './specification/specification.component'
 import { UserComponent } from './user/user.component';
 import { UpdatepwdComponent } from './updatepwd/updatepwd.component';
 import { UpdateprofileComponent } from './updateprofile/updateprofile.component';
+import { SpeccourseComponent } from './speccourse/speccourse.component';
 
 
 
@@ -18,7 +19,8 @@ const routes: Routes = [
  {path:"user", component:UserComponent},
  {path:"login",component:LoginComponent},
  {path:"update",component:UpdatepwdComponent},
- {path:"updateprofile",component:UpdateprofileComponent} 
+ {path:"updateprofile",component:UpdateprofileComponent},
+ {path:"speccourse",component:SpeccourseComponent},
 
 
  

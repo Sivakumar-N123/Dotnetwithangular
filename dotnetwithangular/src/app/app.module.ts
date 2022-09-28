@@ -20,6 +20,11 @@ import { UpdatepwdComponent } from './updatepwd/updatepwd.component';
 import { LayoutModule } from '@progress/kendo-angular-layout';
 import { HttpClientModule } from '@angular/common/http';
 import { UpdateprofileComponent } from './updateprofile/updateprofile.component';
+import { SpeccourseComponent } from './speccourse/speccourse.component';
+import { DropDownsModule } from "@progress/kendo-angular-dropdowns";
+
+
+
 
 
 
@@ -33,7 +38,8 @@ import { UpdateprofileComponent } from './updateprofile/updateprofile.component'
     SpecificationComponent,
     UserComponent,
     UpdatepwdComponent,
-    UpdateprofileComponent
+    UpdateprofileComponent,
+    SpeccourseComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,6 +56,7 @@ import { UpdateprofileComponent } from './updateprofile/updateprofile.component'
     GridModule,
     LayoutModule,
     HttpClientModule,
+    DropDownsModule
     
     
   ],
