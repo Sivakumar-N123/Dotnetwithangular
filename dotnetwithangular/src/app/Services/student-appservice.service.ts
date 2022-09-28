@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { data, userData } from '../model';
+import { data, specData, userData } from '../model';
 
 
 @Injectable({
@@ -50,7 +50,19 @@ export class StudentAppserviceService {
    }
 
   // For specification controller
-  
-  
-  
+  getAllSpecification(): Observable<specData[]>{
+    return this.http.get<specData[]>(this.baseApiUrl+"/api/specification");
+  }
+  updateSpecification(id:string,updatedata:specData):Observable<specData>{
+    return this.http.put<specData>(this.baseApiUrl + '/api/specification/' + id,updatedata);
+  }
+
+  addSpecification(addSpecificationRequest:specData): Observable<specData>{
+    return this.http.post<specData> (this.baseApiUrl+ '/api/specification',addSpecificationRequest);
+  }
+
+  deleteSpecification(id:string):Observable<specData>{
+   return this.http.delete<specData>(this.baseApiUrl + '/api/specification/' + id);
+
+  }
 }

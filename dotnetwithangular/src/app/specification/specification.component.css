@@ -1,16 +1,4 @@
-h3{
-    margin-left: 40px;
-    margin-top:20px;
+.textbox{
+    width: 300px;
 }
-.table{
-    text-align: center;
-    margin-top: 20px;
-}
-.addSpec{
-    margin-left: 900px;
-    margin-bottom: 30px;
-}
-.del{
-    margin-left: 10px;
-}
-  
+

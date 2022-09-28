@@ -1,6 +1,6 @@
-export class Product {
-    public ID: number | undefined;
-    public SpecificationName = '';
+export interface specData {
+     specificationId?: number | undefined,
+     specificationName: string;
    
 }
 

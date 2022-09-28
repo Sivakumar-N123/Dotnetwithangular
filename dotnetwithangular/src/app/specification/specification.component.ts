@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup,  Validators } from '@angular/forms';
-import { ButtonThemeColor } from "@progress/kendo-angular-buttons";
+import { FormGroup,FormControl, Validators } from '@angular/forms';
+import { specData } from '../model';
+import { ActivatedRoute, Router } from '@angular/router';
+import { StudentAppserviceService } from '../Services/student-appservice.service';
+import { environment } from 'src/environments/environment';
 
-interface userData{
-  id:Number,
-  name:string,
-  userName:string
-}
 
 @Component({
   selector: 'app-specification',
@@ -16,100 +14,116 @@ interface userData{
 
 export class SpecificationComponent implements OnInit {
 
-  
-footer:boolean=false;
-footer1:boolean=true;
-editfooter:boolean =false;
-body:boolean=true;
-body1:boolean=false;
-title:boolean=true;
-title1:boolean=false;
 
-specForm!:FormGroup
-submitted =false;
-specName="";
-  
-  constructor(private formBuilder:FormBuilder) { }
- 
-  add1(){
-    this.specForm.reset()
-    this.footer=true
-    this.editfooter=false
-    this.footer1=false
-    this.body=true
-    this.body1=false
-    this.title=true
-    this.title1=false
-  }
-  ngOnInit() {
-    //validations
-    this.specForm = this.formBuilder.group({
-      specName:['', Validators.required]
-    })
-  }
-  onSubmit(){
-    this.submitted = true
-    if(this.specForm.invalid){
-      return
-    }
-    else{
-    alert("Saved Successfully")
-    let ref =document.getElementById('cancel')
-    ref?.click();
-    this.gridData.push({ID: this.gridData.length+1,SpecificationName:this.specForm.value.specName})
-    this.specForm.reset()
-    }
-  }
-
-  public gridData: any[] = [
-    {ID: 1,SpecificationName: "EEE",},
-    {ID: 2,SpecificationName: "ECE",},
-    {ID: 3,SpecificationName: "IT",},
-  ];
-
+  editable:boolean=false;
   updateid: any;
-  edit1(row:any)
-  {
-   this.editfooter=true
-   this.footer=false
-   this.footer1=false
-   this.body=true
-   this.body1=false
-   this.title=true
-   this.title1=false
+  allSpecification: any;
    
-   console.log(row);
-   this.updateid=row.ID
-   this.editfooter=true;
-   this.specForm.controls['specName'].patchValue(row.SpecificationName);
+  baseApiUrl:string = environment.baseApiUrl;
+
+
+  specData: specData | undefined;
+ 
+
+   loginForm=new FormGroup({
+    user :new FormControl('',[Validators.required]),
+   })
+  
+ 
+   loginUser(){
+    console.warn(this.loginForm.value)
+   }
+   get user(){
+    return this.loginForm.get('user');
+   } 
+   
+  
+  Specification: specData []= [];
+
+  constructor(private studentAppserviceService:StudentAppserviceService,private route:ActivatedRoute,private router:Router) { 
   }
-  update()
+
+
+  ngOnInit(): void {
+    this.getAllSpecification();
+    
+  }
+  getAllSpecification() // getting Specification
   {
-    alert("Updated successfully")
-    if(this.gridData.length && this.specForm.value.specName){
-
-        this.gridData[this.updateid-1].SpecificationName=this.specForm.value.specName,
-        
-     
-      this.specForm.reset();
-    }
+    this.studentAppserviceService.getAllSpecification().subscribe((r:any)=>{
+      console.log(r);
+      this.allSpecification=r;
+    });
   }
 
- delete1(row:any)
-  {
-    this.footer=false
-    this.footer1=true
-    this.editfooter=false
-    this.body=false
-    this.body1=true
-    this.title=false
-    this.title1=true
-
-    this.updateid=row.ID
-  }
-  remove()
-  { alert("Deleted successfully")
-    this.gridData.splice(this.updateid-1,1)
+  edit(row:any)
+  { 
+    this.editable=true;
+    console.log(row);
+    this.updateid=row.specificationId;
+    this.loginForm.controls['user'].patchValue(row.specificationName);
   }
   
+  updateSpecification() // updating Specification
+  {
+    let request={
+      specificationName:this.loginForm.value.user
+  }
+    this.studentAppserviceService.updateSpecification(this.updateid,request)
+    .subscribe(
+      {
+        next: (response) => {
+          console.log(response);
+          this.getAllSpecification();
+          alert("updated successfully");
+        }
+      });
+  }
+
+//deleting Specification
+  delete(row:any)
+  {
+    this.updateid=row.specificationId
+
+  }
+  deleteSpecification() 
+  {
+    this.studentAppserviceService.deleteSpecification(this.updateid)
+    .subscribe({
+      next: (response) => {
+        console.log(response);
+        this.getAllSpecification()
+        alert("Deleted successfully");
+      }
+    });
+  }
+
+  //adding course
+  add()
+{
+  this.editable=false;
+  this.loginForm.reset();
 }
+
+  AddSpecification() 
+  {
+    let request={
+      specificationName:this.loginForm.value.user
+    }
+
+    this.studentAppserviceService.addSpecification(request).subscribe((r:any)=>{
+      console.log(r);
+
+      this.getAllSpecification()
+      alert("Added successfully");
+
+    });
+  }
+ }
+
+
+
+
+
+
+
