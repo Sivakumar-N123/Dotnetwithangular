@@ -45,8 +45,8 @@ export class StudentAppserviceService {
     return this.http.put<userData>(this.baseApiUrl+"/api/User/"+id,data);
   }
 
-  deleteUser(id:string,data:userData):Observable<userData>{
-    return this.http.put<userData>(this.baseApiUrl + '/api/user/'+ id,data);
+  deleteUser(id:any,data:userData):Observable<userData>{
+    return this.http.put<userData>(this.baseApiUrl+"/api/user/"+id,data);
    }
 
   // For specification controller

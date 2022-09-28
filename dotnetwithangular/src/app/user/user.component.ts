@@ -69,9 +69,9 @@ export class UserComponent implements OnInit {
     if(this.Form.controls['email' && 'userName'].valid){
       let request={
       
-      userName:this.Form.value.userName,
-      email:this.Form.value.email,
-
+      "userName":this.Form.value.userName,
+      "email":this.Form.value.email,
+      
       }
       this.studentAppserviceService.updateUser(this.updateid,request).subscribe((r:any)=>{
         console.log(r);
@@ -119,11 +119,11 @@ export class UserComponent implements OnInit {
   remove()
   {
     let request={
-      
-      userName:this.name,
-      email:this.emailid,
-      isActive:false
+      "userName":this.name,
+      "email":this.emailid,
+      "isActive":false
       }
+
     this.studentAppserviceService.deleteUser(this.updateid,request).subscribe((r:any)=>{
       console.log(r);
 

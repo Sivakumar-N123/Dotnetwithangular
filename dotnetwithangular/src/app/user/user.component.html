@@ -61,7 +61,7 @@ aria-hidden="true">
     <div class="modal-body">
  
             <div class="form-group">
-                <label for="exampleFormControlInput1" class="form-label">Name</label>
+                <label for="exampleFormControlInput1" class="form-label">User Name</label>
                 <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="userName" placeholder=" Enter the name..."  [class.is-invalid]="userName.invalid && (userName.dirty || userName.touched)">
                 <div *ngIf="userName.invalid && (userName.dirty || userName.touched)" class="text-danger">
                   <div *ngIf="userName.errors?.['required']">
@@ -76,7 +76,7 @@ aria-hidden="true">
                 </div>
             </div>
             <div class="form-group">
-                <label for="exampleFormControlInput2" class="form-label">User Name</label>
+                <label for="exampleFormControlInput2" class="form-label">Email</label>
                 <input type="text" class="form-control" id="exampleFormControlInput2" formControlName="email" placeholder=" Enter Email ID..." [class.is-invalid]="email.invalid && (email.dirty || email.touched)" >
                 <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
                   <div *ngIf="email.errors?.['required']">
