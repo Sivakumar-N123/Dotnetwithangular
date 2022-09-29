@@ -27,6 +27,7 @@ export class SpeccourseComponent implements OnInit {
     Courselist : new FormControl('select Course',[Validators.required]),
     speclist :new FormControl('select specification',[Validators.required]),
    })
+  AllSpeccourse: any;
  
  
    get Courselist(){
@@ -64,7 +65,7 @@ export class SpeccourseComponent implements OnInit {
   {
     this.studentAppserviceService.getAllSpecCourse().subscribe((r:any)=>{
       console.log(r);
-      this.allSpecification=r;
+      this.AllSpeccourse=r;
     });
   }
 //   add()
