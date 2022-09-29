@@ -41,7 +41,6 @@ export class CourseComponent implements OnInit {
     return this.loginForm.get('user');
    } 
    
-  
   CourseDetails:data []= [];
 
   constructor(private studentAppserviceService:StudentAppserviceService) { 
@@ -51,7 +50,7 @@ export class CourseComponent implements OnInit {
   ngOnInit(): void {
    
   }
-  getAllCourse() // getting course
+  getAllCourse() //getting course
   {
     this.studentAppserviceService.getAllCourses().subscribe((r:any)=>{
       console.log(r);
@@ -67,7 +66,7 @@ export class CourseComponent implements OnInit {
     this.loginForm.controls['user'].patchValue(row.courseName);
   }
   
-  updateCourse() // updating course
+  updateCourse() //updating course
   {
     let request={
     courseName:this.loginForm.value.user
@@ -81,7 +80,6 @@ export class CourseComponent implements OnInit {
           alert ("updated sucessfully");
         }
       });
-      
   }
 
 //deleting course
@@ -98,8 +96,7 @@ export class CourseComponent implements OnInit {
         this.getAllCourse();
         alert ("deleted sucessfully");
       }
-    });
-    
+    }); 
   }
 
   //adding course
@@ -114,12 +111,10 @@ export class CourseComponent implements OnInit {
     let request={
       courseName:this.loginForm.value.user
     }
-
     this.studentAppserviceService.addCourse(request).subscribe((r:any)=>{
       console.log(r);
       this.getAllCourse()
       alert ("added sucessfully");
     });
-    
   }
 }

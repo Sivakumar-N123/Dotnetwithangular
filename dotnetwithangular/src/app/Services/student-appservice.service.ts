@@ -2,8 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { data, specData, userData } from '../model';
-
+import { data, specCoursedata, specData, userData } from '../model';
 
 @Injectable({
   providedIn: 'root'
@@ -34,19 +33,19 @@ export class StudentAppserviceService {
 
   // For user controller
   getAllusers(): Observable<userData>{
-    return this.http.get<userData>(this.baseApiUrl+"/api/User");
+    return this.http.get<userData>(this.baseApiUrl+'/api/user/');
   }
 
   addUser(data:userData): Observable<userData>{
-    return this.http.post<userData>(this.baseApiUrl+"/api/User",data);
+    return this.http.post<userData>(this.baseApiUrl+'/api/user/',data);
   }
 
   updateUser(id:any,data:userData): Observable<userData>{
-    return this.http.put<userData>(this.baseApiUrl+"/api/User/"+id,data);
+    return this.http.put<userData>(this.baseApiUrl+'/api/user/'+id,data);
   }
 
   deleteUser(id:any,data:userData):Observable<userData>{
-    return this.http.put<userData>(this.baseApiUrl+"/api/user/"+id,data);
+    return this.http.put<userData>(this.baseApiUrl+'/api/user/'+id,data);
    }
 
   // For specification controller
@@ -67,10 +66,18 @@ export class StudentAppserviceService {
 
   //For speccourse cotroller
   addspecCourse(data:any): Observable<any>{
-    return this.http.post<any>(this.baseApiUrl+"/api/SpecCourse",data);
+    return this.http.post<any>(this.baseApiUrl+'/api/SpecCourse',data);
   }
 
   getAllSpecCourse(): Observable<any>{
     return this.http.get<any>(this.baseApiUrl+'/api/SpecCourse');
   }
+
+  updateSpecCourses(id:any,updatedata:specCoursedata):Observable<any>{
+    return this.http.put<any>(this.baseApiUrl + '/api/SpecCourse/'+id,updatedata);
+  }
+
+  deleteSpecCourse(id:any):Observable<any>{
+    return this.http.delete<any>(this.baseApiUrl + '/api/SpecCourse/' + id);
+   }
 }

@@ -2,21 +2,19 @@
 
 <div class="row" >
   <div class="mapping" [formGroup]="loginForm">
-  <div class="col-3"></div>
-    <div class="col-3">
-      <select class="form-select" formControlName="Courselist" (change)="onChangeCourse($event)">
-        <option selected >select Course</option>
-        <option [ngValue]="course" *ngFor="let course of allCourses">{{course.courseName}}</option>
-
-      </select>
-    </div>
-
-    <div class="col-3">
-      <select class="form-select" formControlName="speclist" (change)="onChangeSpec($event)">
-        <option selected >select specification</option>
-        <option [ngValue]="spec" *ngFor="let spec of allSpecification">{{spec.specificationName}}</option>
-      </select>
-    </div>
+    <div class="col-3"></div>
+      <div class="col-3">
+        <select class="form-select" formControlName="Courselist" >
+          <option selected >select Course</option>
+          <option [ngValue]="course" *ngFor="let course of allCourses">{{course.courseName}}</option>
+        </select>
+      </div>
+      <div class="col-3">
+        <select class="form-select" formControlName="speclist" >
+          <option selected >select specification</option>
+          <option [ngValue]="spec" *ngFor="let spec of allSpecification">{{spec.specificationName}}</option>
+        </select>
+      </div>
       <div class="col-3">
         <button
           class="btn btn-primary"
@@ -27,14 +25,17 @@
     </div>
   </div>
   <!-- kendogrid  (click)="delete(dataItem)"  (click)="edit(dataItem);"  (click)="AddCourse()"  (click)="updateCourse()"  [kendoGridBinding]="allCourses"  -->
-  <kendo-grid>
-    <kendo-grid-column title="Course Id" >
+  <kendo-grid [kendoGridBinding]="AllSpeccourse">
+    <kendo-grid-column title="S.No" ><ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+      {{rowIndex+1}}
+  </ng-template> </kendo-grid-column>
+    <kendo-grid-column title="Course Id" field="courseId">
     </kendo-grid-column>
     <kendo-grid-column field="courseName" title="Course Name" >  
     </kendo-grid-column>
-    <kendo-grid-column field="specId" title="Specification Id" >  
+    <kendo-grid-column field="specificationId" title="Specification Id" >  
     </kendo-grid-column>
-    <kendo-grid-column field="specName" title="Specification Name" >  
+    <kendo-grid-column field="specificationName" title="Specification Name" >  
     </kendo-grid-column>
     <kendo-grid-column field="Action" title="Action">
       <ng-template kendoGridCellTemplate let-dataItem="dataItem">
@@ -44,13 +45,17 @@
           [toggleable]="false"
           data-toggle="modal"
           data-target="#exampleModal"
-          style="margin-right: 10px;"> Edit
+          style="margin-right: 10px;"
+          (click)="editSpecCourse(dataItem)"
+          > Edit
         </button>
         <button
           kendoButton
           themeColor="error"
           [toggleable]="false"data-toggle="modal"
-          data-target="#exampleModal1" > Delete 
+          data-target="#exampleModal1" 
+          (click)="deleteSpecCourse(dataItem)"
+         > Delete 
         </button>
       </ng-template> 
     </kendo-grid-column>

@@ -20,7 +20,7 @@ export interface userData{
     isActive?:boolean
   }
 
-  export interface specdata{
+  export interface specCoursedata{
     specCourseId : number;
     specCourseName:string;
   }
