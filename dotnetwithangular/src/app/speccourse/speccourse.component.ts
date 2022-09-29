@@ -18,45 +18,34 @@ export class SpeccourseComponent implements OnInit {
   editable:boolean=false;
   allCourses: any;
   allSpecification:any;
-  
+  specName!:string;
+  courseName!:string;
 
   baseApiUrl:string = environment.baseApiUrl;
 
    loginForm=new FormGroup({
-    Courselist : new FormControl('',[Validators.required]),
-    speclist :new FormControl('',[Validators.required]),
+    Courselist : new FormControl('select Course',[Validators.required]),
+    speclist :new FormControl('select specification',[Validators.required]),
    })
  
-  //  loginUser(){
-  //   console.warn(this.loginForm.value);
-  //  }
-  //  get (){
-  //   return this.loginForm.get('user');
-  //  } 
-   
-
-   public ProductCourse: data = {
-    courseName: "Course",
-     courseId:0
-   };
-   
-
-   public ProductSpec: specData = {
-    specificationName: "Specification",
-    specificationId: 0
-  };
-
-
+ 
+   get Courselist(){
+    return this.loginForm.get('Courselist');
+   } 
+   get speclist(){
+    return this.loginForm.get('speclist');
+   } 
 
   constructor(private studentAppserviceService:StudentAppserviceService) {
     this.getAllCourse();
     this.getAllSpecification();
+    this.getAllSpeccourse();
    }
 
   ngOnInit(): void {
   }
 
-  getAllCourse() // getting course
+  getAllCourse() 
   {
     this.studentAppserviceService.getAllCourses().subscribe((r:any)=>{
       console.log(r);
@@ -70,10 +59,31 @@ export class SpeccourseComponent implements OnInit {
       this.allSpecification=r;
     });
   }
-  add()
+  
+  getAllSpeccourse()// getting Speccourse
+  {
+    this.studentAppserviceService.getAllSpecCourse().subscribe((r:any)=>{
+      console.log(r);
+      this.allSpecification=r;
+    });
+  }
+//   add()
+// {
+//   this.editable=false;
+//   this.loginForm.reset();
+// }
+
+
+//get the value of dropdown
+onChangeCourse(event:any)
 {
-  this.editable=false;
-  this.loginForm.reset();
+  console.log(event);
+  this.courseName=event.target.value
+}
+onChangeSpec(event:any)
+{
+  console.log(event);
+  this.specName=event.target.value
 }
 
   AddCourse() 
@@ -83,19 +93,16 @@ export class SpeccourseComponent implements OnInit {
     );
     
     let request={
-      courseName:this.loginForm.value.user
+        "courseId": this.loginForm.value.Courselist.courseId,
+        "courseName": this.loginForm.value.Courselist.courseName,
+        "specificationId": this.loginForm.value.speclist.specificationId,
+        "specificationName": this.loginForm.value.speclist.specificationName
     }
 
-    this.studentAppserviceService.addCourse(request).subscribe((r:any)=>{
+    this.studentAppserviceService.addspecCourse(request).subscribe((r:any)=>{
       console.log(r);
-      this.getAllCourse()
+      this.getAllSpeccourse()
     });
     
-  }
-
-
-
-  // getting value from dropdown
-
-  
+  } 
 }

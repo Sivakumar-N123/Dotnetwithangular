@@ -65,4 +65,12 @@ export class StudentAppserviceService {
    return this.http.delete<specData>(this.baseApiUrl + '/api/specification/' + id);
   }
 
+  //For speccourse cotroller
+  addspecCourse(data:any): Observable<any>{
+    return this.http.post<any>(this.baseApiUrl+"/api/SpecCourse",data);
+  }
+
+  getAllSpecCourse(): Observable<any>{
+    return this.http.get<any>(this.baseApiUrl+'/api/SpecCourse');
+  }
 }

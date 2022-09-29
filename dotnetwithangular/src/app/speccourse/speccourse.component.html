@@ -1,41 +1,27 @@
 <!-- heading  (click)="add()"  -->
 
 <div class="row" >
-  <div [formGroup]="loginForm">
+  <div class="mapping" [formGroup]="loginForm">
   <div class="col-3"></div>
     <div class="col-3">
-    
-        <kendo-label >
-          <kendo-dropdownlist 
-            formControlName="Courselist"
-            [data]="allCourses"
-            textField="coursename"
-          valueField="courseId"
-          [defaultItem]="ProductCourse"
-          ></kendo-dropdownlist>
-        </kendo-label>
-      
+      <select class="form-select" formControlName="Courselist" (change)="onChangeCourse($event)">
+        <option selected >select Course</option>
+        <option [ngValue]="course" *ngFor="let course of allCourses">{{course.courseName}}</option>
+
+      </select>
     </div>
 
     <div class="col-3">
-        <kendo-label >
-          <kendo-dropdownlist 
-            formControlName="speclist"
-            [data]="allSpecification"
-            textField="specificationName"
-            valueField="specificationId"
-            [defaultItem]="ProductSpec"
-          ></kendo-dropdownlist>
-        </kendo-label>
-      
+      <select class="form-select" formControlName="speclist" (change)="onChangeSpec($event)">
+        <option selected >select specification</option>
+        <option [ngValue]="spec" *ngFor="let spec of allSpecification">{{spec.specificationName}}</option>
+      </select>
     </div>
       <div class="col-3">
         <button
-          kendoButton
-          themeColor="info"
-          [toggleable]="false"
+          class="btn btn-primary"
           *ngIf="!editable"
-          (click)="AddCourse()" style="margin-top: 50px;"> Save
+          (click)="AddCourse()"> Save
         </button>
       </div>
     </div>
@@ -43,7 +29,6 @@
   <!-- kendogrid  (click)="delete(dataItem)"  (click)="edit(dataItem);"  (click)="AddCourse()"  (click)="updateCourse()"  [kendoGridBinding]="allCourses"  -->
   <kendo-grid>
     <kendo-grid-column title="Course Id" >
-
     </kendo-grid-column>
     <kendo-grid-column field="courseName" title="Course Name" >  
     </kendo-grid-column>
