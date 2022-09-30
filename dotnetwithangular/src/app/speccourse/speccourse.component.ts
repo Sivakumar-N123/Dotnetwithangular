@@ -72,9 +72,6 @@ export class SpeccourseComponent implements OnInit {
     });
   }
 
-
-
-
   AddCourse() 
   {
     console.log(
@@ -94,46 +91,37 @@ export class SpeccourseComponent implements OnInit {
     });
     
   } 
-  // edit(row:any)
-  // { 
-    
-  //   this.editable=true;
-  //   console.log(row);
-  //   this.updateSpecCourse=row.courseId;
-  //   this.loginForm.controls['user'].patchValue(row.courseName);
-  // }
-   
- 
+
   editSpecCourse(row:any){
-   
+    this.editable=true;
     console.log(row);
-    this.updateSpecCourse=row.courseId;
-    this.loginForm.controls['user'].setValue(row.courseId);
-    this.loginForm.controls['user'].patchValue(row.courseName);
-    this.loginForm.controls['user'].patchValue(row.specCourseId);
-    this.loginForm.controls['user'].patchValue(row.specificationName);
+    this.updateSpecCourse=row.specCourseId;
+    this.loginForm.controls['Courselist'].patchValue(this.allCourses.find((i:any)=>i.courseId==row.courseId));
+    this.loginForm.controls['speclist'].patchValue(this.allSpecification.find((i:any)=>i.specificationId==row.specificationId));
+  
   }
-  
-  
   
   updateSpecCourses() // updating course
   {
     let request:any ={
-      "courseId": this.loginForm.value.Courselist.courseId,
-      "courseName": this.loginForm.value.Courselist.courseName,
-      "specificationId": this.loginForm.value.speclist.specificationId,
-      "specificationName": this.loginForm.value.speclist.specificationName
+      courseId: this.loginForm.value.Courselist.courseId,
+      courseName: this.loginForm.value.Courselist.courseName,
+      specificationId: this.loginForm.value.speclist.specificationId,
+      specificationName: this.loginForm.value.speclist.specificationName
   }
 
-  
     this.studentAppserviceService.updateSpecCourses(this.updateSpecCourse,request)
     .subscribe(
       {
+       
         next: (response) => {
           console.log(response);
-          this.getAllCourse();      
+         window.location.reload();
+
         }
       });
+      this.editable=false;
+      
   }
 
   delete(row:any)
@@ -153,6 +141,5 @@ export class SpeccourseComponent implements OnInit {
       }
     });
   }
-
 
 }

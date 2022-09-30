@@ -73,7 +73,7 @@ export class StudentAppserviceService {
     return this.http.get<any>(this.baseApiUrl+'/api/SpecCourse');
   }
 
-  updateSpecCourses(id:any,updatedata:specCoursedata):Observable<any>{
+  updateSpecCourses(id:any,updatedata:any):Observable<any>{
     return this.http.put<any>(this.baseApiUrl + '/api/SpecCourse/'+id,updatedata);
   }
 
