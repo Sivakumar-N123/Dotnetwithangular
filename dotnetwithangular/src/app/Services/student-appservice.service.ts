@@ -33,7 +33,10 @@ export class StudentAppserviceService {
 
   // For user controller
   getAllusers(): Observable<userData>{
-    return this.http.get<userData>(this.baseApiUrl+'/api/user/');
+    return this.http.get<userData>(this.baseApiUrl+"/api/User/");
+  }
+  getAllusers1(name:any){
+    return this.http.get(this.baseApiUrl+"/api/User/"+name);
   }
 
   addUser(data:userData): Observable<userData>{

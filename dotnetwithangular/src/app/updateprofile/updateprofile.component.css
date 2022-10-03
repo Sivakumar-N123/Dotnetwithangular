@@ -1,0 +1,71 @@
+.imagebtn
+{
+    display: flex;
+    font-size: 16px;
+    padding: 20px;
+}
+
+button{
+    width: 200px;
+    font-size: 18px;
+    height: 50px;
+    margin-bottom: 30px;
+    margin-left: 300px;
+}
+   
+.imgbox
+{
+    font-size: 150px;
+    width: 250px;
+    height: 250px;
+    background-color: black;
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    padding-top: 5px;
+}
+  
+h3,h1
+{
+    background-color: #0d6efc;
+    color: white;
+    padding: 10px;
+}   
+
+input{
+    font-size: 20px;
+    padding-left: 10px;
+}
+
+.row{
+    padding: 50px;
+}
+
+.field{
+    padding-top:100px
+}
+.field1{
+    margin-bottom:20px
+}
+.field label{
+    padding-right:10px
+}
+
+kendo-card
+{
+    margin-left: 350px;
+    margin-top: 100px;
+}
+
+kendo-card-header div h1{
+    background-color: blue;
+    font-size: 22px;
+}
+
+kendo-card-header{
+    background-color: blue;
+}
+
+label{
+    font-size: 18px;
+}

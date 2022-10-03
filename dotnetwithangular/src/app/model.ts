@@ -17,8 +17,18 @@ export interface userData{
     email:string,
     password?:string,
     isStudent?:boolean,
-    isActive?:boolean
+    isActive?:boolean,
+    profileImage?:string,
+    isVerify?:boolean
   }
+ 
+
+
+
+
+
+
+
 
   export interface specCoursedata{
     specCourseId : number;

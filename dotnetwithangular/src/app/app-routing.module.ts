@@ -18,6 +18,7 @@ const routes: Routes = [
  {path:"spec", component:SpecificationComponent},
  {path:"user", component:UserComponent},
  {path:"login",component:LoginComponent},
+ {path:":value",component:UpdateprofileComponent},
  {path:"update",component:UpdatepwdComponent},
  {path:"updateprofile",component:UpdateprofileComponent},
  {path:"speccourse",component:SpeccourseComponent},

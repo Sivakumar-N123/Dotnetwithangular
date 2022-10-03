@@ -45,8 +45,7 @@ export class LoginComponent implements OnInit {
     }
 
     this.stu =this.logform.value;
-    console.log(this.stu.pass);
-    console.log(this.stu.username);
+
 
     if(this.logform.invalid)
     {
@@ -55,7 +54,8 @@ export class LoginComponent implements OnInit {
 
     alert("login successfully");
 
-    this.router.navigateByUrl("/update");
+    // this.router.navigateByUrl("/update");
+    this.router.navigate([this.stu.username],{relativeTo:this.activateroute})
   }
 
   visible:boolean = true;
