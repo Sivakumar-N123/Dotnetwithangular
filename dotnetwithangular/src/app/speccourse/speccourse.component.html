@@ -20,27 +20,25 @@
         <button
           class="btn btn-primary"
           *ngIf="!editable"
-          (click)="AddCourse()"> Save
+          (click)="validatefn()"> Save
         </button>
         <button
           class="btn btn-primary"
           *ngIf="editable"
-          (click)="updateSpecCourses()"> update
+          (click)="validatefnforupdate()"> update
         </button>
       </div>
     </div>
   </div>
   <!-- kendogrid  (click)="delete(dataItem)"  (click)="edit(dataItem);"  (click)="AddCourse()"  (click)="updateCourse()"  [kendoGridBinding]="allCourses"  -->
-  <kendo-grid [kendoGridBinding]="AllSpeccourse">
+  <kendo-grid [kendoGridBinding]="AllSpeccourse" >
     <kendo-grid-column title="S.No" ><ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
       {{rowIndex+1}}
   </ng-template> </kendo-grid-column>
-    <kendo-grid-column title="Course Id" field="courseId">
-    </kendo-grid-column>
+   
     <kendo-grid-column field="courseName" title="Course Name" >  
     </kendo-grid-column>
-    <kendo-grid-column field="specificationId" title="Specification Id" >  
-    </kendo-grid-column>
+   
     <kendo-grid-column field="specificationName" title="Specification Name" >  
     </kendo-grid-column>
     <kendo-grid-column field="Action" title="Action">

@@ -22,6 +22,7 @@ export class SpeccourseComponent implements OnInit {
   courseName!:string;
   updateSpecCourse:any;
   user:any;
+  flag : any;
 
 
   baseApiUrl:string = environment.baseApiUrl;
@@ -31,6 +32,7 @@ export class SpeccourseComponent implements OnInit {
     speclist :new FormControl('select specification',[Validators.required]),
    })
   AllSpeccourse: any;
+  specificationName: any;
  
  
    get Courselist(){
@@ -72,24 +74,47 @@ export class SpeccourseComponent implements OnInit {
     });
   }
 
+
+  validatefn(){
+    this.flag=1;
+    for(let i=0;i<this.AllSpeccourse.length;i++)
+    {
+      if((this.AllSpeccourse[i].courseName == this.loginForm.value.Courselist.courseName) && (this.AllSpeccourse[i].specificationName  == this.loginForm.value.speclist.specificationName)){
+        this.flag=0;
+        break;
+      }
+    }
+
+    if(this.flag==0)
+    {
+
+      alert("Duplication");
+      window.location.reload();
+     
+      
+    }
+    else {
+      this.AddCourse();
+    }
+  }
+
   AddCourse() 
   {
     console.log(
       this.loginForm.value
     );
-    
+   
     let request:any ={
-        "courseId": this.loginForm.value.Courselist.courseId,
-        "courseName": this.loginForm.value.Courselist.courseName,
-        "specificationId": this.loginForm.value.speclist.specificationId,
-        "specificationName": this.loginForm.value.speclist.specificationName
+      "courseId": this.loginForm.value.Courselist.courseId,
+      "courseName": this.loginForm.value.Courselist.courseName,
+      "specificationId": this.loginForm.value.speclist.specificationId,
+      "specificationName": this.loginForm.value.speclist.specificationName
     }
 
     this.studentAppserviceService.addspecCourse(request).subscribe((r:any)=>{
       console.log(r);
       this.getAllSpeccourse()
     });
-    
   } 
 
   editSpecCourse(row:any){
@@ -101,6 +126,27 @@ export class SpeccourseComponent implements OnInit {
   
   }
   
+
+  validatefnforupdate(){
+    this.flag=1;
+    for(let i=0;i<this.AllSpeccourse.length;i++)
+    {
+      if((this.AllSpeccourse[i].courseName == this.loginForm.value.Courselist.courseName) && (this.AllSpeccourse[i].specificationName  == this.loginForm.value.speclist.specificationName)){
+        this.flag=0;
+        break;
+      }
+    }
+
+    if(this.flag==0)
+    {
+      alert("Duplication");
+      // window.location.reload();
+      
+    }
+    else {
+      this.updateSpecCourses();
+    }
+  }
   updateSpecCourses() // updating course
   {
     let request:any ={
@@ -113,11 +159,9 @@ export class SpeccourseComponent implements OnInit {
     this.studentAppserviceService.updateSpecCourses(this.updateSpecCourse,request)
     .subscribe(
       {
-       
         next: (response) => {
           console.log(response);
-         window.location.reload();
-
+          window.location.reload();
         }
       });
       this.editable=false;
