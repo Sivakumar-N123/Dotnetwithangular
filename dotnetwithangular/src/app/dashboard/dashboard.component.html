@@ -1,1 +1,9 @@
-<p>dashboard works!</p>
+<div class="container dashboard">
+<kendo-tilelayout [columns]="4" [rowHeight]="255" [resizable]="true" [reorderable]="true">
+    <kendo-tilelayout-item title="Page Views" [col]="1" [colSpan]="3">
+        <kendo-tilelayout-item-body>
+            <app-studenttile></app-studenttile>
+        </kendo-tilelayout-item-body>
+    </kendo-tilelayout-item>
+</kendo-tilelayout>
+</div>
