@@ -50,7 +50,7 @@ export class UpdateprofileComponent implements OnInit {
 
 
   getdata(){
-    this.api.getAllusers1(this.msg).subscribe((r:any)=>{
+    this.api.getuserbyemail(this.msg).subscribe((r:any)=>{
       this.det=r;
       console.log(this.det);
 

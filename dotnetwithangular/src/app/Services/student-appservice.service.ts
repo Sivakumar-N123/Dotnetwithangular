@@ -35,7 +35,7 @@ export class StudentAppserviceService {
   getAllusers(): Observable<userData>{
     return this.http.get<userData>(this.baseApiUrl+"/api/User/");
   }
-  getAllusers1(name:any){
+  getuserbyemail(name:any){
     return this.http.get(this.baseApiUrl+"/api/User/"+name);
   }
 
