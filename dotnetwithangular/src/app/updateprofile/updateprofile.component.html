@@ -36,6 +36,7 @@
     </kendo-scrollview>
   </kendo-card> -->
 
+
 <div class="container">
   <div class="card">
     <h3 class="card-header">Update profile</h3>
@@ -43,38 +44,27 @@
     <div class="card-body row">  
       <div class="col-lg-4 col-md-6 col-sm-12">
         <div class="card-text">
-          
           <img [src]="imageurl" *ngIf="imgtrue" style="background-color: white;" class="imgbox" />
           <div *ngIf="!imgtrue" class="imgbox">{{this.final_profile}}</div>
           <input type="file" formControlName="profileimage" class="imagebtn" accept="image/*" (change)="imgupload($event)"/>
-        
         </div>
       </div>
       <div class="col-lg-8 col-md-6 col-sm-12" style="top: -25px;">
-        
           <div class="textfield field" >
             <div class="form-group">
               <label for="exampleUserName" class="form-label">User Name</label>
               <input type="text"  class="form-control" id="exampleUserName" aria-describedby="emailHelp"  value="{{det.userName}}">
             </div>
-
               <div class="form-group">
                 <label for="exampleInputEmail1" class="form-label mt-4">Email address</label>
                 <input type="email" disabled class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{det.email}}">
               </div>  
           </div> 
-
           <div class="form-group">
             <input type="submit" value="update" class="btn btn-primary">
-          </div> 
-                  
-        
+          </div>
       </div>
-
-      
-    
     </div>
   </form>
-
   </div>
 </div>
