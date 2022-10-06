@@ -88,7 +88,7 @@ export class SpeccourseComponent implements OnInit {
     if(this.flag==0)
     {
 
-      alert("Duplication");
+      alert("Already "+this.loginForm.value.Courselist.courseName+" is associated with "+this.loginForm.value.speclist.specificationName);
       window.location.reload();
      
       
@@ -113,7 +113,8 @@ export class SpeccourseComponent implements OnInit {
 
     this.studentAppserviceService.addspecCourse(request).subscribe((r:any)=>{
       console.log(r);
-      this.getAllSpeccourse()
+      this.getAllSpeccourse();
+      window.location.reload();
     });
   } 
 
@@ -139,7 +140,7 @@ export class SpeccourseComponent implements OnInit {
 
     if(this.flag==0)
     {
-      alert("Duplication");
+      alert("Already "+this.loginForm.value.Courselist.courseName+" is associated with "+this.loginForm.value.speclist.specificationName);
       // window.location.reload();
       
     }

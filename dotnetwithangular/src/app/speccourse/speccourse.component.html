@@ -31,7 +31,8 @@
     </div>
   </div>
   <!-- kendogrid  (click)="delete(dataItem)"  (click)="edit(dataItem);"  (click)="AddCourse()"  (click)="updateCourse()"  [kendoGridBinding]="allCourses"  -->
-  <kendo-grid [kendoGridBinding]="AllSpeccourse" width="800px" >
+  <kendo-grid [kendoGridBinding]="AllSpeccourse" [pageSize]="6"
+  [pageable]="true"  >
     <kendo-grid-column title="S.No" ><ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
       {{rowIndex+1}}
   </ng-template> </kendo-grid-column>
