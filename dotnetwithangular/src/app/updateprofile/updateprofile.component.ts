@@ -78,7 +78,7 @@ export class UpdateprofileComponent implements OnInit {
     if(((event.target.files[0].type=="image/jpeg")||(event.target.files[0].type=="image/png")))
     {
 
-      if((event.target.files[0].size<=542880))
+      if((event.target.files[0].size<=5428800))
       {
         console.log(event.target.files[0].size);
         this.filetoupload = event.target.files[0];
