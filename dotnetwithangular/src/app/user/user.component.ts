@@ -25,7 +25,7 @@ export class UserComponent implements OnInit {
      
     ]),
   });
-  allusers: any;
+  allusers:any;
   name: any;
   emailid: any;
   
