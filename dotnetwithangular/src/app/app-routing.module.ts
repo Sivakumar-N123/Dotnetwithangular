@@ -14,7 +14,6 @@ import { SpeccourseComponent } from './speccourse/speccourse.component';
 const routes: Routes = [
   {path:"course",component:CourseComponent},
  {path:"admin",component:AdminComponent},
- {path:"",component:LoginComponent},
  {path:"spec", component:SpecificationComponent},
  {path:"user", component:UserComponent},
  {path:"login",component:LoginComponent},
@@ -22,6 +21,7 @@ const routes: Routes = [
  {path:"update",component:UpdatepwdComponent},
  {path:"updateprofile",component:UpdateprofileComponent},
  {path:"speccourse",component:SpeccourseComponent},
+ {path:"",component:LoginComponent},
 
 
  
