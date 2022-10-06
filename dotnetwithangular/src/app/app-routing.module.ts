@@ -8,6 +8,7 @@ import { UserComponent } from './user/user.component';
 import { UpdatepwdComponent } from './updatepwd/updatepwd.component';
 import { UpdateprofileComponent } from './updateprofile/updateprofile.component';
 import { SpeccourseComponent } from './speccourse/speccourse.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 
@@ -16,7 +17,7 @@ const routes: Routes = [
   {path:"speccourse",component:SpeccourseComponent},
  {path:"admin",component:AdminComponent},
  {path:"spec", component:SpecificationComponent},
- {path:"speccourse",component:SpeccourseComponent},
+ {path:"dashboard",component:DashboardComponent},
  {path:"user", component:UserComponent},
  {path:"login",component:LoginComponent},
  {path:":value",component:UpdateprofileComponent},
