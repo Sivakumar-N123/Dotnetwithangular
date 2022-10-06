@@ -33,7 +33,7 @@ export class StudentAppserviceService {
 
   // For user controller
   getAllusers(): Observable<userData>{
-    return this.http.get<userData>(this.baseApiUrl+"/api/User/");
+    return this.http.get<userData>(this.baseApiUrl+"/api/User");
   }
   getuserbyemail(name:any){
     return this.http.get(this.baseApiUrl+"/api/User/"+name);
@@ -76,6 +76,9 @@ export class StudentAppserviceService {
     return this.http.get<any>(this.baseApiUrl+'/api/SpecCourse');
   }
 
+  getSpecCourseByCourseName(name:any): Observable<any>{
+    return this.http.get<any>(this.baseApiUrl+'/api/SpecCourse/'+name);
+  }
   updateSpecCourses(id:any,updatedata:any):Observable<any>{
     return this.http.put<any>(this.baseApiUrl + '/api/SpecCourse/'+id,updatedata);
   }

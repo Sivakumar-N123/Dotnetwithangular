@@ -1,2 +1,29 @@
+<form [formGroup]="courseform" (submit)="sub()">
+    <div class="example-wrapper">
+      <div>
+          <h6>Student Name</h6>
+          <kendo-autocomplete  style="width: 250px;"
+          [data]="stu"  valueField="userName"
+          placeholder="Enter your name"
+          class="countries" formControlName="studentName">
+          </kendo-autocomplete>
+      </div>
+      <div class="example-wrapper">
+        <kendo-autocomplete  style="width: 250px;"
+        [data]="courses"  valueField="courseName"
+        placeholder="Enter Degree"
+        (change)="getspecbyname($event)"
+        >
+        </kendo-autocomplete>
+      </div>
+      <div class="example-wrapper">
+        <kendo-autocomplete  style="width: 250px;"
+        [data]="selectedspecname"  valueField="specificationName"
+        placeholder="Enter Course"
+        formControlName="uservalue">
+        </kendo-autocomplete>
+      </div>
+  </div>
+  <button>sub</button>
+</form>
 
-  
