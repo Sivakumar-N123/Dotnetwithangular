@@ -23,6 +23,7 @@ import { UpdateprofileComponent } from './updateprofile/updateprofile.component'
 import { SpeccourseComponent } from './speccourse/speccourse.component';
 import { DropDownsModule } from "@progress/kendo-angular-dropdowns";
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { StudenttileComponent } from './studenttile/studenttile.component';
 
 
 
@@ -42,6 +43,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     UpdateprofileComponent,
     SpeccourseComponent,
     DashboardComponent,
+    StudenttileComponent,
   ],
   imports: [
     BrowserModule,
