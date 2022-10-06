@@ -16,6 +16,7 @@ const routes: Routes = [
   {path:"speccourse",component:SpeccourseComponent},
  {path:"admin",component:AdminComponent},
  {path:"spec", component:SpecificationComponent},
+ {path:"speccourse",component:SpeccourseComponent},
  {path:"user", component:UserComponent},
  {path:"login",component:LoginComponent},
  {path:":value",component:UpdateprofileComponent},
@@ -24,7 +25,6 @@ const routes: Routes = [
  {path:"",component:LoginComponent},
 
 
- 
 ]
 
 @NgModule({
