@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
   {
     this.submitted = true;
     console.log(this.logform.value.username);
-    this.api.getAllusers1(this.logform.value.username).subscribe((r:any)=>{
+    this.api.getuserbyemail(this.logform.value.username).subscribe((r:any)=>{
       console.log(r)
       if((r!=null)&&(r.password==this.logform.value.pass))
       {
