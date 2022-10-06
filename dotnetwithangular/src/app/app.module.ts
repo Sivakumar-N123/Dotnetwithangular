@@ -22,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { UpdateprofileComponent } from './updateprofile/updateprofile.component';
 import { SpeccourseComponent } from './speccourse/speccourse.component';
 import { DropDownsModule } from "@progress/kendo-angular-dropdowns";
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 
@@ -40,6 +41,7 @@ import { DropDownsModule } from "@progress/kendo-angular-dropdowns";
     UpdatepwdComponent,
     UpdateprofileComponent,
     SpeccourseComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
