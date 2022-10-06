@@ -24,6 +24,7 @@ import { SpeccourseComponent } from './speccourse/speccourse.component';
 import { DropDownsModule } from "@progress/kendo-angular-dropdowns";
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { StudenttileComponent } from './studenttile/studenttile.component';
+import { CourseselectionComponent } from './courseselection/courseselection.component';
 
 
 
@@ -44,6 +45,7 @@ import { StudenttileComponent } from './studenttile/studenttile.component';
     SpeccourseComponent,
     DashboardComponent,
     StudenttileComponent,
+    CourseselectionComponent,
   ],
   imports: [
     BrowserModule,

@@ -8,12 +8,14 @@ import { UserComponent } from './user/user.component';
 import { UpdatepwdComponent } from './updatepwd/updatepwd.component';
 import { UpdateprofileComponent } from './updateprofile/updateprofile.component';
 import { SpeccourseComponent } from './speccourse/speccourse.component';
+import { CourseselectionComponent } from './courseselection/courseselection.component';
 
 
 
 const routes: Routes = [
   {path:"course",component:CourseComponent},
   {path:"speccourse",component:SpeccourseComponent},
+  {path:"courseselection",component:CourseselectionComponent},
  {path:"admin",component:AdminComponent},
  {path:"spec", component:SpecificationComponent},
  {path:"speccourse",component:SpeccourseComponent},
@@ -22,6 +24,7 @@ const routes: Routes = [
  {path:":value",component:UpdateprofileComponent},
  {path:"update",component:UpdatepwdComponent},
  {path:"updateprofile",component:UpdateprofileComponent},
+
  {path:"",component:LoginComponent},
 
 

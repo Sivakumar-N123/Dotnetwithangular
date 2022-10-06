@@ -5,7 +5,7 @@
     <div class="col-3"></div>
       <div class="col-3">
         <!-- <input type="text" formControlName="Courselist" /> -->
-        <select class="form-select" formControlName="Courselist" >
+        <select class="form-select" formControlName="Courselist">
           <option selected >select Course</option>
           <option [ngValue]="course" *ngFor="let course of allCourses">{{course.courseName}}</option>
         </select>
