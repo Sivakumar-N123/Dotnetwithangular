@@ -12,3 +12,25 @@
 #button1{
     margin-top: 25px;
 }
+
+@media only screen and (max-width: 598px) and (min-width: 576px) {
+    .kendo {background: green;
+        margin-top: 150px;}
+}
+@media only screen and (max-width: 575px) and (min-width: 400px) {
+    .kendo {background: yellow;
+        margin-top: 250px;}
+}
+@media only screen and (max-width: 399px) and (min-width: 0px) {
+    .kendo {background: pink;
+        margin-top: 250px;}
+}
+
+@media only screen and (max-width: 768px) and (min-width: 599px) {
+    .kendo {background: blue;
+        margin-top: 150px;}
+}
+@media only screen and (max-width: 992px) and (min-width: 768px) {
+    .kendo {background: red;
+        margin-top: 150px;}
+}

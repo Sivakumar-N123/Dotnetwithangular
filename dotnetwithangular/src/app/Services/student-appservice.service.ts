@@ -86,4 +86,25 @@ export class StudentAppserviceService {
   deleteSpecCourse(id:any):Observable<any>{
     return this.http.delete<any>(this.baseApiUrl + '/api/SpecCourse/' + id);
    }
+
+
+
+
+   //For usercourse controller
+
+  GetUserCourseDet(): Observable<data[]>{
+    return this.http.get<data[]>(this.baseApiUrl+'/api/UserCourseDet');
+  }
+
+  PutUserCourseDet(addSpecificationRequest:any){
+    return this.http.post(this.baseApiUrl+ '/api/UserCourseDet',addSpecificationRequest);
+  }
+
+  // updateSpecCourses(id:any,updatedata:any):Observable<any>{
+  //   return this.http.put<any>(this.baseApiUrl + '/api/SpecCourse/'+id,updatedata);
+  // }
+
+  deleteUserCourse(id:any):Observable<any>{
+    return this.http.delete<any>(this.baseApiUrl + '/api/UserCourseDet/' + id);
+   }
 }
