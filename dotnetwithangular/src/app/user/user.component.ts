@@ -12,8 +12,6 @@ export class UserComponent implements OnInit {
   submitted = false;
   editable:boolean = false;
   updateid: any;
-
- 
   Form = new FormGroup({
     userName: new FormControl('',[
       Validators.required,
@@ -28,6 +26,10 @@ export class UserComponent implements OnInit {
   allusers:any;
   name: any;
   emailid: any;
+  profilename: any;
+  name1: string="";
+  final_profile: string="";
+  imgtrue: boolean=true;
   
 
   constructor(private studentAppserviceService:StudentAppserviceService) { }
@@ -43,6 +45,39 @@ export class UserComponent implements OnInit {
       console.log(r);
 
       this.allusers=r;
+for(let i=0;i<this.allusers.length;i++)
+{
+      if(this.allusers[i].profileImage==null)
+      {
+        this.imgtrue=false;
+
+        this.profilename=this.allusers[i].userName;
+      this.name1= this.profilename.split(' ');
+  
+      if(this.name1.length>=2)
+      {
+      for(let i=0;i<2;i++)
+      {
+        this.final_profile = this.final_profile + this.name1[i].charAt(0).toUpperCase();
+      }
+    }
+    else{
+     
+      
+        this.final_profile = this.final_profile + this.name1[0].charAt(0).toUpperCase();
+        this.final_profile = this.final_profile + this.name1[0].charAt(1).toUpperCase();
+      
+    }
+
+      console.log(this.final_profile);
+      this.allusers[i].profileImage=this.final_profile;
+      
+    }
+    this.final_profile="";
+
+}
+console.log(this.allusers);
+
 
     });
   }
