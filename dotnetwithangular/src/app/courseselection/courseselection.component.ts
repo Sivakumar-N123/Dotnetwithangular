@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+
 import { StudentAppserviceService } from '../Services/student-appservice.service';
 
 @Component({
@@ -16,6 +16,8 @@ selectname:any;
 specs:any;
 courseform!:FormGroup
 selectedspecname:any
+  loginForm: any;
+  studentAppserviceService: any;
 
 constructor(private fb:FormBuilder,private api:StudentAppserviceService)
 {
@@ -48,6 +50,28 @@ sub()
 {
   // console.log(this.courseform.value.uservalue);
 }
+AddCourse() 
+  {
+    console.log(
+      this.loginForm.value
+    );
+   
+    let request:any ={
+      "courseId": this.loginForm.value.Courselist.courseId,
+      "courseName": this.loginForm.value.Courselist.courseName,
+      "specificationId": this.loginForm.value.speclist.specificationId,
+      "specificationName": this.loginForm.value.speclist.specificationName
+    }
+
+    this.studentAppserviceService.addspecCourse(request).subscribe((r:any)=>{
+      console.log(r);
+      this.getAllSpeccourse();
+      window.location.reload();
+    });
+  } 
+  getAllSpeccourse() {
+    throw new Error('Method not implemented.');
+  }
 getspecbyname(event:any)
 {
   this.api.getSpecCourseByCourseName(event.target.value).subscribe((r:any)=>{
