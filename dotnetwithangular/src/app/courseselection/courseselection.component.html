@@ -31,7 +31,7 @@
         </kendo-autocomplete>
       </div>
     </div>
-    <div class="col-lg-3 col-md-6 col-sm-6" id="button1">
+    <div *ngIf="btnupdate" class="col-lg-3 col-md-6 col-sm-6" id="button1">
       <button
         kendoButton
         themeColor="warning"
@@ -41,6 +41,28 @@
         style="margin-right: 10px;"
         (click)="AddCourse()">
         + Add 
+      </button>
+    </div>
+    <div *ngIf="!btnupdate" class="col-lg-3 col-md-6 col-sm-6" id="button1">
+      <button
+        kendoButton
+        themeColor="warning"
+        [toggleable]="false"
+        data-toggle="modal"
+        data-target="#exampleModal"
+        style="margin-right: 10px;"
+        (click)="Update()">
+        Update 
+      </button>
+      <button
+        kendoButton
+        themeColor="warning"
+        [toggleable]="false"
+        data-toggle="modal"
+        data-target="#exampleModal"
+        style="margin-right: 10px;"
+        (click)="cancelfn()">
+        Cancel 
       </button>
     </div>
   </div>
@@ -64,7 +86,7 @@
           kendoButton
           themeColor="warning"
           [toggleable]="false"
-          style="margin-right: 10px;" (click)="UpdateCourse(dataItem)"
+          style="margin-right: 10px;" (click)="EditCourse(dataItem)"
           > Edit
         </button>
         <button

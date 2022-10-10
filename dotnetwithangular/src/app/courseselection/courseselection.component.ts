@@ -21,6 +21,7 @@ selectedspecname:any
 loginForm: any;
 studentAppserviceService: any;
 updateid:any;
+btnupdate=true;
 
 constructor(private fb:FormBuilder,private api:StudentAppserviceService)
 {
@@ -43,10 +44,6 @@ ngOnInit(): void {
     console.log(r);
     this.courses=r;
   })
-  // this.api.getAllSpecification().subscribe((r:any)=>{
-  //   console.log(r);
-  //   this.selectedspecname=r;
-  // })
 
   this.getUsercourse();
 }
@@ -77,6 +74,7 @@ AddCourse()
       console.log(r);
       this.getUsercourse();
     });
+    this.courseform.reset();
   } 
 
 
@@ -97,12 +95,38 @@ DeleteCourse(det:any)
     console.log(r)
     this.getUsercourse();
   })
+  this.courseform.reset();
 }
-UpdateCourse(det:any)
+cancelfn()
 {
+  this.btnupdate=true;
+  this.courseform.reset();
+}
+EditCourse(det:any)
+{
+  this.btnupdate=false;
   console.log(det);
-  this.courseform.controls['studentname'].patchValue(det.studentname);
+  this.updateid = det.id;
+  this.courseform.controls['studentName'].setValue(det.username);
+  this.courseform.controls['coursevalue'].setValue(det.course);
+  this.courseform.controls['specvalue'].setValue(det.spec);
   
+}
+
+Update()
+{
+
+  let request:any ={
+    "username": this.courseform.value.studentName,
+    "Course": this.courseform.value.coursevalue,
+    "Spec": this.courseform.value.specvalue,  
+  }
+
+  this.api.UpdateUserCourse(this.updateid,request).subscribe((r:any)=>{
+    console.log(r)
+    this.getUsercourse();
+  })
+    this.btnupdate=true;
 
 }
 

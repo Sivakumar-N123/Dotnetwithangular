@@ -113,7 +113,7 @@ export class StudentAppserviceService {
   }
 
   UpdateUserCourse(id:any,updatedata:any):Observable<any>{
-    return this.http.put<any>(this.baseApiUrl + '/api/SpecCourse/'+id,updatedata);
+    return this.http.put<any>(this.baseApiUrl + '/api/UserCourseDet/'+id,updatedata);
   }
 
   deleteUserCourse(id:any):Observable<any>{
