@@ -16,10 +16,10 @@
   .photo{
     display: flex;
     position: absolute;
-  bottom: 5px;
+   bottom: 5px;
     left: 5px;
   }
-.viewAll
+ .viewAll
   {
     position: absolute;
     bottom: 5px;

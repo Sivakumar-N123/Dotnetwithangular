@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { userData } from '../model';
 import { StudentAppserviceService } from '../Services/student-appservice.service';
 
 @Component({
@@ -13,6 +14,7 @@ export class StudenttileComponent implements OnInit {
   imgtrue:boolean=true;
   final_profile:string="";
   count: number=0;
+  activeUsers:userData[]=[];
 
   constructor(private studentAppserviceService:StudentAppserviceService) { }
 
@@ -21,6 +23,7 @@ export class StudenttileComponent implements OnInit {
   }
   getAllUsers()
   {
+    this.activeUsers=[];
     this.studentAppserviceService.getAllusers().subscribe((r:any)=>{
       console.log(r);
 
@@ -31,7 +34,7 @@ for(let i=0;i<this.allusers.length;i++)
   if(this.allusers[i].isActive==true && this.allusers[i].isStudent==true)
   {
     this.count++;
-  }
+
       if(this.allusers[i].profileImage==null)
       {
         this.imgtrue=false;
@@ -56,8 +59,9 @@ for(let i=0;i<this.allusers.length;i++)
 
       console.log(this.final_profile);
       this.allusers[i].profileImage=this.final_profile;
-      
+      this.activeUsers.push(this.allusers[i]);
     }
+  }
     this.final_profile="";
 
 }
