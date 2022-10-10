@@ -31,6 +31,8 @@ export class StudentAppserviceService {
    return this.http.delete<data>(this.baseApiUrl + '/api/course/' + id);
   }
 
+
+
   // For user controller
   getAllusers(): Observable<userData>{
     return this.http.get<userData>(this.baseApiUrl+"/api/User");
@@ -49,8 +51,11 @@ export class StudentAppserviceService {
 
   deleteUser(id:any,data:userData):Observable<userData>{
     return this.http.put<userData>(this.baseApiUrl+'/api/user/'+id,data);
-   }
+  }
 
+ 
+ 
+ 
   // For specification controller
   getAllSpecification(): Observable<specData[]>{
     return this.http.get<specData[]>(this.baseApiUrl+'/api/specification');
@@ -67,6 +72,9 @@ export class StudentAppserviceService {
    return this.http.delete<specData>(this.baseApiUrl + '/api/specification/' + id);
   }
 
+  
+  
+  
   //For speccourse cotroller
   addspecCourse(data:any): Observable<any>{
     return this.http.post<any>(this.baseApiUrl+'/api/SpecCourse',data);
@@ -85,26 +93,30 @@ export class StudentAppserviceService {
 
   deleteSpecCourse(id:any):Observable<any>{
     return this.http.delete<any>(this.baseApiUrl + '/api/SpecCourse/' + id);
-   }
+  }
 
 
 
 
-   //For usercourse controller
+  //For usercourse controller
 
   GetUserCourseDet(): Observable<data[]>{
     return this.http.get<data[]>(this.baseApiUrl+'/api/UserCourseDet');
+  }
+
+  GetUserCourseDetByName(name:any): Observable<any>{
+    return this.http.get<any>(this.baseApiUrl+'/api/UserCourseDet/'+name);
   }
 
   PutUserCourseDet(addSpecificationRequest:any){
     return this.http.post(this.baseApiUrl+ '/api/UserCourseDet',addSpecificationRequest);
   }
 
-  // updateSpecCourses(id:any,updatedata:any):Observable<any>{
-  //   return this.http.put<any>(this.baseApiUrl + '/api/SpecCourse/'+id,updatedata);
-  // }
+  UpdateUserCourse(id:any,updatedata:any):Observable<any>{
+    return this.http.put<any>(this.baseApiUrl + '/api/SpecCourse/'+id,updatedata);
+  }
 
   deleteUserCourse(id:any):Observable<any>{
     return this.http.delete<any>(this.baseApiUrl + '/api/UserCourseDet/' + id);
-   }
+  }
 }

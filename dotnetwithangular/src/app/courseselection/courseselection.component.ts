@@ -20,6 +20,7 @@ courseform!:FormGroup
 selectedspecname:any
 loginForm: any;
 studentAppserviceService: any;
+updateid:any;
 
 constructor(private fb:FormBuilder,private api:StudentAppserviceService)
 {
@@ -42,10 +43,10 @@ ngOnInit(): void {
     console.log(r);
     this.courses=r;
   })
-  this.api.getAllSpecification().subscribe((r:any)=>{
-    console.log(r);
-    this.selectedspecname=r;
-  })
+  // this.api.getAllSpecification().subscribe((r:any)=>{
+  //   console.log(r);
+  //   this.selectedspecname=r;
+  // })
 
   this.getUsercourse();
 }
@@ -58,12 +59,6 @@ getUsercourse()
     this.stu=r;
   })
 }
-
-sub()
-{
-  // console.log(this.courseform.value.uservalue);
-}
-
 
 
 AddCourse() 
@@ -88,7 +83,7 @@ AddCourse()
 
 getspecbyname(event:any)
 {
-  this.api.getSpecCourseByCourseName(event.target.value).subscribe((r:any)=>{
+  this.api.GetUserCourseDetByName(event.target.value).subscribe((r:any)=>{
     console.log(r)
     this.selectedspecname=r
     // this.courseform.get('uservalue')?.reset();
@@ -103,4 +98,13 @@ DeleteCourse(det:any)
     this.getUsercourse();
   })
 }
+UpdateCourse(det:any)
+{
+  console.log(det);
+  this.courseform.controls['studentname'].patchValue(det.studentname);
+  
+
+}
+
+
 }
