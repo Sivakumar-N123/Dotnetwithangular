@@ -7,7 +7,7 @@
 <div class="list">
 
 
-    <kendo-grid [data]="activeUsers" style="margin-top:50px;">
+    <kendo-grid [data]="allusers" style="margin-top:70px;">
       
       <kendo-grid-column
         title="S.No"
@@ -108,7 +108,7 @@ aria-hidden="true">
           update changes
        </button>
         <button type="submit" *ngIf="!editable"  [disabled]="Form.controls['email' && 'userName'].invalid"  class="btn btn-primary" (click)="add()" data-dismiss="modal"  >
-            Save changes
+            Save
         </button>
      
     </div>

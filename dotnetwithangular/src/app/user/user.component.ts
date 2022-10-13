@@ -31,7 +31,7 @@ export class UserComponent implements OnInit {
   name1: string="";
   final_profile: string="";
   imgtrue: boolean=true;
-  activeUsers:userData[]=[];
+  
   
 
   constructor(private studentAppserviceService:StudentAppserviceService) { }
@@ -43,15 +43,16 @@ export class UserComponent implements OnInit {
 //getting the user
   getAllUsers()
   {
-    this.activeUsers=[];
+   
     this.studentAppserviceService.getAllusers().subscribe((r:any)=>{
       console.log(r);
+      
       this.allusers=r;
 
       for(let i=0;i<this.allusers.length;i++)
       {
-      if(this.allusers[i].isActive==true)
-      {
+      
+      
         if(this.allusers[i].profileImage==null)
         {
            this.imgtrue=false;
@@ -72,17 +73,18 @@ export class UserComponent implements OnInit {
           }
           console.log(this.final_profile);
           this.allusers[i].profileImage=this.final_profile;
-          this.activeUsers.push(this.allusers[i]);
+          
         }
         
       this.final_profile="";
-  }
+  
 }
 console.log(this.allusers);
 
 
     });
   }
+  
   get email() {
     return this.Form.get('email')!;
   }
