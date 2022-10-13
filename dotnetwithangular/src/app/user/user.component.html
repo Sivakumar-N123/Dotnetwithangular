@@ -15,14 +15,18 @@
         <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">{{rowIndex+1}}</ng-template>
       </kendo-grid-column>
       <kendo-grid-column
-        title="Name"
-   >
+        title="Student.Id"
+        field="studentId"
+        [width]="160" >
+      </kendo-grid-column>
+      <kendo-grid-column
+        title="Name">
         <ng-template kendoGridCellTemplate let-dataItem>
           <div class="photo">
             
             <!-- <img [src]="imageurl" *ngIf="imgtrue" style="background-color: white;" class="customer-photo" /> -->
           <div *ngIf="!imgtrue" class="customer-photo">{{dataItem.profileImage}}</div>
-          <div class="customer-name">{{ dataItem.userName }}</div>
+          <div class="customer-name">{{ dataItem.studentName }}</div>
         </div>
           
         </ng-template>
@@ -149,7 +153,7 @@ aria-hidden="true">
         </button>
         
     </div>
- 
+
 
 </div>
 </div>

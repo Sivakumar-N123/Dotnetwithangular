@@ -8,6 +8,17 @@ import { data, specCoursedata, specData, userData } from '../model';
   providedIn: 'root'
 })
 export class StudentAppserviceService {
+
+  email:any;
+
+  putValue(value:any)
+  {
+    this.email=value;
+  }
+  setValue()
+  {
+    return this.email;
+  }
   
   baseApiUrl:string = environment.baseApiUrl 
 

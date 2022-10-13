@@ -60,7 +60,8 @@ export class LoginComponent implements OnInit {
               }
 
               alert("login successfully");
-              this.router.navigate([this.stu.username],{relativeTo:this.activateroute})
+              this.api.putValue(this.logform.value.username);
+              this.router.navigateByUrl('/dashboard')
       }
     else
     {

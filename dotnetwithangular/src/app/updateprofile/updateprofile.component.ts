@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { userData } from '../model';
 import { StudentAppserviceService } from '../Services/student-appservice.service';
 
 
@@ -24,6 +23,7 @@ export class UpdateprofileComponent implements OnInit {
   final_profile:string="";
   name1!:string[];
   imgtrue=true;
+  
   constructor(r:Router,_a:ActivatedRoute,_api:StudentAppserviceService,private formbuilder:FormBuilder)
   {
     this.router = r;
@@ -39,13 +39,11 @@ export class UpdateprofileComponent implements OnInit {
    
 
   ngOnInit(): void {
-   this.activateroute.params.subscribe((r:any)=>{
-    this.msg=r.value;
-    // console.log(this.msg);
-    this.getdata();
-   })
-
+    this.msg = this.api.setValue();
+    console.log(this.msg);
   
+
+    this.getdata();
   }
 
 
@@ -60,7 +58,7 @@ export class UpdateprofileComponent implements OnInit {
         this.profilename=this.det.userName;
       this.name1= this.profilename.split(' ');
   
-      for(let i=0;i<2;i++)
+      for(let i=0;i<this.name1.length;i++)
       {
         this.final_profile = this.final_profile + this.name1[i].charAt(0).toUpperCase();
       }
