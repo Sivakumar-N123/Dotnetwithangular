@@ -64,7 +64,7 @@ AddCourse()
 
    
     let request:any ={
-      "username": this.courseform.value.studentName,
+      "studentName": this.courseform.value.studentName,
       "Course": this.courseform.value.coursevalue,
       "Spec": this.courseform.value.specvalue,
       
@@ -107,7 +107,7 @@ EditCourse(det:any)
   this.btnupdate=false;
   console.log(det);
   this.updateid = det.id;
-  this.courseform.controls['studentName'].setValue(det.username);
+  this.courseform.controls['studentName'].setValue(det.studentName);
   this.courseform.controls['coursevalue'].setValue(det.course);
   this.courseform.controls['specvalue'].setValue(det.spec);
   
@@ -117,7 +117,7 @@ Update()
 {
 
   let request:any ={
-    "username": this.courseform.value.studentName,
+    "studentName": this.courseform.value.studentName,
     "Course": this.courseform.value.coursevalue,
     "Spec": this.courseform.value.specvalue,  
   }

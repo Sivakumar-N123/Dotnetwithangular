@@ -57,7 +57,7 @@ export class UserComponent implements OnInit {
         {
            this.imgtrue=false;
 
-            this.profilename=this.allusers[i].userName;
+            this.profilename=this.allusers[i].studentName;
             this.name1= this.profilename.split(' ');
   
           if(this.name1.length>=2)
@@ -100,7 +100,7 @@ console.log(this.allusers);
     this.updateid=row.id
     this.editable=true;
  
-    this.Form.controls['userName'].setValue(row.userName)
+    this.Form.controls['userName'].setValue(row.studentName)
     this.Form.controls['email'].setValue(row.email)
   }
   update()
@@ -108,7 +108,7 @@ console.log(this.allusers);
     if(this.Form.controls['email' && 'userName'].valid){
       let request={
       
-      "userName":this.Form.value.userName,
+      "studentName":this.Form.value.userName,
       "email":this.Form.value.email,
       
       }
@@ -131,7 +131,7 @@ console.log(this.allusers);
   {
     if(this.Form.controls['email' && 'userName'].valid){
       let request={
-      userName:this.Form.value.userName,
+      studentName:this.Form.value.userName,
       email:this.Form.value.email
       }
 
@@ -150,7 +150,7 @@ console.log(this.allusers);
     console.log(row);
     
     this.updateid=row.id
-    this.name=row.userName
+    this.name=row.studentName
     this.emailid=row.email
    
     
@@ -158,7 +158,7 @@ console.log(this.allusers);
   remove()
   {
     let request={
-      "userName":this.name,
+      "studentName":this.name,
       "email":this.emailid,
       "isActive":false
       }
