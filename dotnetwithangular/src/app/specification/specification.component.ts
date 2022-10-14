@@ -28,6 +28,7 @@ export class SpecificationComponent implements OnInit {
    loginForm=new FormGroup({
     user :new FormControl('',[Validators.required]),
    })
+  flag: number=1;
   
  
    loginUser(){
@@ -38,9 +39,9 @@ export class SpecificationComponent implements OnInit {
    } 
    
   
-  Specification: specData []= [];
 
-  constructor(private studentAppserviceService:StudentAppserviceService,private route:ActivatedRoute,private router:Router) { 
+
+  constructor(private studentAppserviceService:StudentAppserviceService) { 
   }
 
 
@@ -55,7 +56,28 @@ export class SpecificationComponent implements OnInit {
       this.allSpecification=r;
     });
   }
-
+  validatefnforedit()
+  {
+    this.flag=1;
+    for(let i=0;i<this.allSpecification.length;i++)
+    {
+      if(this.allSpecification[i].specificationName.toLowerCase() == this.loginForm.value.user.toLowerCase()){
+        this.flag=0;
+        break;
+      }
+    }
+  
+    if(this.flag==0)
+    
+  {
+      alert("Already "+this.loginForm.value.user +" is present");
+      window.location.reload();
+     
+    }
+    else {
+      this.updateSpecification();
+    }
+  }
   edit(row:any)
   { 
     this.editable=true;
@@ -97,7 +119,28 @@ export class SpecificationComponent implements OnInit {
       }
     });
   }
-
+  validatefn()
+  {
+    this.flag=1;
+    for(let i=0;i<this.allSpecification.length;i++)
+    {
+      if(this.allSpecification[i].specificationName.toLowerCase() == this.loginForm.value.user.toLowerCase()){
+        this.flag=0;
+        break;
+      }
+    }
+  
+    if(this.flag==0)
+    
+  {
+      alert("Already "+this.loginForm.value.user +" is present");
+      window.location.reload();
+     
+    }
+    else {
+      this.AddSpecification();
+    }
+  }
   //adding course
   add()
 {

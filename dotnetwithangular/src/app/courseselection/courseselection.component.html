@@ -1,22 +1,29 @@
-
+<h2 style="margin-top: 25px;margin-left:50px;">Course & Specification</h2>
 <form [formGroup]="courseform">
   <div class="row" id="header1">
     <div class="col-lg-3 col-md-6 col-sm-6">
       <div class="example-wrapper">
         <h6>Student Name</h6>
         <kendo-autocomplete  style="width: 180px;"
-          [data]="stuname"  valueField="userName"
+          [data]="data1" valueField="studentName"  [filterable]="true"
+          (filterChange)="handleFilter($event)"
           placeholder="Enter your name"
-          class="countries" formControlName="studentName">
+         formControlName="studentName">
+         <ng-template kendoAutoCompleteItemTemplate let-dataItem class="k-state-default" (click)="empSelected(dataItem)">
+          <span class="k-state-default" (click)="empSelected(dataItem)" style="width: 500px;"> {{ dataItem.studentId+" - "+dataItem.studentName }}</span>
+      </ng-template>
         </kendo-autocomplete>
+
       </div>
     </div>
     <div class="col-lg-3 col-md-6 col-sm-6">
       <div class="example-wrapper">
         <h6>Course Name</h6>
         <kendo-autocomplete style="width: 180px;"
-          [data]="courses"  valueField="courseName"
+        [data]="data2"  [filterable]="true"
+        (filterChange)="handleFilter1($event)"  valueField="courseName"
           placeholder="Enter Degree"
+          (click)="resetspecvalue()"
           (change)="getspecbyname($event)" formControlName="coursevalue">
         </kendo-autocomplete>
       </div>
@@ -25,7 +32,8 @@
       <div class="example-wrapper">
         <h6>Specification Name</h6>
         <kendo-autocomplete  style="width: 180px;"
-          [data]="selectedspecname"  valueField="specificationName"
+        [data]="data3"       [filterable]="true"
+        (filterChange)="handleFilter2($event)"  valueField="specificationName"
           placeholder="Enter Course"
           formControlName="specvalue">
         </kendo-autocomplete>
@@ -34,10 +42,8 @@
     <div *ngIf="btnupdate" class="col-lg-3 col-md-6 col-sm-6" id="button1">
       <button
         kendoButton
-        themeColor="warning"
+        themeColor="info"
         [toggleable]="false"
-        data-toggle="modal"
-        data-target="#exampleModal"
         style="margin-right: 10px;"
         (click)="AddCourse()">
         + Add 
@@ -46,20 +52,16 @@
     <div *ngIf="!btnupdate" class="col-lg-3 col-md-6 col-sm-6" id="button1">
       <button
         kendoButton
-        themeColor="warning"
+        themeColor="info"
         [toggleable]="false"
-        data-toggle="modal"
-        data-target="#exampleModal"
         style="margin-right: 10px;"
-        (click)="Update()">
+        (click)="validatefnforedit()">
         Update 
       </button>
       <button
         kendoButton
-        themeColor="warning"
+        themeColor="error"
         [toggleable]="false"
-        data-toggle="modal"
-        data-target="#exampleModal"
         style="margin-right: 10px;"
         (click)="cancelfn()">
         Cancel 
@@ -68,13 +70,13 @@
   </div>
 </form>
 
-
-
-<kendo-grid [data]="stu" class="kendo">
+<kendo-grid [data]="stu" class="kendo" style="height: 300px;margin:50px;font-size: 18px;">
     <kendo-grid-column title="S.No" ><ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
       {{rowIndex+1}}
   </ng-template> </kendo-grid-column>
-  <kendo-grid-column field="username" title="Student Name">
+  <kendo-grid-column field="studentId" title="Student No">
+  </kendo-grid-column>
+  <kendo-grid-column field="studentName" title="Student Name">
   </kendo-grid-column>
     <kendo-grid-column field="course" title="Course Name" >  
     </kendo-grid-column>
@@ -86,18 +88,20 @@
           kendoButton
           themeColor="warning"
           [toggleable]="false"
-          style="margin-right: 10px;" (click)="EditCourse(dataItem)"
+          style="margin-right: 10px;"
+          data-toggle="modal"
+          data-target="exampleModal"
+          (click)="EditCourse(dataItem)"
           > Edit
         </button>
         <button
           kendoButton
           themeColor="error"
-          data-target="#exampleModal1"   (click)="DeleteCourse(dataItem)"
+          data-target="#exampleModal" 
+          (click)="DeleteCourse(dataItem)"
          > Delete 
         </button>
       </ng-template> 
     </kendo-grid-column>
   </kendo-grid>
 
-
-<div class="kendo">hello</div>

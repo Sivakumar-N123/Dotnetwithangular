@@ -1,11 +1,12 @@
 .header{
     margin-top: 50px;
     margin-bottom: 100px;
+   
 }
 #header1{
     margin-top: 50px;
     margin-bottom: 100px;
-    margin-left: 50px;
+    margin-left: 100px;
     height: 20px;
     
 }
@@ -14,23 +15,23 @@
 }
 
 @media only screen and (max-width: 598px) and (min-width: 576px) {
-    .kendo {background: green;
+    .kendo {
         margin-top: 150px;}
 }
 @media only screen and (max-width: 575px) and (min-width: 400px) {
-    .kendo {background: yellow;
+    .kendo {
         margin-top: 250px;}
 }
 @media only screen and (max-width: 399px) and (min-width: 0px) {
-    .kendo {background: pink;
+    .kendo {
         margin-top: 250px;}
 }
 
 @media only screen and (max-width: 768px) and (min-width: 599px) {
-    .kendo {background: blue;
+    .kendo {
         margin-top: 150px;}
 }
 @media only screen and (max-width: 992px) and (min-width: 768px) {
-    .kendo {background: red;
+    .kendo {
         margin-top: 150px;}
 }

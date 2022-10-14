@@ -13,7 +13,7 @@ export interface data {
 
 export interface userData{
     id?:Number,
-    userName:string,
+    studentName:string,
     email:string,
     password?:string,
     isStudent?:boolean,
@@ -22,11 +22,6 @@ export interface userData{
     isVerify?:boolean
   }
  
-
-
-
-
-
 
 
 

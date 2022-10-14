@@ -79,7 +79,7 @@ export class SpeccourseComponent implements OnInit {
     this.flag=1;
     for(let i=0;i<this.AllSpeccourse.length;i++)
     {
-      if((this.AllSpeccourse[i].courseName == this.loginForm.value.Courselist.courseName) && (this.AllSpeccourse[i].specificationName  == this.loginForm.value.speclist.specificationName)){
+      if((this.AllSpeccourse[i].courseName.toLowerCase() == this.loginForm.value.Courselist.courseName.toLowerCase()) && (this.AllSpeccourse[i].specificationName.toLowerCase() == this.loginForm.value.speclist.specificationName.toLowerCase())){
         this.flag=0;
         break;
       }

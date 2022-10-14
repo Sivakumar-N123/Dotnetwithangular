@@ -61,7 +61,7 @@
             [toggleable]="false"
             data-toggle="modal" 
             *ngIf="!editable"
-            data-dismiss="modal" (click)="AddSpecification()" [disabled]="loginForm.invalid"> Save
+            data-dismiss="modal" (click)="validatefn()" [disabled]="loginForm.invalid"> Save
           </button>
           <button
             kendoButton 
@@ -69,7 +69,7 @@
             data-dismiss="modal" 
             [toggleable]="false"
             *ngIf="editable"
-            (click)="updateSpecification()" [disabled]="loginForm.invalid"> Update
+            (click)="validatefnforedit()" [disabled]="loginForm.invalid"> Update
           </button>
           <button
             kendoButton 

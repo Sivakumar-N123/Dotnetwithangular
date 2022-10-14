@@ -25,7 +25,6 @@ const routes: Routes = [
  {path:":value",component:UpdateprofileComponent},
  {path:"update",component:UpdatepwdComponent},
  {path:"updateprofile",component:UpdateprofileComponent},
-
  {path:"",component:LoginComponent},
 
 

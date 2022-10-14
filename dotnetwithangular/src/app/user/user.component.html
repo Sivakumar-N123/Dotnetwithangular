@@ -1,157 +1,135 @@
-<div class="admin">
-    <div class="container">
-
-        <h3>User List</h3>
-<button class="btn btn-primary adduser float-right" type="button" data-toggle="modal" data-target="#exampleModal"  (click)="reset()">+Add User</button>
-
-<div class="list">
-
-
-    <kendo-grid [data]="allusers" style="margin-top:70px;">
-      
-      <kendo-grid-column
-        title="S.No"
-        [width]="60"  >
-        <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">{{rowIndex+1}}</ng-template>
-      </kendo-grid-column>
-      <kendo-grid-column
-        title="Name"
-   >
-        <ng-template kendoGridCellTemplate let-dataItem>
-          <div class="photo">
-            
-            <!-- <img [src]="imageurl" *ngIf="imgtrue" style="background-color: white;" class="customer-photo" /> -->
-          <div *ngIf="!imgtrue" class="customer-photo">{{dataItem.profileImage}}</div>
-          <div class="customer-name">{{ dataItem.userName }}</div>
-        </div>
-          
-        </ng-template>
-      </kendo-grid-column>
-      <kendo-grid-column
-        title="Email Id"
-        field="email">
-      </kendo-grid-column>
-      <kendo-grid-column
-      field="Discontinued" title="Action" >
-      <ng-template kendoGridCellTemplate let-dataItem>
-        <button kendoButton themeColor="warning" style="margin-right:10px;" data-toggle="modal" data-target="#exampleModal" (click)="edit(dataItem)">edit</button>
-        <button kendoButton themeColor="error" data-toggle="modal" data-target="#exampleModal1" (click)="delete(dataItem)">delete</button>
-      </ng-template>
-      </kendo-grid-column>
-    </kendo-grid>
-   <!-- <kendo-grid-column field="action" title="Action" [width]="115">
-        <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
-            <ul class="list-inline mb-0 text-nowrap action-items">
-                <li class="list-inline-item mr-2"ngbTooltip="Edit" container="body">
-                     <img src="/gems-styling/assets/images/edit-active.svg"  alt="Edit"  (click)="editRow(dataItem)" class="cursor-pointer">
-                 </li>
-               
-            </ul>
-        </ng-template>
-    </kendo-grid-column> -->
+<div class="row" style="margin-top: 40px;">
+  <div class="col-9" style="padding-left: 40px;">
+    <h2>User Details</h2>
+  </div>
+  <div class="col-3">
+    <button kendoButton
+      themeColor="info"
+      [toggleable]="false"
+      data-toggle="modal"
+      data-target="#exampleModal" (click)="reset()"> + Add User 
+    </button>
+  </div>
 </div>
 
-    <!-- modal-->
-<div class="modal fade" id="exampleModal" tabindex="-1"
-role="dialog" aria-labelledby="exampleModalLabel"
-aria-hidden="true">
-<div class="modal-dialog modal-dialog-centered" role="document">
-<div class="modal-content">
-    <div class="modal-header">
+<kendo-grid [data]="allusers" style="margin:50px;font-size: 18px;">
+  <kendo-grid-column
+    title="S.No"
+    [width]="60"  >
+    <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">{{rowIndex+1}}</ng-template>
+  </kendo-grid-column>
+  <kendo-grid-column
+    title="Student.Id"
+    field="studentId"
+    [width]="160" >
+  </kendo-grid-column>
+  <kendo-grid-column
+    title="Name">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <div class="photo">
+        <div *ngIf="!imgtrue" class="customer-photo">{{dataItem.profileImage}}</div>
+        <div class="customer-name">{{ dataItem.studentName }}</div>
+      </div>
+    </ng-template>
+  </kendo-grid-column>
+  <kendo-grid-column
+    title="Email Id"
+    field="email">
+  </kendo-grid-column>
+  <kendo-grid-column
+    field="Discontinued" title="Action" >
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <button kendoButton themeColor="warning" style="margin-right:10px;" data-toggle="modal" data-target="#exampleModal" (click)="edit(dataItem)">edit</button>
+      <button kendoButton themeColor="error" data-toggle="modal" data-target="#exampleModal1" (click)="delete(dataItem)">delete</button>
+    </ng-template>
+  </kendo-grid-column>
+</kendo-grid>
+
+
+  <!-- modal-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">
-            Adding User
+          Adding User
         </h5>
         <button type="button" class="close"
-            data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
+          data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
         </button>
-    </div>
-
-    <form [formGroup]="Form">
-    <div class="modal-body">
- 
-            <div class="form-group">
-                <label for="exampleFormControlInput1" class="form-label">User Name</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="userName" placeholder=" Enter the name..."  [class.is-invalid]="userName.invalid && (userName.dirty || userName.touched)">
-                <div *ngIf="userName.invalid && (userName.dirty || userName.touched)" class="text-danger">
-                  <div *ngIf="userName.errors?.['required']">
-                    This field is required.
-                  </div>
-                  <div *ngIf="userName.errors?.['minlength']">
-                    This field must have at least 2 character.
-                  </div>
-                  <div *ngIf="userName.errors?.['maxlength']">
-                    This field must have at most 20 characters.
-                  </div>
-                </div>
+      </div>
+      <form [formGroup]="Form">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="exampleFormControlInput1" class="form-label">User Name</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="userName" placeholder=" Enter the name..."  [class.is-invalid]="userName.invalid && (userName.dirty || userName.touched)">
+            <div *ngIf="userName.invalid && (userName.dirty || userName.touched)" class="text-danger">
+              <div *ngIf="userName.errors?.['required']">
+                This field is required.
+              </div>
+              <div *ngIf="userName.errors?.['minlength']">
+                This field must have at least 2 character.
+              </div>
+              <div *ngIf="userName.errors?.['maxlength']">
+                This field must have at most 20 characters.
+              </div>
             </div>
-            <div class="form-group">
-                <label for="exampleFormControlInput2" class="form-label">Email</label>
-                <input type="text" class="form-control" id="exampleFormControlInput2" formControlName="email" placeholder=" Enter Email ID..." [class.is-invalid]="email.invalid && (email.dirty || email.touched)" >
-                <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
-                  <div *ngIf="email.errors?.['required']">
-                    This field is required.
-                  </div>
-                  <div *ngIf="email.errors?.['email']">
-                    Enter Valid Email Id in This field.
-                  </div>
-                </div>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput2" class="form-label">Email</label>
+            <input type="text" class="form-control" id="exampleFormControlInput2" formControlName="email" placeholder=" Enter Email ID..." [class.is-invalid]="email.invalid && (email.dirty || email.touched)" >
+            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
+              <div *ngIf="email.errors?.['required']">
+                This field is required.
+              </div>
+              <div *ngIf="email.errors?.['email']">
+                Enter Valid Email Id in This field.
+              </div>
             </div>
-  
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary"
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary"
             data-dismiss="modal" >
             Close
-        </button>  
-        <button type="submit" *ngIf="editable" class="btn btn-primary" [disabled]="Form.controls['email' && 'userName'].invalid"  (click)="update()" data-dismiss="modal" >
-          update changes
-       </button>
-        <button type="submit" *ngIf="!editable"  [disabled]="Form.controls['email' && 'userName'].invalid"  class="btn btn-primary" (click)="add()" data-dismiss="modal"  >
+          </button>  
+          <button type="submit" *ngIf="editable" class="btn btn-primary" [disabled]="Form.controls['email' && 'userName'].invalid"  (click)="validatefnforedit()" data-dismiss="modal" >
+            update changes
+          </button>
+          <button type="submit" *ngIf="!editable"  [disabled]="Form.controls['email' && 'userName'].invalid"  class="btn btn-primary" (click)="validatefn()" data-dismiss="modal"  >
             Save
-        </button>
-     
+          </button>
+        </div>
+      </form>
     </div>
-  </form>
-
-</div>
-</div>
+  </div>
 </div>
 <!-- modal1 -->
-<div class="modal fade" id="exampleModal1" tabindex="-1"
-role="dialog" aria-labelledby="exampleModalLabel"
-aria-hidden="true">
-<div class="modal-dialog modal-dialog-centered" role="document">
-<div class="modal-content">
-    <div class="modal-header">
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">
-            deleting User
+          deleting User
         </h5>
         <button type="button" class="close"
-            data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
+          data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
         </button>
-    </div>
-
-    <div class="modal-body">
- 
-          
-            Do you want to delete the data?
-  
-    </div>
-    <div class="modal-footer">
-      <button type="submit"  class="btn btn-primary" (click)="remove()" data-dismiss="modal" >
-         yes
-    </button>
+      </div>
+      <div class="modal-body">
+        Do you want to delete the data?
+      </div>
+      <div class="modal-footer">
+        <button type="submit"  class="btn btn-primary" (click)="remove()" data-dismiss="modal" >
+          yes
+        </button>
         <button type="button" class="btn btn-secondary"
-            data-dismiss="modal" >
-            no
-        </button>
-        
+          data-dismiss="modal" >
+          no
+        </button> 
+      </div>
     </div>
- 
-
-</div>
-</div>
-</div>
+  </div>
 </div>

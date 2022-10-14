@@ -31,6 +31,7 @@ export class UserComponent implements OnInit {
   name1: string="";
   final_profile: string="";
   imgtrue: boolean=true;
+  flag: number=1;
   
   
 
@@ -57,7 +58,8 @@ export class UserComponent implements OnInit {
         {
            this.imgtrue=false;
 
-            this.profilename=this.allusers[i].userName;
+            this.profilename=this.allusers[i].studentName;
+          
             this.name1= this.profilename.split(' ');
   
           if(this.name1.length>=2)
@@ -92,6 +94,28 @@ console.log(this.allusers);
     return this.Form.get('userName')!;
   }
 
+  validatefnforedit(){
+    this.flag=1;
+    for(let i=0;i<this.allusers.length;i++)
+    {
+      if(this.allusers[i].email.toLowerCase()== this.Form.value.email.toLowerCase()){
+        this.flag=0;
+        break;
+      }
+    }
+  
+    if(this.flag==0)
+    
+  {
+      alert("Already "+this.Form.value.email +" is present");
+      window.location.reload();
+     
+    }
+    else {
+      this.update();
+    }
+  }
+
   // updating the user
   edit(row:any)
   {
@@ -100,7 +124,7 @@ console.log(this.allusers);
     this.updateid=row.id
     this.editable=true;
  
-    this.Form.controls['userName'].setValue(row.userName)
+    this.Form.controls['userName'].setValue(row.studentName)
     this.Form.controls['email'].setValue(row.email)
   }
   update()
@@ -108,7 +132,7 @@ console.log(this.allusers);
     if(this.Form.controls['email' && 'userName'].valid){
       let request={
       
-      "userName":this.Form.value.userName,
+      "studentName":this.Form.value.userName,
       "email":this.Form.value.email,
       
       }
@@ -118,6 +142,31 @@ console.log(this.allusers);
         this.getAllUsers()
   
       });
+  }
+}
+
+
+
+
+validatefn(){
+  this.flag=1;
+  for(let i=0;i<this.allusers.length;i++)
+  {
+    if(this.allusers[i].email.toLowerCase() == this.Form.value.email.toLowerCase()){
+      this.flag=0;
+      break;
+    }
+  }
+
+  if(this.flag==0)
+  
+{
+    alert("Already "+this.Form.value.email +" is present");
+    window.location.reload();
+   
+  }
+  else {
+    this.add();
   }
 }
 // adding the user
@@ -131,7 +180,7 @@ console.log(this.allusers);
   {
     if(this.Form.controls['email' && 'userName'].valid){
       let request={
-      userName:this.Form.value.userName,
+      studentName:this.Form.value.userName,
       email:this.Form.value.email
       }
 
@@ -150,7 +199,7 @@ console.log(this.allusers);
     console.log(row);
     
     this.updateid=row.id
-    this.name=row.userName
+    this.name=row.studentName
     this.emailid=row.email
    
     
@@ -158,7 +207,7 @@ console.log(this.allusers);
   remove()
   {
     let request={
-      "userName":this.name,
+      "studentName":this.name,
       "email":this.emailid,
       "isActive":false
       }
