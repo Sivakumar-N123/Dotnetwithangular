@@ -13,7 +13,7 @@ export class CourseselectionComponent implements OnInit {
 stu:any;
 courses:any;
 stuname:any;
-
+studentId:any;
 selectname:any;
 specs:any;
 courseform!:FormGroup
@@ -23,6 +23,8 @@ studentAppserviceService: any;
 updateid:any;
 btnupdate=true;
   studentcourseId: any;
+  studentselect: any;
+  studentselect1: any;
 
 constructor(private fb:FormBuilder,private api:StudentAppserviceService)
 {
@@ -35,6 +37,7 @@ ngOnInit(): void {
     specvalue:[''],
     coursevalue:[''],
     studentName:[''],
+    studentId:['']
   })
 
   this.api.getAllusers().subscribe((r:any)=>{
@@ -50,6 +53,7 @@ ngOnInit(): void {
 }
 
 
+
 getUsercourse()
 {
   this.api.GetUserCourseDet().subscribe((r:any)=>{
@@ -59,6 +63,7 @@ getUsercourse()
 }
 
 flag = 0;
+
 AddCourse() 
   {
     this.flag=0;
@@ -122,8 +127,32 @@ DeleteCourse(det:any)
 cancelfn()
 {
   this.btnupdate=true;
+  
   this.courseform.reset();
 }
+
+validatefnforedit()
+  {
+    this.flag=1;
+    for(let i=0;i<this.stu.length;i++)
+    {
+      if(this.stu[i].studentId == this.studentcourseId ){
+        this.flag=0;
+        break;
+      }
+    }
+  
+    if(this.flag==0)
+    
+  {
+      alert("Already "+this.studentcourseId +" is present");
+      window.location.reload();
+     
+    }
+    else {
+      this.Update();
+    }
+  }
 EditCourse(det:any)
 {
   this.btnupdate=false;
@@ -135,11 +164,11 @@ EditCourse(det:any)
   this.courseform.controls['specvalue'].setValue(det.spec);
   
 }
-flag1 = 0;
+
 Update()
 {
-  this.flag1=0;
-
+  
+  this.btnupdate=true;
   let request:any ={
     "studentId":this.studentcourseId,
     "studentName": this.courseform.value.studentName,
@@ -148,32 +177,17 @@ Update()
   }
 
 
-  for(let i=0;i<this.stu.length;i++)
-  {
-    if(this.stu[i].studentId == this.studentcourseId)
-    {
-      this.api.UpdateUserCourse(this.updateid,request).subscribe((r:any)=>{
-        console.log(r)
-        this.getUsercourse();
-        })
-        this.flag1=1;
-        this.btnupdate=true;
-        break;
-    }
-  }
-
-  if(this.flag1==1)
-  {
+    this.api.UpdateUserCourse(this.updateid,request).subscribe((r:any)=>{
+    console.log(r)
     alert("Update Successfully");
+    this.getUsercourse();
+    })
+    
     this.courseform.reset();
   }
-  else
-  {
-    alert("Cannot Update");
-  }
 
 
-}
+
 resetspecvalue()
 {
   this.courseform.get('specvalue')?.reset();
@@ -204,6 +218,7 @@ empSelected(dataItem:any)
   this.studentcourseId=dataItem.studentId;
   console.log(this.studentcourseId);
 }
+
 
 
 

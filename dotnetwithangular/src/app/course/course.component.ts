@@ -33,6 +33,7 @@ export class CourseComponent implements OnInit {
     id : new FormControl(''),
     user :new FormControl('',[Validators.required]),
    })
+  flag: number=1;
  
    loginUser(){
     console.warn(this.loginForm.value)
@@ -99,6 +100,27 @@ export class CourseComponent implements OnInit {
     }); 
   }
 
+  validatefn()
+  {
+    this.flag=1;
+    for(let i=0;i<this.allCourses.length;i++)
+    {
+      if(this.allCourses[i].courseName.toLowerCase() == this.loginForm.value.user.toLowerCase()){
+        this.flag=0;
+        break;
+      }
+    }
+
+    if(this.flag==0)
+   {
+      alert("Already "+this.loginForm.value.user +" is present");
+      window.location.reload();
+     
+    }
+    else {
+      this.AddCourse();
+    }
+  }
   //adding course
   add()
 {
@@ -114,7 +136,7 @@ export class CourseComponent implements OnInit {
     this.studentAppserviceService.addCourse(request).subscribe((r:any)=>{
       console.log(r);
       this.getAllCourse()
-      alert ("added sucessfully");
+      alert("added sucessfully");
     });
   }
 }

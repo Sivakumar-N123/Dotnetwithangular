@@ -25,11 +25,6 @@ export interface userData{
 
 
 
-
-
-
-
-
   export interface specCoursedata{
     specCourseId : number;
     specCourseName:string;

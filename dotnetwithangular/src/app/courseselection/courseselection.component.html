@@ -1,4 +1,4 @@
-
+<h2 style="margin-top: 25px;margin-left:50px;">Course & Specification</h2>
 <form [formGroup]="courseform">
   <div class="row" id="header1">
     <div class="col-lg-3 col-md-6 col-sm-6">
@@ -42,10 +42,8 @@
     <div *ngIf="btnupdate" class="col-lg-3 col-md-6 col-sm-6" id="button1">
       <button
         kendoButton
-        themeColor="warning"
+        themeColor="info"
         [toggleable]="false"
-        data-toggle="modal"
-        data-target="#exampleModal"
         style="margin-right: 10px;"
         (click)="AddCourse()">
         + Add 
@@ -54,20 +52,16 @@
     <div *ngIf="!btnupdate" class="col-lg-3 col-md-6 col-sm-6" id="button1">
       <button
         kendoButton
-        themeColor="warning"
+        themeColor="info"
         [toggleable]="false"
-        data-toggle="modal"
-        data-target="#exampleModal"
         style="margin-right: 10px;"
-        (click)="Update()">
+        (click)="validatefnforedit()">
         Update 
       </button>
       <button
         kendoButton
-        themeColor="warning"
+        themeColor="error"
         [toggleable]="false"
-        data-toggle="modal"
-        data-target="#exampleModal"
         style="margin-right: 10px;"
         (click)="cancelfn()">
         Cancel 
@@ -76,9 +70,7 @@
   </div>
 </form>
 
-
-
-<kendo-grid [data]="stu" class="kendo">
+<kendo-grid [data]="stu" class="kendo" style="height: 300px;margin:50px;font-size: 18px;">
     <kendo-grid-column title="S.No" ><ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
       {{rowIndex+1}}
   </ng-template> </kendo-grid-column>
@@ -96,13 +88,17 @@
           kendoButton
           themeColor="warning"
           [toggleable]="false"
-          style="margin-right: 10px;" (click)="EditCourse(dataItem)"
+          style="margin-right: 10px;"
+          data-toggle="modal"
+          data-target="exampleModal"
+          (click)="EditCourse(dataItem)"
           > Edit
         </button>
         <button
           kendoButton
           themeColor="error"
-          data-target="#exampleModal1"   (click)="DeleteCourse(dataItem)"
+          data-target="#exampleModal" 
+          (click)="DeleteCourse(dataItem)"
          > Delete 
         </button>
       </ng-template> 

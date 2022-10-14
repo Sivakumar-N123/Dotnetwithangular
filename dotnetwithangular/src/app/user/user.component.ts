@@ -31,6 +31,7 @@ export class UserComponent implements OnInit {
   name1: string="";
   final_profile: string="";
   imgtrue: boolean=true;
+  flag: number=1;
   
   
 
@@ -93,6 +94,28 @@ console.log(this.allusers);
     return this.Form.get('userName')!;
   }
 
+  validatefnforedit(){
+    this.flag=1;
+    for(let i=0;i<this.allusers.length;i++)
+    {
+      if(this.allusers[i].email.toLowerCase()== this.Form.value.email.toLowerCase()){
+        this.flag=0;
+        break;
+      }
+    }
+  
+    if(this.flag==0)
+    
+  {
+      alert("Already "+this.Form.value.email +" is present");
+      window.location.reload();
+     
+    }
+    else {
+      this.update();
+    }
+  }
+
   // updating the user
   edit(row:any)
   {
@@ -119,6 +142,31 @@ console.log(this.allusers);
         this.getAllUsers()
   
       });
+  }
+}
+
+
+
+
+validatefn(){
+  this.flag=1;
+  for(let i=0;i<this.allusers.length;i++)
+  {
+    if(this.allusers[i].email.toLowerCase() == this.Form.value.email.toLowerCase()){
+      this.flag=0;
+      break;
+    }
+  }
+
+  if(this.flag==0)
+  
+{
+    alert("Already "+this.Form.value.email +" is present");
+    window.location.reload();
+   
+  }
+  else {
+    this.add();
   }
 }
 // adding the user

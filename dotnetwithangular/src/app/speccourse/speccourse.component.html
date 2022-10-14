@@ -1,24 +1,27 @@
 <!-- heading  (click)="add()"  -->
 
+
 <div class="row" >
   <div class="mapping" [formGroup]="loginForm">
-    <div class="col-3"></div>
-      <div class="col-3">
+    <div class="col-4" style="padding-left: 40px;">
+      <h2>Course Specification</h2>
+    </div>
+      <div class="col-3" class="drop">
         <!-- <input type="text" formControlName="Courselist" /> -->
         <select class="form-select" formControlName="Courselist">
           <option selected >select Course</option>
-          <option [ngValue]="course" *ngFor="let course of allCourses">{{course.courseName}}</option>
+          <option [ngValue]="course"  *ngFor="let course of allCourses">{{course.courseName}}</option>
         </select>
       </div>
-      <div class="col-3">
+      <div class="col-3" class="drop1">
         <select class="form-select" formControlName="speclist" >
           <option selected >select specification</option>
           <option [ngValue]="spec" *ngFor="let spec of allSpecification">{{spec.specificationName}}</option>
         </select>
       </div>
-      <div class="col-3">
-        <button
-          class="btn btn-primary"
+      <div class="col-2" >
+        <button 
+          class="btn btn-primary drop2"
           *ngIf="!editable"
           (click)="validatefn()"> Save
         </button>
@@ -31,8 +34,7 @@
     </div>
   </div>
   <!-- kendogrid  (click)="delete(dataItem)"  (click)="edit(dataItem);"  (click)="AddCourse()"  (click)="updateCourse()"  [kendoGridBinding]="allCourses"  -->
-  <kendo-grid [kendoGridBinding]="AllSpeccourse" [pageSize]="6"
-  [pageable]="true"  >
+  <kendo-grid [kendoGridBinding]="AllSpeccourse" style="height: 300px;margin:50px;font-size: 18px;" >
     <kendo-grid-column title="S.No" ><ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
       {{rowIndex+1}}
   </ng-template> </kendo-grid-column>
