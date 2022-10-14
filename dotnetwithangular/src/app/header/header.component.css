@@ -1,4 +1,4 @@
-.bg-primary
+/* .bg-primary
 {
     color: white;
     background-color:rgb(17, 20, 245)!important ;
@@ -10,4 +10,44 @@
 .header
 {
     margin-left: 10px;
+} */
+.brand{
+    margin-left: 20px;
+    color:white;
+    font-size: larger;
+    font-weight: 600;
+}
+.head{
+    color: white;
+    font-size: medium;
+    font-weight: 400;
+    margin-left: 30px;
+}
+.h{
+    margin-left: 450px;
+}
+#drop{
+    color:white;
+    margin-left: 35px;
+    margin-top:8px;
+}
+.icon{
+    display:inline;
+    font-size: small;
+    cursor: pointer;
+    color:white;
+    margin-bottom: 5px;
+}
+.i{
+    margin-left: 140px;
+    margin-top: 5px;
+}
+.ic{
+    font-size:22px;
+}
+.icon1{
+    font-size: 12px;
+    cursor: pointer;
+    color:white;
+    margin-left: 8px;
 }
