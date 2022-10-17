@@ -1,41 +1,36 @@
-<nav class="navbar navbar-expand-lg navbar-primary bg-primary">
-    <a class="navbar-brand brand" href="#">Student App</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <li class="nav-item active">
-          <a class="nav-link head h" href="/dashboard">Dashboard</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link head" href="/user">User</a>
-        </li>
-        <li class="nav-item">
-            <div class="btn-group">
-                <a class="dropdown-toggle" id="drop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Degree
-                </a>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="/course">Course</a>
-                  <a class="dropdown-item" href="/spec">Specification</a>
-                  <a class="dropdown-item" href="speccourse">Course Specification</a>
-                </div>
-              </div>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link head" href="/courseselection">Course Selection</a>
-        </li> 
 
-        <li class="nav-item i">
-          <span class="icon"><i class="bi bi-box-arrow-right ic"></i></span>
-          <span class="icon1">Logout</span>
-        </li> 
+ <nav class="navbar navbar-expand-lg navbar-primary bg-primary">
+  <a class="navbar-brand" ><i class="bi bi-mortarboard-fill" style="margin-left: 10px;margin-right: 10px;font-size:30px;"></i>Student App</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav" >
+    <ul class="navbar-nav" style="margin-left: auto;">
+      <li class="nav-item">
+        <a class="nav-link" href="/dashboard">Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/user">User</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/course">Course</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/spec">Specification</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/speccourse">Course and Specification</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/courseselection">Course Selection</a>
+      </li>
+      <li class="nav-item">
+        <div class="customer-photo">SK</div>
+        <span class="imgname">Sivakumar</span>
+      </li>
+      <li class="nav-item" style="cursor:pointer;">
+        <a class="nav-link" (click)="logout()"><i class="bi bi-box-arrow-right ">Logout</i></a>
+     </li>
     </ul>
-    </div>
-  </nav>
-
-  
- 
-
+  </div>
+</nav>

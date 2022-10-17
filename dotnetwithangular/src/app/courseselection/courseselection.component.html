@@ -69,8 +69,8 @@
     </div>
   </div>
 </form>
-
-<kendo-grid [data]="stu" class="kendo" style="height: 300px;margin:50px;font-size: 18px;">
+<div class="container">
+<kendo-grid [data]="stu" class="kendo"   >
     <kendo-grid-column title="S.No" ><ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
       {{rowIndex+1}}
   </ng-template> </kendo-grid-column>
@@ -104,4 +104,5 @@
       </ng-template> 
     </kendo-grid-column>
   </kendo-grid>
+</div>
 

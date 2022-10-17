@@ -1,10 +1,10 @@
 <div class="container dashboard">
-<kendo-tilelayout [columns]="4" [rowHeight]="250" [resizable]="true" [reorderable]="true">
-    <kendo-tilelayout-item title="Student Count" [col]="2" [colSpan]="1">
+<kendo-tilelayout class="background" [columns]="4" [rowHeight]="250" [resizable]="true" [reorderable]="true">
+    <kendo-tilelayout-item  [col]="2" [colSpan]="1">
+        <h4 class="title">Student Count</h4><hr>
         <kendo-tilelayout-item-body>
             <app-studenttile></app-studenttile>
         </kendo-tilelayout-item-body>
     </kendo-tilelayout-item>
 </kendo-tilelayout>
 </div>
-<button (click)="user()">click</button>

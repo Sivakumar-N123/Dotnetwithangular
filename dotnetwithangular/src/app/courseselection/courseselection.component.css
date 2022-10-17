@@ -14,6 +14,9 @@
     margin-top: 25px;
 }
 
+.kendo{
+    text-align: center;
+}
 @media only screen and (max-width: 598px) and (min-width: 576px) {
     .kendo {
         margin-top: 150px;}

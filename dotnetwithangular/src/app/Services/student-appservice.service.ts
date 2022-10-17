@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { data, specCoursedata, specData, userData } from '../model';
 
@@ -49,7 +49,8 @@ export class StudentAppserviceService {
     return this.http.get<userData>(this.baseApiUrl+"/api/User");
   }
   getuserbyemail(name:any){
-    return this.http.get(this.baseApiUrl+"/api/User/"+name);
+    return this.http.get(this.baseApiUrl+"/api/User/"+name).pipe(map(user=>{sessionStorage.setItem("currentuser",JSON.stringify(user))
+    return user}));
   }
 
   addUser(data:userData): Observable<userData>{

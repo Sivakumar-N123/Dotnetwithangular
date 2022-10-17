@@ -31,16 +31,15 @@ export class StudenttileComponent implements OnInit {
 
 for(let i=0;i<this.allusers.length;i++)
 {
-  if(this.allusers[i].isActive==true && this.allusers[i].isStudent==true)
+  if((this.allusers[i].isActive==true) && (this.allusers[i].isStudent==true))
   {
     this.count++;
-
       if(this.allusers[i].profileImage==null)
       {
         this.imgtrue=false;
 
-        this.profilename=this.allusers[i].userName;
-      this.name1= this.profilename.split(' ');
+        this.profilename=this.allusers[i].studentName;
+      this.name1= this.profilename.split('');
   
       if(this.name1.length>=2)
       {
