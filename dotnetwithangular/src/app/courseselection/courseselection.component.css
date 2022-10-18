@@ -21,9 +21,9 @@
     .kendo {
         margin-top: 150px;}
 }
-@media only screen and (max-width: 575px) and (min-width: 400px) {
+@media only screen and (max-width: 598px) and (min-width: 400px) {
     .kendo {
-        margin-top: 250px;}
+        margin-top: 350px;}
 }
 @media only screen and (max-width: 399px) and (min-width: 0px) {
     .kendo {

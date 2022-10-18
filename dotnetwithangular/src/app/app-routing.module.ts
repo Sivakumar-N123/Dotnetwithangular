@@ -10,6 +10,7 @@ import { UpdateprofileComponent } from './updateprofile/updateprofile.component'
 import { SpeccourseComponent } from './speccourse/speccourse.component';
 import { CourseselectionComponent } from './courseselection/courseselection.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AuthGuard } from './auth.guard';
 
 
 
@@ -19,7 +20,7 @@ const routes: Routes = [
   {path:"courseselection",component:CourseselectionComponent},
  {path:"admin",component:AdminComponent},
  {path:"spec", component:SpecificationComponent},
- {path:"dashboard",component:DashboardComponent},
+ {path:"dashboard",canActivate:[AuthGuard], component:DashboardComponent},
  {path:"user", component:UserComponent},
  {path:"login",component:LoginComponent},
  {path:":value",component:UpdateprofileComponent},

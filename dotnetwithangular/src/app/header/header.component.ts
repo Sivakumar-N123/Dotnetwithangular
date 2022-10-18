@@ -7,15 +7,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  sessiondata: any ;
 
   
   constructor(public router:Router) { }
 
   ngOnInit(): void {
+    this.sessiondata=sessionStorage.getItem("currrentuser")
+    console.log()
   }
   logout()
   {
     sessionStorage.clear();
+    localStorage.clear();
     this.router.navigate(['/login']);
 
   }
