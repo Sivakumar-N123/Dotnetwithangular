@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,  OnInit,  } from '@angular/core';
 import { ActivatedRoute , Router} from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { StudentAppserviceService } from '../Services/student-appservice.service';
@@ -10,6 +10,7 @@ import { StudentAppserviceService } from '../Services/student-appservice.service
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
 
   stu={pass:'',username:''};
   logform!:FormGroup;
@@ -25,6 +26,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
     this.logform = this.fb.group({
       username:['',[Validators.required]],
       pass:['',[Validators.required,Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$")]]
@@ -59,13 +61,19 @@ export class LoginComponent implements OnInit {
                 return;
               }
 
-              alert("login successfully");
+              else
+              {
+                alert("login successfully");
               this.api.putValue(this.logform.value.username);
               this.router.navigateByUrl('/dashboard')
+              
+              }
+              
       }
     else
     {
       this.stu =this.logform.value;
+      sessionStorage.clear();
       alert("Invalid username or password");
     }
     

@@ -25,6 +25,8 @@ btnupdate=true;
   studentcourseId: any;
   studentselect: any;
   studentselect1: any;
+  event={target:{value:""}};
+  spec: string="";
 
 constructor(private fb:FormBuilder,private api:StudentAppserviceService)
 {
@@ -78,6 +80,7 @@ AddCourse()
       
     }
     console.log(request);
+    console.log(this.stu);
     
     for(let i=0;i<this.stu.length;i++)
     {
@@ -104,8 +107,6 @@ AddCourse()
   
   } 
 
-
-
 getspecbyname(event:any)
 {
   this.api.GetUserCourseDetByName(event.target.value).subscribe((r:any)=>{
@@ -114,13 +115,22 @@ getspecbyname(event:any)
     this.courseform.get('specvalue')?.reset();
   })
 }
+getspecData(event:any)
+{
+  this.api.GetUserCourseDetByName(event.target.value).subscribe((r:any)=>{
+    
+    this.selectedspecname=r
+    
+  })
+}
 
 DeleteCourse(det:any)
 {
   console.log(det.id);
   this.api.deleteUserCourse(det.id).subscribe((r:any)=>{
-    alert("Delete Successfully");
+   
     this.getUsercourse();
+    alert("Delete Successfully");
   })
   this.courseform.reset();
 }
@@ -131,44 +141,59 @@ cancelfn()
   this.courseform.reset();
 }
 
-validatefnforedit()
-  {
-    this.flag=1;
-    for(let i=0;i<this.stu.length;i++)
-    {
-      if(this.stu[i].studentId == this.studentcourseId ){
-        this.flag=0;
-        break;
-      }
-    }
+// validatefnforedit()
+//   {
+//     this.flag=1;
+//     for(let i=0;i<this.stu.length;i++)
+//     {
+//       if(this.stu[i].studentId == this.studentcourseId ){
+//         this.flag=0;
+//         break;
+//       }
+//     }
   
-    if(this.flag==0)
+//     if(this.flag==0)
     
-  {
-      alert("Already "+this.studentcourseId +" is present");
-      window.location.reload();
+//   {
+//       alert("Already "+this.studentcourseId +" is present");
+//       window.location.reload();
      
-    }
-    else {
-      this.Update();
-    }
-  }
+//     }
+//     else {
+//       this.Update();
+//     }
+//   }
+dummyname:any;
+dummyId:any;
 EditCourse(det:any)
 {
+  console.log(det);
   this.btnupdate=false;
   
   this.updateid = det.id;
-  this.studentcourseId =det.studentId
+  this.studentcourseId =det.studentId;
+  this.dummyId =det.studentId;
+  this.dummyname = det.studentName;
+  this.event.target.value=det.course
+  this.getspecData(this.event)
   this.courseform.controls['studentName'].setValue(det.studentName);
   this.courseform.controls['coursevalue'].setValue(det.course);
   this.courseform.controls['specvalue'].setValue(det.spec);
   
 }
 
+ 
+ 
+flag1 = 0;
+count=0;
+record=0;
 Update()
 {
-  
   this.btnupdate=true;
+  this.flag1=0;
+  this.count=0;
+  this.record=0;
+
   let request:any ={
     "studentId":this.studentcourseId,
     "studentName": this.courseform.value.studentName,
@@ -177,14 +202,60 @@ Update()
   }
 
 
-    this.api.UpdateUserCourse(this.updateid,request).subscribe((r:any)=>{
-    console.log(r)
+    // this.api.UpdateUserCourse(this.updateid,request).subscribe((r:any)=>{
+    // console.log(r)
+
+  for(let i=0;i<this.stu.length;i++)
+  {
+    if(this.stu[i].studentId == this.studentcourseId)// same name
+    {
+      this.record++;
+      if(this.dummyId == this.studentcourseId)
+      {
+        this.api.UpdateUserCourse(this.updateid,request).subscribe((r:any)=>{
+          console.log(r)
+          this.getUsercourse();
+          })
+          this.flag1=1;
+          this.btnupdate=true;
+          break;
+      }
+      
+    }
+    else
+    {
+      this.count++;
+    }
+  }
+
+  if(this.flag1==1)
+  {
     alert("Update Successfully");
-    this.getUsercourse();
-    })
-    
+    this.getUsercourse();    
     this.courseform.reset();
   }
+
+
+  else if((this.count==this.stu.length)&&(this.record==0))
+  {
+    this.api.UpdateUserCourse(this.updateid,request).subscribe((r:any)=>{
+      console.log(r);
+      this.btnupdate=true;
+      alert("Update Successfully");
+    this.getUsercourse();    
+    this.courseform.reset();
+      })
+     
+  }
+
+  else
+  {
+    alert("Cannot Update");
+    this.courseform.reset();
+  }
+  
+  
+}
 
 
 
@@ -218,8 +289,5 @@ empSelected(dataItem:any)
   this.studentcourseId=dataItem.studentId;
   console.log(this.studentcourseId);
 }
-
-
-
 
 }

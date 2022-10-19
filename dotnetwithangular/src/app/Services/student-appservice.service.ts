@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { data, specCoursedata, specData, userData } from '../model';
 
@@ -8,6 +8,8 @@ import { data, specCoursedata, specData, userData } from '../model';
   providedIn: 'root'
 })
 export class StudentAppserviceService {
+
+  constructor(private http: HttpClient) { }
 
   email:any;
 
@@ -21,8 +23,6 @@ export class StudentAppserviceService {
   }
   
   baseApiUrl:string = environment.baseApiUrl 
-
-  constructor(private http: HttpClient) { }
 
   
   // For course controller
@@ -131,4 +131,7 @@ export class StudentAppserviceService {
   deleteUserCourse(id:any):Observable<any>{
     return this.http.delete<any>(this.baseApiUrl + '/api/UserCourseDet/' + id);
   }
+
+
+
 }

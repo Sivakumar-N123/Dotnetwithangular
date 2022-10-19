@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component,   OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { StudentAppserviceService } from '../Services/student-appservice.service';
 
 @Component({
   selector: 'app-header',
@@ -7,20 +8,27 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  sessiondata: any ;
-
   
-  constructor(public router:Router) { }
+  sessiondata: any ;
+  status:string="";
+  
+  constructor(public router:Router,private data:StudentAppserviceService) { }
 
   ngOnInit(): void {
-    this.sessiondata=sessionStorage.getItem("currrentuser")
-    console.log()
+
+    
   }
+
   logout()
   {
     sessionStorage.clear();
     localStorage.clear();
     this.router.navigate(['/login']);
+    
 
   }
+
+
+
+
 }
