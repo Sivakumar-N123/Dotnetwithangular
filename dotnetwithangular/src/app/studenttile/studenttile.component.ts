@@ -39,9 +39,9 @@ for(let i=0;i<this.allusers.length;i++)
         this.imgtrue=false;
 
         this.profilename=this.allusers[i].studentName;
-        this.name1= this.profilename.split('');
+        this.name1= this.profilename.split(' ');
   
-      if(this.name1.length>=2)
+      if(this.name1.length>1)
       {
       for(let i=0;i<2;i++)
       {

@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   router:any;
   activateroute:any;
 
-  constructor(private fb:FormBuilder,_r:Router,_a:ActivatedRoute,private api:StudentAppserviceService)
+  constructor(private fb:FormBuilder,_r:Router,_a:ActivatedRoute,private studentAppserviceService:StudentAppserviceService)
   {
     this.router = _r;
     this.activateroute = _a;
@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
   {
     this.submitted = true;
     console.log(this.logform.value.username);
-    this.api.getuserbyemail(this.logform.value.username).subscribe((r:any)=>{
+    this.studentAppserviceService.getuserbyemail(this.logform.value.username).subscribe((r:any)=>{
       console.log(r)
       if((r!=null)&&(r.password==this.logform.value.pass))
       {
@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
               else
               {
                 alert("login successfully");
-              this.api.putValue(this.logform.value.username);
+              this.studentAppserviceService.putValue(this.logform.value.username);
               this.router.navigateByUrl('/dashboard')
               
               }

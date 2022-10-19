@@ -1,15 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { data, specCoursedata, specData, userData } from '../model';
+import { data, specData, userData } from '../model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StudentAppserviceService {
 
-  constructor(private http: HttpClient) { }
+ 
 
   email:any;
 
@@ -23,6 +24,10 @@ export class StudentAppserviceService {
   }
   
   baseApiUrl:string = environment.baseApiUrl 
+  //To get current login user
+  private sessiondata = new BehaviorSubject<any>(sessionStorage.getItem("currentuser.studentname")) 
+
+  constructor(private http: HttpClient,private router:Router) { }
 
   
   // For course controller
@@ -131,7 +136,14 @@ export class StudentAppserviceService {
   deleteUserCourse(id:any):Observable<any>{
     return this.http.delete<any>(this.baseApiUrl + '/api/UserCourseDet/' + id);
   }
-
-
-
+  get currentuser()
+  {
+    return this.sessiondata.asObservable();
+  }
+  logout()
+  {
+    sessionStorage.clear();
+    localStorage.clear();
+    this.router.navigate(['/login']);
+  }
 }
