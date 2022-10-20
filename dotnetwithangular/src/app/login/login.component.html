@@ -5,7 +5,7 @@
         <div class="card-text">  
           <form [formGroup]="logform" (submit)="onsubmit()">
                       <div class="form-group col-lg-12 col-md-12 col-sm-12">
-                          <label for="username">User Email Address</label>
+                          <label for="username">Email Address</label>
                           <input type="text" formControlName="username" [ngClass]="{'is-invalid':submitted && logform.controls['username'].errors}" class="form-control" placeholder="Enter mail">
         
 

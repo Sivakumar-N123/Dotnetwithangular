@@ -10,11 +10,11 @@
 </div>
 
 <div class="container">
-  <kendo-grid [data]="allusers" style="margin-top:70px;">
+  <kendo-grid [data]="allusers" style="margin-top:0px;">
     <kendo-grid-column
-      title="S.No"
-      [width]="60">
-      <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">{{rowIndex+1}}</ng-template>
+      title="Student.No"
+      field="studentId"
+      >
     </kendo-grid-column>
     <kendo-grid-column
       title="Name">
@@ -32,8 +32,8 @@
     <kendo-grid-column
       field="Discontinued" title="Action" >
       <ng-template kendoGridCellTemplate let-dataItem>
-        <button kendoButton themeColor="warning" style="margin-right:10px;" data-toggle="modal" data-target="#exampleModal" (click)="edit(dataItem)">edit</button>
-        <button kendoButton themeColor="error" data-toggle="modal" data-target="#exampleModal1" (click)="delete(dataItem)">delete</button>
+        <button kendoButton themeColor="warning" style="margin-right:10px;" data-toggle="modal" data-target="#exampleModal" (click)="edit(dataItem)">Edit</button>
+        <button kendoButton themeColor="error" data-toggle="modal" data-target="#exampleModal1" (click)="delete(dataItem)">Delete</button>
       </ng-template>
     </kendo-grid-column>
   </kendo-grid>
@@ -46,8 +46,11 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">
-          Adding User
+        <h5 *ngIf="!editable" class="modal-title" id="exampleModalLabel">
+          Add User
+        </h5>
+        <h5 *ngIf="editable" class="modal-title" id="exampleModalLabel">
+          Edit User
         </h5>
         <button type="button" class="close"
           data-dismiss="modal" aria-label="Close">
