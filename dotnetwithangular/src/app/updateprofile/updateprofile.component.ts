@@ -13,16 +13,17 @@ export class UpdateprofileComponent implements OnInit {
 
   msg:any;
   router:any;
-  activateroute:any;
+  activateroute:any; 
   api:StudentAppserviceService;
   imageurl:string="/assets/images/images.jpg";
   filetoupload:File|any=null;
   profile!: FormGroup;
-  det:any={email: "", id:"",isActive:"",isStudent:"",isVerify:"",password:"",profileImage:"",userName:""};
+  det:any={email: "", id:"",isActive:"",isStudent:"",isVerify:"",password:"",profileImage:"",studentName:""};
   profilename!:string;
   final_profile:string="";
   name1!:string[];
   imgtrue=true;
+  data:any;
   
   constructor(r:Router,_a:ActivatedRoute,_api:StudentAppserviceService,private formbuilder:FormBuilder)
   {
@@ -39,10 +40,12 @@ export class UpdateprofileComponent implements OnInit {
    
 
   ngOnInit(): void {
-    this.msg = this.api.setValue();
-    console.log(this.msg);
+    
   
-
+    this.data=JSON.parse(sessionStorage.getItem('currentuser') || '[]')
+   
+  
+    this.msg = this.data.email ;
     this.getdata();
   }
 
@@ -55,7 +58,7 @@ export class UpdateprofileComponent implements OnInit {
       if(r.profileImage==null)
       {
         
-        this.profilename=this.det.userName;
+        this.profilename=this.det.studentName;
       this.name1= this.profilename.split(' ');
   
       for(let i=0;i<this.name1.length;i++)
@@ -68,6 +71,7 @@ export class UpdateprofileComponent implements OnInit {
     }
   })
   }
+  
 
   imgupload(event:any)
   {
@@ -95,9 +99,6 @@ export class UpdateprofileComponent implements OnInit {
         this.profile.reset();
         alert("Image is less than 5 Mb ...");
       }
-        
-
-    
   }
     else
     {

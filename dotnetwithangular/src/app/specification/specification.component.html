@@ -1,24 +1,31 @@
 <!-- heading -->
-<div class="row" style="margin-top: 40px;">
-  <div class="col-9" style="padding-left: 40px;">
-    <h2>Specification for Student Course </h2>
+
+
+<div class="row head">
+  <div class="col-1"></div>
+  <div class="col-3">
+    <h2>Specification </h2>
   </div>
+  <div class="col-2"></div>
+  <div class="col-2"></div>
   <div class="col-3">
     <button kendoButton
-      themeColor="info"
-      [toggleable]="false"
-      data-toggle="modal"
-      data-target="#exampleModal" (click)="add()"> + Add Specification 
-    </button>
+    themeColor="info"
+    [toggleable]="false"
+    data-toggle="modal"
+    data-target="#exampleModal" (click)="add()"> + Add Specification 
+  </button>
   </div>
+  <div class="col-1"></div>
 </div>
+
+
 <!-- kendogrid -->
 <kendo-grid [kendoGridBinding]="allSpecification" [resizable]="true" style="margin:50px;font-size: 18px;" >
   <kendo-grid-column title="Specification Id" ><ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
-      {{rowIndex+1}}
+    {{rowIndex+1}}
   </ng-template> </kendo-grid-column>
   <kendo-grid-column field="specificationName" title="Specification Name" required>
-    
   </kendo-grid-column>
   <kendo-grid-column field="Action" title="Action">
     <ng-template kendoGridCellTemplate let-dataItem="dataItem">
