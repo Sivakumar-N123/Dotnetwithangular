@@ -9,7 +9,7 @@
                     <div *ngIf="!imgtrue" class="customer-photo">{{img.profileImage}}</div>
                 </div>
             </div>
-            <b *ngIf="this.count>3?true:false">+{{this.count-3}}</b>
+            <b class="extracount" *ngIf="this.count>3?true:false">+{{this.count-3}}</b>
         </div>
         <a class="viewAll" href="/user">View All</a>
         
