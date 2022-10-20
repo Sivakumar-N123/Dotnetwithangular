@@ -12,19 +12,42 @@
         <a class="nav-link" href="/user">User</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/course">Course</a>
-      </li>
+      <div class="dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown">Course
+       </a>
+        <ul class="dropdown-menu" style="margin-top: 18px;">
+          <li class="nav-item">
+            <a class="nav-link" href="/course">Course</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/spec">Specification</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/speccourse">Course Mapping</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/courseselection">Student Mapping</a>
+          </li>
+        </ul>
+      </div>
+    </li>
+
+   
+      <a class="nav-link dropdown-toggle"  data-toggle="dropdown">Dropdown Example
+      </a>
+      
+    
+
+
       <li class="nav-item">
-        <a class="nav-link" href="/spec">Specification</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/speccourse">Course Mapping</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/courseselection">Student Mapping</a>
-      </li>
-      <li class="nav-item"routerLink="/updateprofile">
-        <div class="customer-photo" >{{final_profile}}</div>
+        <div class="dropdown">
+        <div class="customer-photo dropdown-toggle" data-toggle="dropdown" routerLink="/updateprofile">{{final_profile}}</div>
+        <ul class="dropdown-menu">
+          <li><a href="#">HTML</a></li>
+          <li><a href="#">CSS</a></li>
+          <li><a href="#">JavaScript</a></li>
+        </ul>
+      </div>
       </li>
       <li class="nav-item" style="cursor:pointer;">
         <a class="nav-link" (click)="logout()"><i class="bi bi-box-arrow-right ">Logout</i></a>
