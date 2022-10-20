@@ -250,11 +250,9 @@ Update()
 
   else
   {
-    alert("Cannot Update");
+    alert("User Already Exists");
     this.courseform.reset();
   }
-  
-  
 }
 
 
@@ -289,5 +287,25 @@ empSelected(dataItem:any)
   this.studentcourseId=dataItem.studentId;
   console.log(this.studentcourseId);
 }
+
+
+public opened = false;
+public dataSaved = false;
+
+public close(): void {
+  this.opened = false;
+}
+
+public open(): void {
+  this.opened = true;
+}
+
+public submit(): void {
+    this.dataSaved = true;
+    this.close();
+}
+
+
+
 
 }

@@ -25,6 +25,8 @@ import { DropDownsModule } from "@progress/kendo-angular-dropdowns";
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { StudenttileComponent } from './studenttile/studenttile.component';
 import { CourseselectionComponent } from './courseselection/courseselection.component';
+import { DialogsModule, WindowModule } from '@progress/kendo-angular-dialog';
+
 
 
 
@@ -62,8 +64,9 @@ import { CourseselectionComponent } from './courseselection/courseselection.comp
     GridModule,
     LayoutModule,
     HttpClientModule,
-    DropDownsModule
-    
+    DropDownsModule,
+    DialogsModule,
+    WindowModule
     
   ],
   providers: [],
