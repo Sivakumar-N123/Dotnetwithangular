@@ -8,13 +8,16 @@
 kendo-grid{
   height: 420px;
 }
-.drop{
+.head{
+  margin-top: 30px;
+  margin-left: 40px;
+}
+.head2{
+  width: 250px;
+  margin-left: 50px;
   width: 250px;
 }
-.drop1{
+.head3{
   width: 300px;
-  margin-left: 100px;
-}
-.drop2{
-  margin-left: 150px;
+  margin-left: 50px;
 }

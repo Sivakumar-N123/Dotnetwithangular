@@ -1,12 +1,17 @@
+.head1{
+    margin-top: 40px;
+    margin-left: 35px;
+}
+.head2{
+    padding-left: 250px;
+}
+.head3{
+    text-align: center;
+    margin:50px;
+    font-size: 18px;
+}
 
-.class0{
-    margin-top: 50px;
-    margin-bottom: 40px;
-}
-.bgcolor{
-    background-color: white;
-    border:1px solid black;
-}
+
 .class1{
    margin-right: 10px;
 }

@@ -1,25 +1,23 @@
-
-<div class="row" >
-  <div class="mapping" [formGroup]="loginForm">
-    <div class="col-4" style="padding-left: 40px;">
-      <h2>Course Specification</h2>
-    </div>
-      <div class="col-3" class="drop">
-       
+<div class="row head">
+  <h2>Course Specification</h2>
+</div>
+<div class="row">
+  <div class="mapping head1" [formGroup]="loginForm">
+      <div class="col-4" class="head2">
         <select class="form-select" formControlName="Courselist">
           <option selected >select Course</option>
           <option [ngValue]="course"  *ngFor="let course of allCourses">{{course.courseName}}</option>
         </select>
       </div>
-      <div class="col-3" class="drop1">
+      <div class="col-4" class="head3">
         <select class="form-select" formControlName="speclist" >
           <option selected >select specification</option>
           <option [ngValue]="spec" *ngFor="let spec of allSpecification">{{spec.specificationName}}</option>
         </select>
       </div>
-      <div class="col-2" >
+      <div class="col-4" >
         <button 
-          class="btn btn-primary drop2"
+          class="btn btn-primary head4"
           *ngIf="!editable"
           (click)="validatefn()"> Save
         </button>
