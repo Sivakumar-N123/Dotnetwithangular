@@ -53,13 +53,13 @@
         <form [formGroup]="loginForm">
          <label class="form-label" style="margin-left:20px;margin-top: 20px;">Select Course</label>
           <select class="form-select" formControlName="Courselist" style="width: 400px;margin-left: 30px;">
-            <option selected >select Course</option>
+            <option value="select Course" selected >Select Course</option>
             <option [ngValue]="course"  *ngFor="let course of allCourses">{{course.courseName}}</option>
           </select>
           <br>
           <label class="form-label" style="margin-left:20px;">Select Specification</label>
           <select class="form-select" formControlName="speclist" style="width: 400px;margin-left: 30px;margin-bottom: 20px;" >
-            <option selected >select specification</option>
+            <option value="select specification" selected >Select Specification</option>
             <option [ngValue]="spec" *ngFor="let spec of allSpecification">{{spec.specificationName}}</option>
           </select>
           <div class="modal-footer">
