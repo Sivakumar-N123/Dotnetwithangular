@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormControl, Validators } from '@angular/forms';
 import { specData } from '../model';
-import { ActivatedRoute, Router } from '@angular/router';
+
 import { StudentAppserviceService } from '../Services/student-appservice.service';
 import { environment } from 'src/environments/environment';
 

@@ -116,6 +116,7 @@ export class SpeccourseComponent implements OnInit {
       console.log(r);
       this.getAllSpeccourse();
       window.location.reload();
+      alert ("Added sucessfully");
     });
   } 
 
@@ -167,7 +168,7 @@ export class SpeccourseComponent implements OnInit {
         }
       });
       this.editable=false;
-      
+      alert ("Updated sucessfully");
   }
 
   delete(row:any)
@@ -184,6 +185,7 @@ export class SpeccourseComponent implements OnInit {
       next: (response) => {
         console.log(response);
         this.getAllSpeccourse();
+        alert ("Deleted sucessfully");
       }
     });
   }
