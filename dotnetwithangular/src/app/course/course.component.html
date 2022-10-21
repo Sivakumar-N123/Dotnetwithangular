@@ -1,17 +1,17 @@
 <!-- heading -->
-<div class="row head1">
-  <div class="col-9">
-    <h2>Course Details </h2>
-  </div>
-  <div class="col-1 head2">
+<div class="head">
+  <div class="div">
+    <h2 class="div2">Course </h2>
+
     <button kendoButton
       themeColor="info"
       [toggleable]="false"
-      data-toggle="modal"
-      data-target="#exampleModal" (click)="add()"> + Add Course 
+      data-toggle="modal" class="div0"
+      data-target="#exampleModal"
+      (click)="add()"> + Add 
     </button>
   </div>
-</div>
+  
 <!-- kendogrid -->
 <kendo-grid [kendoGridBinding]="allCourses" [resizable]="true" 
 [resizable]="true" class="head3">
@@ -95,6 +95,13 @@
        Do you wants to Delete the 
       </div>
       <div class="modal-footer"> 
+        <button 
+        kendoButton 
+        themeColor="info"
+        data-dismiss="modal" 
+        [toggleable]="false"
+         (click)="deleteCourse()"> Yes
+      </button>
         <button
           kendoButton
           themeColor="info"
@@ -103,18 +110,12 @@
           themeColor="error"
           data-dismiss="modal">No
         </button>
-        <button 
-        kendoButton 
-        themeColor="info"
-        data-dismiss="modal" 
-        [toggleable]="false"
-         (click)="deleteCourse()"> Yes
-      </button>
+       
       </div>
     </div>
   </div>
 </div>
 
-
+</div>
 
 

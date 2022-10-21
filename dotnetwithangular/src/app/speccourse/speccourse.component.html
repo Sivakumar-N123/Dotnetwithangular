@@ -1,43 +1,18 @@
-<div class="row head">
-  <h2>Course Specification</h2>
-</div>
-<div class="row">
-  <div class="mapping head1" [formGroup]="loginForm">
-      <div class="col-4" class="head2">
-        <select class="form-select" formControlName="Courselist">
-          <option selected >select Course</option>
-          <option [ngValue]="course"  *ngFor="let course of allCourses">{{course.courseName}}</option>
-        </select>
-      </div>
-      <div class="col-4" class="head3">
-        <select class="form-select" formControlName="speclist" >
-          <option selected >select specification</option>
-          <option [ngValue]="spec" *ngFor="let spec of allSpecification">{{spec.specificationName}}</option>
-        </select>
-      </div>
-      <div class="col-4" >
-        <button 
-          class="btn btn-primary head4"
-          *ngIf="!editable"
-          (click)="validatefn()"> Save
-        </button>
-        <button
-          class="btn btn-primary"
-          *ngIf="editable"
-          (click)="validatefnforupdate()"> update
-        </button>
-      </div>
-    </div>
+<div class="head">
+  <div class="div">
+    <h2 class="div2">Course Mapping</h2>
+    <button kendoButton
+      themeColor="info"
+      [toggleable]="false"
+      data-toggle="modal" class="div0"
+      data-target="#exampleModal"> + Add 
+    </button>
   </div>
 
-  <kendo-grid [kendoGridBinding]="AllSpeccourse" style="height: 300px;margin:50px;font-size: 18px;" >
-    <kendo-grid-column title="S.No" ><ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
-      {{rowIndex+1}}
-  </ng-template> </kendo-grid-column>
-   
+  <!-- KENDOGRID  -->
+  <kendo-grid [kendoGridBinding]="AllSpeccourse" class="div1" >
     <kendo-grid-column field="courseName" title="Course Name" >  
     </kendo-grid-column>
-   
     <kendo-grid-column field="specificationName" title="Specification Name" >  
     </kendo-grid-column>
     <kendo-grid-column field="Action" title="Action">
@@ -47,7 +22,7 @@
           themeColor="warning"
           [toggleable]="false"
           data-toggle="modal"
-          data-target="#exampleModal"
+          data-target="#exampleModal1"
           style="margin-right: 10px;"
           (click)="editSpecCourse(dataItem)"
           > Edit
@@ -55,16 +30,139 @@
         <button
           kendoButton
           themeColor="error"
-          [toggleable]="false"data-toggle="modal"
-          data-target="#exampleModal1" 
-          (click)="deleteSpecCourse(dataItem)"
-         > Delete 
+          [toggleable]="false"
+          data-toggle="modal"
+          data-target="#exampleModal2" 
+          (click)="delete(dataItem)">
+          Delete 
         </button>
       </ng-template> 
     </kendo-grid-column>
   </kendo-grid>
  
+  <!-- ADDING COURSE -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header" >
+          <h5 class="modal-title" id="exampleModalLabel">Add Course</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form [formGroup]="loginForm">
+         <label class="form-label" style="margin-left:20px;margin-top: 20px;">Select Course</label>
+          <select class="form-select" formControlName="Courselist" style="width: 400px;margin-left: 30px;">
+            <option selected >select Course</option>
+            <option [ngValue]="course"  *ngFor="let course of allCourses">{{course.courseName}}</option>
+          </select>
+          <br>
+          <label class="form-label" style="margin-left:20px;">Select Specification</label>
+          <select class="form-select" formControlName="speclist" style="width: 400px;margin-left: 30px;margin-bottom: 20px;" >
+            <option selected >select specification</option>
+            <option [ngValue]="spec" *ngFor="let spec of allSpecification">{{spec.specificationName}}</option>
+          </select>
+          <div class="modal-footer">
+            <button
+              kendoButton 
+              themeColor="error"
+              [toggleable]="false"
+              data-dismiss="modal"> Close
+            </button>
+            <button
+            kendoButton
+            themeColor="info"
+            [toggleable]="false"
+            data-toggle="modal" 
+            *ngIf="!editable"
+            data-dismiss="modal"  
+            [disabled]="loginForm.invalid"
+            (click)="validatefn()"
+            > Save
+          </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 
 
+  <!-- UPDATE COURSE -->
+  <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header" >
 
+          <h5 class="modal-title" id="exampleModalLabel">Update Course</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div> 
+        <form [formGroup]="loginForm">
+        <label class="form-label" style="margin-left:20px;margin-top: 20px;">Select Course</label>
+        <select class="form-select" formControlName="Courselist" style="width: 400px;margin-left: 30px;">
+          <option selected >select Course</option>
+          <option [ngValue]="course"  *ngFor="let course of allCourses">{{course.courseName}}</option>
+        </select>
+        <br>
+        <label class="form-label" style="margin-left:20px;margin-top: 20px;">Select Specification</label>
+        <select class="form-select" formControlName="speclist" style="width: 400px;margin-left: 30px;margin-bottom: 20px;" >
+          <option selected >select specification</option>
+          <option [ngValue]="spec" *ngFor="let spec of allSpecification">{{spec.specificationName}}</option>
+        </select>
+          <div class="modal-footer">
+            <button
+            kendoButton 
+            themeColor="error"
+            [toggleable]="false"
+            data-dismiss="modal"> Close
+          </button>
+            <button
+            kendoButton 
+            themeColor="info"
+            data-dismiss="modal" 
+            [toggleable]="false"
+            *ngIf="editable"
+            (click)="validatefnforupdate()"
+            [disabled]="loginForm.invalid"
+            > update
+          </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 
+  <!-- DELETE COURSE -->
+  <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel1">Delete Course</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Do you want to Delete?
+         </div>
+        <div class="modal-footer">
+            <button
+              kendoButton 
+              themeColor="error"
+              [toggleable]="false"
+              data-dismiss="modal"> No
+            </button>
+            <button
+            kendoButton 
+            themeColor="info"
+            data-dismiss="modal" 
+            [toggleable]="false"
+            (click)="deleteSpecCourse()"
+            > Yes
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

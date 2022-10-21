@@ -2,6 +2,19 @@
     width: 300px;
 }
 .head{
+    margin: 50px;
+}
+.head1{
     margin-top: 30px;
-    margin-left: 50px;
+    font-size: 18px;
+  
+}
+.div{
+    margin-top: 25px;
+  }
+.div2{
+  display: inline-block;
+}
+.div0{
+  float: right;
 }

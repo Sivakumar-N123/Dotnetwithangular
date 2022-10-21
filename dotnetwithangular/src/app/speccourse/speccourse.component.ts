@@ -100,6 +100,7 @@ export class SpeccourseComponent implements OnInit {
 
   AddCourse() 
   {
+    
     console.log(
       this.loginForm.value
     );
@@ -175,10 +176,10 @@ export class SpeccourseComponent implements OnInit {
     
     this.updateSpecCourse=row.specCourseId
   }
-  deleteSpecCourse(row:any)
+  deleteSpecCourse()
   {
-    console.log(row);
-    this.studentAppserviceService.deleteSpecCourse(row.specCourseId)
+    console.log(this.updateSpecCourse);
+    this.studentAppserviceService.deleteSpecCourse(this.updateSpecCourse)
     .subscribe({
       next: (response) => {
         console.log(response);
@@ -186,5 +187,10 @@ export class SpeccourseComponent implements OnInit {
       }
     });
   }
+
+
+
+
+
 
 }

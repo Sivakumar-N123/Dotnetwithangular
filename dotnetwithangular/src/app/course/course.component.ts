@@ -42,6 +42,15 @@ export class CourseComponent implements OnInit {
     return this.loginForm.get('user');
    } 
    
+   public toggleText = "Show";
+   public show = false;
+ 
+   public onToggle(): void {
+     this.show = !this.show;
+     this.toggleText = this.show ? "Hide" : "Show";
+   }
+
+
   CourseDetails:data []= [];
 
   constructor(private studentAppserviceService:StudentAppserviceService) { 

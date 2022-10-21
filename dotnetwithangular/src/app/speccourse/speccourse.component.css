@@ -5,12 +5,22 @@
   margin-top:50px;
   margin-bottom: 30px;
 }
-kendo-grid{
-  height: 420px;
+.div{
+  margin-top: 25px;
+}
+.div0{
+  float: right;
+}
+.div1{
+  font-size: 18px;
+  margin-top: 30px;
+
+}
+.div2{
+display: inline-block;
 }
 .head{
-  margin-top: 30px;
-  margin-left: 40px;
+  margin: 50px;
 }
 .head2{
   width: 250px;
@@ -20,4 +30,12 @@ kendo-grid{
 .head3{
   width: 300px;
   margin-left: 50px;
+}
+.head0{
+  margin-top: 50px;
+  margin-left: 50px;
+  
+}
+#button1{
+  margin-top: 25px;
 }
