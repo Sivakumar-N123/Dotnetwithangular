@@ -50,7 +50,6 @@
 
                 <div class="form-group">
                   <label for="password2">Confirmation Password</label>
-              
                   <div class="form-group1">
                     <input [type]="changetype2?'password':'text'" id="password2" class="form-control" placeholder="Enter your password" formControlName="confirmpass"  [ngClass]="{'is-invalid':submitted1 && pwd.controls['confirmpass'].errors}" >
                     <span class="eyeicon" (click)="viewpass3()"><i [ngClass]="visible2?'fa fa-eye':'fa fa-eye-slash'"></i></span>

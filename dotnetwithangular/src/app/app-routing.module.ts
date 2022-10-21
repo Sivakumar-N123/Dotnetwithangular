@@ -23,8 +23,8 @@ const routes: Routes = [
  {path:"dashboard",canActivate:[AuthGuard], component:DashboardComponent},
  {path:"user", component:UserComponent},
  {path:"login",component:LoginComponent},
- {path:":value",component:UpdateprofileComponent},
  {path:"update",component:UpdatepwdComponent},
+ {path:":value",component:UpdateprofileComponent},
  {path:"updateprofile",component:UpdateprofileComponent},
  {path:"",component:LoginComponent},
 

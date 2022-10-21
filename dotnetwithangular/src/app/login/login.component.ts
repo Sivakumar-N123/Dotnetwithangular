@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
 
               else
               {
-                alert("login successfully");
+              
               this.studentAppserviceService.putValue(this.logform.value.username);
               this.router.navigateByUrl('/dashboard')
               

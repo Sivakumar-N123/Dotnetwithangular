@@ -1,14 +1,6 @@
-.admin
-{
-    margin-top: 100px;
-}
-.head{
-  margin-top: 50px;
 
-}
-.adduser
-{
-    margin-bottom: 30px;
+.head{
+  margin: 50px;
 }
 
 .customer-photo {
@@ -33,6 +25,15 @@
     line-height: 32px;
     padding-left: 10px;
   }
-  .stdtable{
-    margin-left: 100px;
-  }
+ 
+ .name
+ {
+  margin-bottom: 30px;
+ }
+ .name h3{
+  display: inline-block;
+ }
+ .adduser
+ {
+  float:right;
+ }

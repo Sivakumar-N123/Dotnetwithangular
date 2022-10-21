@@ -28,6 +28,9 @@ btnupdate=true;
   event={target:{value:""}};
   spec: string="";
   Add=true;
+  studentname: any;
+  coursename: any;
+  specificationname: any;
 
 constructor(private fb:FormBuilder,private api:StudentAppserviceService)
 {
@@ -134,10 +137,13 @@ getspecData(event:any)
 }
 
 DeleteId:any;
+
 DeleteCourse(det:any)
 {
   this.DeleteId=det.id;
-
+this.studentname=det.studentName
+this.coursename=det.course
+this.specificationname=det.spec
 }
 
 remove()

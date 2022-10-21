@@ -5,7 +5,10 @@
     font-size: large;
     font-weight: 500;
 }
-
+.bg-primary
+{
+  background-color: rgb(49, 157, 250)!important;
+}
 
 .customer-photo {
     display: inline-block;

@@ -6,7 +6,7 @@
           <form [formGroup]="logform" (submit)="onsubmit()">
                       <div class="form-group col-lg-12 col-md-12 col-sm-12">
                           <label for="username">Email Address</label>
-                          <input type="text" formControlName="username" [ngClass]="{'is-invalid':submitted && logform.controls['username'].errors}" class="form-control" placeholder="Enter mail">
+                          <input type="text" formControlName="username" [ngClass]="{'is-invalid':submitted && logform.controls['username'].errors}" class="form-control" placeholder="Enter Your Email">
         
 
                         <div *ngIf="submitted && logform.controls['username'].errors" class="text-danger">
@@ -20,7 +20,7 @@
                       <label for="password">Password</label>
                  
                       <div class="form-group">
-                        <input [type]="changetype?'password':'text'" class="form-control" placeholder="Enter your password" formControlName="pass"  [ngClass]="{'is-invalid':submitted && logform.controls['pass'].errors}" >
+                        <input [type]="changetype?'password':'text'" class="form-control" placeholder="Enter Your Password" formControlName="pass"  [ngClass]="{'is-invalid':submitted && logform.controls['pass'].errors}" >
                         <span class="eyeicon" (click)="viewpass()"><i [ngClass]="visible?'fa fa-eye':'fa fa-eye-slash'"></i></span>
                       </div>
           

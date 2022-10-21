@@ -29,6 +29,7 @@ export class SpecificationComponent implements OnInit {
     user :new FormControl('',[Validators.required]),
    })
   flag: number=1;
+  Specification: any;
   
  
    loginUser(){
@@ -106,7 +107,7 @@ export class SpecificationComponent implements OnInit {
   delete(row:any)
   {
     this.updateid=row.specificationId
-
+    this.Specification=row.specificationName
   }
   deleteSpecification() 
   {

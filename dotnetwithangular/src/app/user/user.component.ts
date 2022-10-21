@@ -19,10 +19,7 @@ export class UserComponent implements OnInit {
       Validators.minLength(2),
       Validators.maxLength(20),
     ]),
-    email: new FormControl('',[
-      Validators.required,Validators.email
-     
-    ]),
+    email: new FormControl('',[Validators.required,Validators.email]),
   });
   allusers:any;
   name: any;

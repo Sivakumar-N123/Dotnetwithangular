@@ -33,6 +33,8 @@ export class SpeccourseComponent implements OnInit {
    })
   AllSpeccourse: any;
   specificationName: any;
+  courseName1: any;
+  specificationName1: any;
  
  
    get Courselist(){
@@ -176,6 +178,8 @@ export class SpeccourseComponent implements OnInit {
     console.log(row);
     
     this.updateSpecCourse=row.specCourseId
+    this.courseName1=row.courseName
+    this.specificationName1=row.specificationName
   }
   deleteSpecCourse()
   {

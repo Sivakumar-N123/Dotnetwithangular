@@ -20,14 +20,10 @@ import { environment } from 'src/environments/environment';
 
 export class CourseComponent implements OnInit {
 
-
   editable:boolean=false;
   updateid: any;
   allCourses: any;
-   
   baseApiUrl:string = environment.baseApiUrl;
-
-
   data: data | undefined;
 
    loginForm=new FormGroup({
@@ -35,10 +31,12 @@ export class CourseComponent implements OnInit {
     user :new FormControl('',[Validators.required]),
    })
   flag: number=1;
+  course: any;
  
    loginUser(){
     console.warn(this.loginForm.value)
    }
+
    get user(){
     return this.loginForm.get('user');
    } 
@@ -97,6 +95,7 @@ export class CourseComponent implements OnInit {
   delete(row:any)
   {
     this.updateid=row.courseId
+    this.course=row.courseName
   }
   deleteCourse() 
   {
