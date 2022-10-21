@@ -1,169 +1,16 @@
 <div class="head" style="margin:50px">
 
+  <div class="div" style="margin-bottom:25px ;">
+    <h2 style=" display: inline-block;">Student Mapping</h2>
 
-
-<div class="example-wrapper">
-  <h2 style="margin-top: 25px;">Student Mapping</h2>
-  <button kendoButton themeColor="info" *ngIf="!opened" (click)="open()">Open window</button>
-  <kendo-dialog title="Add Mapping" *ngIf="opened" (close)="close()" [minWidth]="250" [width]="500">
-
-  <form class="k-form" [formGroup]="courseform">
-      <fieldset>
-          <legend>Student Course Details</legend>
-
-          <label class="k-form-field">
-              <div class="example-wrapper">
-                <h6>Student Name</h6>
-                <kendo-autocomplete  style="width: 450px;"
-                  [data]="data1" valueField="studentName"  [filterable]="true"
-                  (filterChange)="handleFilter($event)"
-                  placeholder="Select name"
-                 formControlName="studentName">
-                 <ng-template kendoAutoCompleteItemTemplate let-dataItem class="k-state-default" (click)="empSelected(dataItem)">
-                  <span class="k-state-default" (click)="empSelected(dataItem)" style="width: 500px;"> {{ dataItem.studentId+" - "+dataItem.studentName }}</span>
-              </ng-template>
-                </kendo-autocomplete>
-        
-              </div>
-          </label>
-
-
-
-          <label class="k-form-field">
-            <div class="example-wrapper">
-              <h6>Course Name</h6>
-              <kendo-autocomplete style="width: 450px;"
-              [data]="data2"  [filterable]="true"
-              (filterChange)="handleFilter1($event)"  valueField="courseName"
-                placeholder="Select Degree"
-                (click)="resetspecvalue()"
-                (change)="getspecbyname($event)" formControlName="coursevalue">
-              </kendo-autocomplete>
-            </div>
-          </label>
-          <label class="k-form-field">
-            <div class="example-wrapper">
-              <h6>Specification Name</h6>
-              <kendo-autocomplete  style="width: 450px;"
-              [data]="data3"       [filterable]="true"
-              (filterChange)="handleFilter2($event)"  valueField="specificationName"
-                placeholder="Select Course"
-                formControlName="specvalue">
-              </kendo-autocomplete>
-            </div>
-          </label>
-
-
-      </fieldset>
-
-      <div class="k-actions k-actions-end">
-          <button kendoButton type="button" (click)="close()">Cancel</button>
-          <button kendoButton themeColor="primary" type="button" (click)="submit()">Submit</button>
-          <div *ngIf="btnupdate" id="button1">
-            <button kendoButton themeColor="info" [toggleable]="false" style="margin-right: 10px;" (click)="AddCourse()">+ Add</button>
-          </div>
-
-
-          <div *ngIf="!btnupdate" class="col-lg-3 col-md-6 col-sm-6" id="button1">
-            <button
-              kendoButton
-              themeColor="info"
-              [toggleable]="false"
-              style="margin-right: 10px;"
-              (click)="Update()">
-              Update 
-            </button>
-            <button
-              kendoButton
-              themeColor="error"
-              [toggleable]="false"
-              style="margin-right: 10px;"
-              (click)="cancelfn()">
-              Cancel 
-            </button>
-          </div>
-      </div>
-  </form>
-
-  </kendo-dialog>
-</div>
-<!-- <form [formGroup]="courseform">
-  <div class="row" id="header1">
-    <div class="col-lg-3 col-md-6 col-sm-6">
-      <div class="example-wrapper">
-        <h6>Student Name</h6>
-        <kendo-autocomplete  style="width: 180px;"
-          [data]="data1" valueField="studentName"  [filterable]="true"
-          (filterChange)="handleFilter($event)"
-          placeholder="Select name"
-         formControlName="studentName">
-         <ng-template kendoAutoCompleteItemTemplate let-dataItem class="k-state-default" (click)="empSelected(dataItem)">
-          <span class="k-state-default" (click)="empSelected(dataItem)" style="width: 500px;"> {{ dataItem.studentId+" - "+dataItem.studentName }}</span>
-      </ng-template>
-        </kendo-autocomplete>
-
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-6 col-sm-6">
-      <div class="example-wrapper">
-        <h6>Course Name</h6>
-        <kendo-autocomplete style="width: 180px;"
-        [data]="data2"  [filterable]="true"
-        (filterChange)="handleFilter1($event)"  valueField="courseName"
-          placeholder="Select Degree"
-          (click)="resetspecvalue()"
-          (change)="getspecbyname($event)" formControlName="coursevalue">
-        </kendo-autocomplete>
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-6 col-sm-6">
-      <div class="example-wrapper">
-        <h6>Specification Name</h6>
-        <kendo-autocomplete  style="width: 180px;"
-        [data]="data3"       [filterable]="true"
-        (filterChange)="handleFilter2($event)"  valueField="specificationName"
-          placeholder="Select Course"
-          formControlName="specvalue">
-        </kendo-autocomplete>
-      </div>
-    </div>
-    <div *ngIf="btnupdate" class="col-lg-3 col-md-6 col-sm-6" id="button1">
-      <button
-        kendoButton
-        themeColor="info"
-        [toggleable]="false"
-        style="margin-right: 10px;"
-        (click)="AddCourse()">
-        + Add 
-      </button>
-    </div>
-    <div *ngIf="!btnupdate" class="col-lg-3 col-md-6 col-sm-6" id="button1">
-      <button
-        kendoButton
-        themeColor="info"
-        [toggleable]="false"
-        style="margin-right: 10px;"
-        (click)="Update()">
-        Update 
-      </button>
-      <button
-        kendoButton
-        themeColor="error"
-        [toggleable]="false"
-        style="margin-right: 10px;"
-        (click)="cancelfn()">
-        Cancel 
-      </button>
-    </div>
+    <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="Addstudent()" style=" float: right;">
+    +Add
+  </button>
   </div>
-</form> -->
-
 
 
 <kendo-grid [data]="stu" class="kendo"   >
-    <!-- <kendo-grid-column title="S.No" ><ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
-      {{rowIndex+1}}
-  </ng-template> </kendo-grid-column> -->
   <kendo-grid-column field="studentId" title="Student No">
   </kendo-grid-column>
   <kendo-grid-column field="studentName" title="Student Name">
@@ -180,14 +27,16 @@
           [toggleable]="false"
           style="margin-right: 10px;"
           data-toggle="modal"
-          data-target="exampleModal"
+          data-target="#exampleModal"
           (click)="EditCourse(dataItem)"
           > Edit
         </button>
         <button
           kendoButton
           themeColor="error"
-          data-target="#exampleModal" 
+          [toggleable]="false"g
+          data-toggle="modal"
+           data-target="#exampleModal1"
           (click)="DeleteCourse(dataItem)"
          > Delete 
         </button>
@@ -198,13 +47,87 @@
 </div>
 
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" *ngIf="Add" id="exampleModalLabel">Add Student</h5>
+        <h5 class="modal-title" *ngIf="!Add"id="exampleModalLabel">Edit Student Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="courseform">
+
+              <div class="example-wrapper">
+                <h6>Student Name</h6>
+                <kendo-autocomplete 
+                  [data]="data1" valueField="studentName"  [filterable]="true"
+                  (filterChange)="handleFilter($event)"
+                  placeholder="Select name"
+                 formControlName="studentName">
+                 <ng-template kendoAutoCompleteItemTemplate let-dataItem class="k-state-default" (click)="empSelected(dataItem)">
+                  <span class="k-state-default" (click)="empSelected(dataItem)" style="width: 500px;"> {{ dataItem.studentId+" - "+dataItem.studentName }}</span>
+              </ng-template>
+                </kendo-autocomplete>        
+             </div>
+
+            
+              <div class="example-wrapper">
+                <h6>Course Name</h6>
+                <kendo-autocomplete
+                [data]="data2"  [filterable]="true"
+                (filterChange)="handleFilter1($event)"  valueField="courseName"
+                  placeholder="Select Degree"
+                  (click)="resetspecvalue()"
+                  (change)="getspecbyname($event)" formControlName="coursevalue">
+                </kendo-autocomplete>
+              </div>
+            
+            
+              <div class="example-wrapper">
+                <h6>Specification Name</h6>
+                <kendo-autocomplete
+                [data]="data3"       [filterable]="true"
+                (filterChange)="handleFilter2($event)"  valueField="specificationName"
+                  placeholder="Select Course"
+                  formControlName="specvalue">
+                </kendo-autocomplete>
+              </div>
+          
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="cancel" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" *ngIf="btnupdate" class="btn btn-primary" (click)="AddCourse()">Add</button>
+        <button type="button" *ngIf="!btnupdate"class="btn btn-primary" (click)="Update()">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
 
-
-
-
-
-
-
+<!-- delete modal -->
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Do you want to delete?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-primary" (click)="remove()" data-dismiss="modal">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

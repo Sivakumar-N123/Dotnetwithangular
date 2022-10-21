@@ -27,6 +27,7 @@ btnupdate=true;
   studentselect1: any;
   event={target:{value:""}};
   spec: string="";
+  Add=true;
 
 constructor(private fb:FormBuilder,private api:StudentAppserviceService)
 {
@@ -66,6 +67,12 @@ getUsercourse()
 
 flag = 0;
 
+Addstudent(){
+  this.courseform.reset();
+  this.Add=true;
+  this.btnupdate=true;
+}
+
 AddCourse() 
   {
     this.flag=0;
@@ -102,6 +109,8 @@ AddCourse()
       
         this.getUsercourse();
       });
+      let ref=document.getElementById('cancel');
+      ref?.click();
       this.courseform.reset();
     }
   
@@ -124,51 +133,31 @@ getspecData(event:any)
   })
 }
 
+DeleteId:any;
 DeleteCourse(det:any)
 {
-  console.log(det.id);
-  this.api.deleteUserCourse(det.id).subscribe((r:any)=>{
+  this.DeleteId=det.id;
+
+}
+
+remove()
+{
+  this.api.deleteUserCourse(this.DeleteId).subscribe((r:any)=>{
    
     this.getUsercourse();
     alert("Delete Successfully");
   })
   this.courseform.reset();
 }
-cancelfn()
-{
-  this.btnupdate=true;
-  
-  this.courseform.reset();
-}
 
-// validatefnforedit()
-//   {
-//     this.flag=1;
-//     for(let i=0;i<this.stu.length;i++)
-//     {
-//       if(this.stu[i].studentId == this.studentcourseId ){
-//         this.flag=0;
-//         break;
-//       }
-//     }
-  
-//     if(this.flag==0)
-    
-//   {
-//       alert("Already "+this.studentcourseId +" is present");
-//       window.location.reload();
-     
-//     }
-//     else {
-//       this.Update();
-//     }
-//   }
 dummyname:any;
 dummyId:any;
 EditCourse(det:any)
 {
+  this.Add=false;
   console.log(det);
   this.btnupdate=false;
+  this.opened = true;
   
   this.updateid = det.id;
   this.studentcourseId =det.studentId;
@@ -202,9 +191,6 @@ Update()
   }
 
 
-    // this.api.UpdateUserCourse(this.updateid,request).subscribe((r:any)=>{
-    // console.log(r)
-
   for(let i=0;i<this.stu.length;i++)
   {
     if(this.stu[i].studentId == this.studentcourseId)// same name
@@ -231,8 +217,11 @@ Update()
   if(this.flag1==1)
   {
     alert("Update Successfully");
+    let ref=document.getElementById('cancel');
+      ref?.click();
+      this.courseform.reset();
     this.getUsercourse();    
-    this.courseform.reset();
+    
   }
 
 
@@ -242,8 +231,11 @@ Update()
       console.log(r);
       this.btnupdate=true;
       alert("Update Successfully");
+      let ref=document.getElementById('cancel');
+      ref?.click();
+      this.courseform.reset();
     this.getUsercourse();    
-    this.courseform.reset();
+    
       })
      
   }

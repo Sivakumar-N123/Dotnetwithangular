@@ -39,4 +39,10 @@
         margin-top: 150px;}
 }
 
+kendo-autocomplete{
+height: 50px;
+}
 
+.example-wrapper{
+    margin-bottom: 10px;
+}
