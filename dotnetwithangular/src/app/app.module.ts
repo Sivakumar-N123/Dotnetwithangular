@@ -67,6 +67,7 @@ import { DialogsModule, WindowModule } from '@progress/kendo-angular-dialog';
     DropDownsModule,
     DialogsModule,
     WindowModule
+  
     
   ],
   providers: [],

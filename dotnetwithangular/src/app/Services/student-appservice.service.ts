@@ -10,8 +10,6 @@ import { data, specData, userData } from '../model';
 })
 export class StudentAppserviceService {
 
- 
-
   email:any;
 
   putValue(value:any)
@@ -48,7 +46,6 @@ export class StudentAppserviceService {
   }
 
 
-
   // For user controller
   getAllusers(): Observable<userData>{
     return this.http.get<userData>(this.baseApiUrl+"/api/User");
@@ -71,8 +68,6 @@ export class StudentAppserviceService {
   }
 
  
- 
- 
   // For specification controller
   getAllSpecification(): Observable<specData[]>{
     return this.http.get<specData[]>(this.baseApiUrl+'/api/specification');
@@ -89,9 +84,7 @@ export class StudentAppserviceService {
    return this.http.delete<specData>(this.baseApiUrl + '/api/specification/' + id);
   }
 
-  
-  
-  
+
   //For speccourse cotroller
   addspecCourse(data:any): Observable<any>{
     return this.http.post<any>(this.baseApiUrl+'/api/SpecCourse',data);
@@ -146,4 +139,6 @@ export class StudentAppserviceService {
     localStorage.clear();
     this.router.navigate(['/login']);
   }
+
+
 }

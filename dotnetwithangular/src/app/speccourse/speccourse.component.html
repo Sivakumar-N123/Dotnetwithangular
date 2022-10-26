@@ -125,7 +125,7 @@
             *ngIf="editable"
             (click)="validatefnforupdate()"
             [disabled]="loginForm.invalid"
-            > update
+            > Update
           </button>
           </div>
         </form>
@@ -144,23 +144,24 @@
           </button>
         </div>
         <div class="modal-body">
-          Do you want to Delete?
+          Do you want to Delete <b>{{courseName1}} - {{specificationName1}}</b> ?
          </div>
-        <div class="modal-footer">
+        <div class="modal-footer"> 
+          <button
+            kendoButton 
+            themeColor="info"
+            data-dismiss="modal" 
+            [toggleable]="false"
+            (click)="deleteSpecCourse()"
+          > Yes
+          </button>
             <button
               kendoButton 
               themeColor="error"
               [toggleable]="false"
               data-dismiss="modal"> No
             </button>
-            <button
-            kendoButton 
-            themeColor="info"
-            data-dismiss="modal" 
-            [toggleable]="false"
-            (click)="deleteSpecCourse()"
-            > Yes
-          </button>
+           
         </div>
       </div>
     </div>

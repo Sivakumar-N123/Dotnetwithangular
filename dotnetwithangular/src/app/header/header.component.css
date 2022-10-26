@@ -7,9 +7,17 @@
 }
 .bg-primary
 {
-  background-color: rgb(49, 157, 250)!important;
+  background-color: rgb(112, 215, 163)!important;
 }
-
+.dropdown-menu{
+  margin-top: 18px;
+  margin-bottom: 10px;
+  background-color:rgb(255, 255, 255);
+  width: 250px;
+  float: right;
+  text-align: left;
+  padding-left: 20px;
+}
 .customer-photo {
     display: inline-block;
     width: 50px;

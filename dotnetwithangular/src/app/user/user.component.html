@@ -7,7 +7,7 @@
       themeColor="info"
       [toggleable]="false"
       data-toggle="modal"
-      data-target="#exampleModal" (click)="reset()"> +Add User 
+      data-target="#exampleModal" (click)="reset()"> + Add User 
     </button></div>
     
 
@@ -89,23 +89,13 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary"
+          <button kendoButton type="button" themeColor="error"
             data-dismiss="modal" >
             Close
           </button>  
-          <button type="submit" *ngIf="editable" class="btn btn-primary" [disabled]="Form.controls['email' && 'userName'].invalid"  (click)="validatefnforedit()" data-dismiss="modal" >
-            update
+          <button kendoButton type="submit" *ngIf="editable" themeColor="info" [disabled]="Form.controls['email' && 'userName'].invalid"  (click)="validatefnforedit()" data-dismiss="modal" >
+            Update
           </button>
-          <button kendoButton
-            *ngIf="editable"
-            themeColor="info"
-            [disabled]="Form.controls['email' && 'userName'].invalid"
-            (click)="validatefnforedit()"
-            data-dismiss="modal"
-            [toggleable]="false"
-           >Save 
-          </button>
-         
           <button kendoButton
             *ngIf="!editable"
             themeColor="info"
@@ -128,7 +118,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">
-          delete User
+          Delete User
         </h5>
         <button type="button" class="close"
           data-dismiss="modal" aria-label="Close">
@@ -139,12 +129,12 @@
         Do you want to delete the Student <b>{{name}}</b> ?
       </div> 
       <div class="modal-footer">
-        <button type="submit"  class="btn btn-primary" (click)="remove()" data-dismiss="modal" >
-          yes
+        <button kendoButton type="submit" themeColor="info"  (click)="remove()" data-dismiss="modal" >
+          Yes
         </button>
-        <button type="button" class="btn btn-secondary"
+        <button kendoButton type="button" themeColor="error"
           data-dismiss="modal" >
-          no
+          No
         </button>   
       </div>
     </div>

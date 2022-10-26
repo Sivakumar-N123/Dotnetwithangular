@@ -4,14 +4,13 @@
     <h2 style=" display: inline-block;">Student Mapping</h2>
 
     <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="Addstudent()" style=" float: right;">
+  <button kendoButton type="button" themeColor="info" data-toggle="modal" data-target="#exampleModal" (click)="Addstudent()" style=" float: right;">
     +Add
   </button>
   </div>
 
-
-<kendo-grid [data]="stu" class="kendo"   >
-  <kendo-grid-column field="studentId" title="Student No">
+<kendo-grid [data]="stu"  >
+  <kendo-grid-column field="studentId" title="Student No" >
   </kendo-grid-column>
   <kendo-grid-column field="studentName" title="Student Name">
   </kendo-grid-column>
@@ -34,7 +33,7 @@
         <button
           kendoButton
           themeColor="error"
-          [toggleable]="false"g
+          [toggleable]="false"
           data-toggle="modal"
            data-target="#exampleModal1"
           (click)="DeleteCourse(dataItem)"
@@ -43,7 +42,6 @@
       </ng-template> 
     </kendo-grid-column>
   </kendo-grid>
-
 </div>
 
 
@@ -60,21 +58,18 @@
       </div>
       <div class="modal-body">
         <form [formGroup]="courseform">
-
               <div class="example-wrapper">
                 <h6>Student Name</h6>
                 <kendo-autocomplete 
                   [data]="data1" valueField="studentName"  [filterable]="true"
                   (filterChange)="handleFilter($event)"
-                  placeholder="Select name"
+                  placeholder="Select Name"
                  formControlName="studentName">
                  <ng-template kendoAutoCompleteItemTemplate let-dataItem class="k-state-default" (click)="empSelected(dataItem)">
                   <span class="k-state-default" (click)="empSelected(dataItem)" style="width: 500px;"> {{ dataItem.studentId+" - "+dataItem.studentName }}</span>
               </ng-template>
                 </kendo-autocomplete>        
-             </div>
-
-            
+              </div>
               <div class="example-wrapper">
                 <h6>Course Name</h6>
                 <kendo-autocomplete
@@ -86,12 +81,11 @@
                 </kendo-autocomplete>
               </div>
             
-            
               <div class="example-wrapper">
                 <h6>Specification Name</h6>
                 <kendo-autocomplete
-                [data]="data3"       [filterable]="true"
-                (filterChange)="handleFilter2($event)"  valueField="specificationName"
+                [data]="data3" [filterable]="true"
+                (filterChange)="handleFilter2($event)" valueField="specificationName"
                   placeholder="Select Course"
                   formControlName="specvalue">
                 </kendo-autocomplete>
@@ -100,9 +94,9 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" id="cancel" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" *ngIf="btnupdate" class="btn btn-primary" (click)="AddCourse()">Add</button>
-        <button type="button" *ngIf="!btnupdate"class="btn btn-primary" (click)="Update()">Update</button>
+        <button kendoButton type="button"  id="cancel" themeColor="error" data-dismiss="modal">Close</button>
+        <button kendoButton type="button" *ngIf="btnupdate" themeColor="info" (click)="AddCourse()">Add</button>
+        <button kendoButton type="button" *ngIf="!btnupdate" themeColor="info" (click)="Update()">Update</button>
       </div>
     </div>
   </div>
@@ -125,8 +119,8 @@
         Do you want to delete <b>{{studentname}} - {{coursename}} - {{specificationname}}</b> ?
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-        <button type="button" class="btn btn-primary" (click)="remove()" data-dismiss="modal">Delete</button>
+        <button kendoButton type="button" themeColor="info" (click)="remove()" data-dismiss="modal">Yes</button>
+        <button kendoButton type="button" themeColor="error" data-dismiss="modal">No</button>
       </div>
     </div>
   </div>

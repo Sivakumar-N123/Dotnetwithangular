@@ -9,7 +9,6 @@ import { environment } from 'src/environments/environment';
 
 
 
-
 @Component({
   selector: 'app-course',
   templateUrl: './course.component.html',
@@ -148,4 +147,5 @@ export class CourseComponent implements OnInit {
       alert("added sucessfully");
     });
   }
+ 
 }

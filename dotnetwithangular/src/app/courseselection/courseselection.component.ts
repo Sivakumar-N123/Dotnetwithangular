@@ -22,15 +22,15 @@ loginForm: any;
 studentAppserviceService: any;
 updateid:any;
 btnupdate=true;
-  studentcourseId: any;
-  studentselect: any;
-  studentselect1: any;
-  event={target:{value:""}};
-  spec: string="";
-  Add=true;
-  studentname: any;
-  coursename: any;
-  specificationname: any;
+studentcourseId: any;
+studentselect: any;
+studentselect1: any;
+event={target:{value:""}};
+spec: string="";
+Add=true;
+studentname: any;
+coursename: any;
+specificationname: any;
 
 constructor(private fb:FormBuilder,private api:StudentAppserviceService)
 {
@@ -58,8 +58,6 @@ ngOnInit(): void {
   this.getUsercourse();
 }
 
-
-
 getUsercourse()
 {
   this.api.GetUserCourseDet().subscribe((r:any)=>{
@@ -80,14 +78,12 @@ AddCourse()
   {
     this.flag=0;
     console.log(this.courseform.value);
-
    
     let request:any ={
       "studentId":this.studentcourseId,
       "studentName": this.courseform.value.studentName,
       "Course": this.courseform.value.coursevalue,
-      "Spec": this.courseform.value.specvalue,
-      
+      "Spec": this.courseform.value.specvalue,      
     }
     console.log(request);
     console.log(this.stu);
@@ -109,30 +105,25 @@ AddCourse()
     else
     {
       this.api.PutUserCourseDet(request).subscribe((r:any)=>{
-      
-        this.getUsercourse();
-      });
+      this.getUsercourse();
+    });
       let ref=document.getElementById('cancel');
       ref?.click();
       this.courseform.reset();
     }
-  
   } 
 
 getspecbyname(event:any)
 {
   this.api.GetUserCourseDetByName(event.target.value).subscribe((r:any)=>{
-    
-    this.selectedspecname=r
-    this.courseform.get('specvalue')?.reset();
+  this.selectedspecname=r
+  this.courseform.get('specvalue')?.reset();
   })
 }
 getspecData(event:any)
 {
-  this.api.GetUserCourseDetByName(event.target.value).subscribe((r:any)=>{
-    
-    this.selectedspecname=r
-    
+  this.api.GetUserCourseDetByName(event.target.value).subscribe((r:any)=>{    
+  this.selectedspecname=r    
   })
 }
 
@@ -141,17 +132,16 @@ DeleteId:any;
 DeleteCourse(det:any)
 {
   this.DeleteId=det.id;
-this.studentname=det.studentName
-this.coursename=det.course
-this.specificationname=det.spec
+  this.studentname=det.studentName
+  this.coursename=det.course
+  this.specificationname=det.spec
 }
 
 remove()
 {
-  this.api.deleteUserCourse(this.DeleteId).subscribe((r:any)=>{
-   
-    this.getUsercourse();
-    alert("Delete Successfully");
+  this.api.deleteUserCourse(this.DeleteId).subscribe((r:any)=>{ 
+  this.getUsercourse();
+  alert("Delete Successfully");
   })
   this.courseform.reset();
 }
@@ -163,8 +153,7 @@ EditCourse(det:any)
   this.Add=false;
   console.log(det);
   this.btnupdate=false;
-  this.opened = true;
-  
+  this.opened = true;  
   this.updateid = det.id;
   this.studentcourseId =det.studentId;
   this.dummyId =det.studentId;
@@ -173,12 +162,9 @@ EditCourse(det:any)
   this.getspecData(this.event)
   this.courseform.controls['studentName'].setValue(det.studentName);
   this.courseform.controls['coursevalue'].setValue(det.course);
-  this.courseform.controls['specvalue'].setValue(det.spec);
-  
+  this.courseform.controls['specvalue'].setValue(det.spec); 
 }
 
- 
- 
 flag1 = 0;
 count=0;
 record=0;
@@ -188,14 +174,12 @@ Update()
   this.flag1=0;
   this.count=0;
   this.record=0;
-
   let request:any ={
     "studentId":this.studentcourseId,
     "studentName": this.courseform.value.studentName,
     "Course": this.courseform.value.coursevalue,
     "Spec": this.courseform.value.specvalue,  
   }
-
 
   for(let i=0;i<this.stu.length;i++)
   {
@@ -211,8 +195,7 @@ Update()
           this.flag1=1;
           this.btnupdate=true;
           break;
-      }
-      
+      }      
     }
     else
     {
@@ -229,8 +212,6 @@ Update()
     this.getUsercourse();    
     
   }
-
-
   else if((this.count==this.stu.length)&&(this.record==0))
   {
     this.api.UpdateUserCourse(this.updateid,request).subscribe((r:any)=>{
@@ -242,8 +223,7 @@ Update()
       this.courseform.reset();
     this.getUsercourse();    
     
-      })
-     
+    }) 
   }
 
   else
@@ -253,13 +233,10 @@ Update()
   }
 }
 
-
-
 resetspecvalue()
 {
   this.courseform.get('specvalue')?.reset();
 }
-
 
 data1:any;
 rollno:any;
@@ -269,14 +246,12 @@ handleFilter(value:any) {
 data2:any;
 handleFilter1(value:any) {
   console.log(value);
-  this.data2 = this.courses.filter((s:any) => s.courseName.toLowerCase().indexOf(value.toLowerCase()) !== -1);
-  
+  this.data2 = this.courses.filter((s:any) => s.courseName.toLowerCase().indexOf(value.toLowerCase()) !== -1);  
 }
 data3:any;
 handleFilter2(value:any) {
   console.log(value);
   this.data3 = this.selectedspecname.filter((s:any) => s.specificationName.toLowerCase().indexOf(value.toLowerCase()) !== -1);
-  
 }
 
 empSelected(dataItem:any)
@@ -285,7 +260,6 @@ empSelected(dataItem:any)
   this.studentcourseId=dataItem.studentId;
   console.log(this.studentcourseId);
 }
-
 
 public opened = false;
 public dataSaved = false;
@@ -299,11 +273,8 @@ public open(): void {
 }
 
 public submit(): void {
-    this.dataSaved = true;
-    this.close();
+  this.dataSaved = true;
+  this.close();
 }
-
-
-
 
 }
