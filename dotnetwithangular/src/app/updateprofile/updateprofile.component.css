@@ -63,3 +63,10 @@ kendo-card-header{
 label{
     font-size: 18px;
 }
+
+.buttons{
+    margin-top: 60px;
+    height: 40px;
+    width: 120px;
+    
+}

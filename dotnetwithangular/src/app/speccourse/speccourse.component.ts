@@ -183,7 +183,7 @@ export class SpeccourseComponent implements OnInit {
   }
   deleteSpecCourse()
   {
-    console.log(this.updateSpecCourse);
+    console.log(this.updateSpecCourse); 
     this.studentAppserviceService.deleteSpecCourse(this.updateSpecCourse)
     .subscribe({
       next: (response) => {

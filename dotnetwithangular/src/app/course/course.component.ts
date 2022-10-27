@@ -147,5 +147,15 @@ export class CourseComponent implements OnInit {
       alert("added sucessfully");
     });
   }
+
+  public opened = false;
+
+  public close(): void {
+    this.opened = false;
+  }
+
+  public open(): void {
+    this.opened = true;
+  }
  
 }

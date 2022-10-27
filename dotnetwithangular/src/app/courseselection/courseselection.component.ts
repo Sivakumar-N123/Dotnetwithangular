@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-
 import { StudentAppserviceService } from '../Services/student-appservice.service';
 
 @Component({
@@ -34,7 +33,6 @@ specificationname: any;
 
 constructor(private fb:FormBuilder,private api:StudentAppserviceService)
 {
-
 }
 
 ngOnInit(): void {
@@ -189,12 +187,12 @@ Update()
       if(this.dummyId == this.studentcourseId)
       {
         this.api.UpdateUserCourse(this.updateid,request).subscribe((r:any)=>{
-          console.log(r)
-          this.getUsercourse();
-          })
-          this.flag1=1;
-          this.btnupdate=true;
-          break;
+        console.log(r)
+        this.getUsercourse();
+        })
+        this.flag1=1;
+        this.btnupdate=true;
+        break;
       }      
     }
     else
