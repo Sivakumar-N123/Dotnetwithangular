@@ -204,9 +204,7 @@ Update()
   if(this.flag1==1)
   {
     alert("Update Successfully");
-    let ref=document.getElementById('cancel');
-      ref?.click();
-      this.courseform.reset();
+  
     this.getUsercourse();    
     
   }
@@ -216,9 +214,7 @@ Update()
       console.log(r);
       this.btnupdate=true;
       alert("Update Successfully");
-      let ref=document.getElementById('cancel');
-      ref?.click();
-      this.courseform.reset();
+   
     this.getUsercourse();    
     
     }) 
@@ -227,7 +223,7 @@ Update()
   else
   {
     alert("User Already Exists");
-    this.courseform.reset();
+ 
   }
 }
 

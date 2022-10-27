@@ -65,6 +65,27 @@ export class CourseComponent implements OnInit {
       this.allCourses=r;
     });
   }
+  validatefnforedit()
+  {
+    this.flag=1;
+    for(let i=0;i<this.allCourses.length;i++)
+    {
+      if(this.allCourses[i].courseName.toLowerCase() == this.loginForm.value.user.toLowerCase()){
+        this.flag=0;
+        break;
+      }
+    }
+  
+    if(this.flag==0)
+    {
+      alert("Already "+this.loginForm.value.user+" is present");
+      window.location.reload();
+     
+    }
+    else {
+      this.updateCourse();
+    }
+  }
 
   edit(row:any)
   { 

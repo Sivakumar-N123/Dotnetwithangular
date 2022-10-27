@@ -19,7 +19,7 @@ export class UserComponent implements OnInit {
       Validators.minLength(2),
       Validators.maxLength(20),
     ]),
-    email: new FormControl('',[Validators.required,Validators.email]),
+    email: new FormControl({value:'',disabled:this.editable},[Validators.required,Validators.email]),
   });
   allusers:any;
   name: any;
@@ -29,6 +29,8 @@ export class UserComponent implements OnInit {
   final_profile: string="";
   imgtrue: boolean=true;
   flag: number=1;
+  count: number=0;
+  updateEmail: any;
   
   
 
@@ -91,46 +93,28 @@ console.log(this.allusers);
     return this.Form.get('userName')!;
   }
 
-  validatefnforedit(){
-    this.flag=1;
-    for(let i=0;i<this.allusers.length;i++)
-    {
-      if(this.allusers[i].email.toLowerCase()== this.Form.value.email.toLowerCase()){
-        this.flag=0;
-        break;
-      }
-    }
-  
-    if(this.flag==0)
-    
-  {
-      alert("Already "+this.Form.value.email +" is present");
-      window.location.reload();
-     
-    }
-    else {
-      this.update();
-    }
-  }
+ 
 
   // updating the user
   edit(row:any)
   {
+    this.Form.controls['email'].disable();
     console.log(row);
     
     this.updateid=row.id
     this.editable=true;
- 
+    this.updateEmail=row.email
     this.Form.controls['userName'].setValue(row.studentName)
     this.Form.controls['email'].setValue(row.email)
   }
   update()
   {
+  
     if(this.Form.controls['email' && 'userName'].valid){
       let request={
       
       "studentName":this.Form.value.userName,
-      "email":this.Form.value.email,
+      "email":this.updateEmail,
       
       }
       this.studentAppserviceService.updateUser(this.updateid,request).subscribe((r:any)=>{
@@ -172,6 +156,7 @@ validatefn(){
   {
     this.editable=false;
     this.Form.reset();
+    this.Form.controls['email'].enable();
   }
   add()
   {

@@ -93,7 +93,7 @@
             data-dismiss="modal" >
             Close
           </button>  
-          <button kendoButton type="submit" *ngIf="editable" themeColor="info" [disabled]="Form.controls['email' && 'userName'].invalid"  (click)="validatefnforedit()" data-dismiss="modal" >
+          <button kendoButton type="submit" *ngIf="editable" themeColor="info" [disabled]="Form.controls['email' && 'userName'].invalid"  (click)="update()" data-dismiss="modal" >
             Update
           </button>
           <button kendoButton
