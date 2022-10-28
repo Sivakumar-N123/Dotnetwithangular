@@ -2,119 +2,175 @@
 <div class="head">
   <div class="div">
     <h2 class="div2">Course </h2>
-
     <button kendoButton
       themeColor="info"
       [toggleable]="false"
       data-toggle="modal" class="div0"
       data-target="#exampleModal"
-      (click)="add()"> + Add 
+      (click)="add()"> + Add Course
     </button>
   </div>
-  
-<!-- kendogrid -->
-<kendo-grid [kendoGridBinding]="allCourses" [resizable]="true" 
-[resizable]="true" class="head3">
-  <kendo-grid-column field="courseName" title="Course Name" required>  
-  </kendo-grid-column>
-  <kendo-grid-column field="Action" title="Action">
-    <ng-template kendoGridCellTemplate let-dataItem="dataItem">
-      <button
-        kendoButton
-        themeColor="warning"
-        [toggleable]="false"
-        (click)="edit(dataItem);" data-toggle="modal"
-        data-target="#exampleModal"
-        style="margin-right: 10px;"> Edit
-      </button>
-      <button
-        kendoButton
-        themeColor="error"
-        [toggleable]="false"data-toggle="modal"
-        data-target="#exampleModal1" (click)="delete(dataItem)"> Delete 
-      </button>
-    </ng-template> 
-  </kendo-grid-column>
-</kendo-grid>
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add Course</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <form [formGroup]="loginForm">
-        <div class="modal-body" >
-          <input type="text" #box placeholder="Course Name" formControlName="user"> <br><br>
-          <span *ngIf="user && user.invalid && user.touched" style="color:red;">*Course name is required</span>
-        </div>
-        <div class="modal-footer">
-        
-       
-          <button
-            kendoButton 
-            themeColor="error"
-            [toggleable]="false"
-            data-dismiss="modal"> Close
-          </button>
-          <button
-          kendoButton
-          themeColor="info"
-          [toggleable]="false"
-          data-toggle="modal" 
-          *ngIf="!editable"
-          data-dismiss="modal" (click)="validatefn()" [disabled]="loginForm.invalid"> Save
-        </button>
-          <button
-          kendoButton 
-          themeColor="info"
-          data-dismiss="modal" 
-          [toggleable]="false"
-          *ngIf="editable"
-          (click)="validatefnforedit()" [disabled]="loginForm.invalid"> update
-        </button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-<!-- Modal -->
-<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Course Details</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-       Do you wants to Delete the Course <b>{{course}}</b> ?
-      </div>
-      <div class="modal-footer"> 
-        <button 
-        kendoButton 
-        themeColor="info"
-        data-dismiss="modal" 
-        [toggleable]="false"
-         (click)="deleteCourse()"> Yes
-      </button>
+  <!-- kendogrid -->
+  <kendo-grid [kendoGridBinding]="allCourses" [resizable]="true" [resizable]="true" class="head3">
+    <kendo-grid-column field="courseName" title="Course Name" required>  
+    </kendo-grid-column>
+    <kendo-grid-column field="Action" title="Action">
+      <ng-template kendoGridCellTemplate let-dataItem="dataItem">
         <button
           kendoButton
-          themeColor="info"
-          data-dismiss="modal" 
+          themeColor="warning"
           [toggleable]="false"
-          themeColor="error"
-          data-dismiss="modal">No
+          (click)="edit(dataItem);" data-toggle="modal"
+          data-target="#exampleModal2"
+          style="margin-right: 10px;"> Edit
         </button>
+        <button
+          kendoButton
+          themeColor="error"
+          [toggleable]="false"data-toggle="modal"
+          data-target="#exampleModal1" (click)="delete(dataItem)"> Delete 
+        </button>
+      </ng-template> 
+    </kendo-grid-column>
+  </kendo-grid>
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Course</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form [formGroup]="loginForm">
+          <div class="modal-body" >
+            <h6>Course Name</h6>
+            <input type="text" #box placeholder="Enter the Course Name" formControlName="user"> <br><br>
+            <span *ngIf="user && user.invalid && user.touched" style="color:red;">*Course name is required</span>
+          </div>
+          <div class="modal-footer">
+            <button
+              kendoButton 
+              themeColor="error"
+              [toggleable]="false"
+              data-dismiss="modal"> Close
+            </button>
+            <button
+              kendoButton
+              themeColor="info"
+              [toggleable]="false"
+              data-toggle="modal" 
+              *ngIf="!editable"
+              data-dismiss="modal" 
+              (click)="validatefn()" 
+              [disabled]="loginForm.invalid"> Save
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Delete Course </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Do you wants to Delete the Course <b>{{course}}</b> ?
+        </div>
+        <div class="modal-footer"> 
+          <button 
+            kendoButton 
+            themeColor="info"
+            data-dismiss="modal" 
+            [toggleable]="false"
+            (click)="deleteCourse()"> Yes
+          </button>
+          <button
+            kendoButton
+            themeColor="info"
+            data-dismiss="modal" 
+            [toggleable]="false"
+            themeColor="error"
+            data-dismiss="modal">No
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Model for Edit -->
+  <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Course</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form [formGroup]="loginForm">
+          <div class="modal-body" ><h6>Course Name</h6>
+            <input type="text" #box placeholder="Course Name" formControlName="user"> <br><br>
+          </div>
+          <div class="modal-footer">
+            <button
+              kendoButton 
+              themeColor="error"
+              [toggleable]="false"
+              data-dismiss="modal"> Close
+            </button>
+            <button
+              kendoButton 
+              themeColor="info"
+              data-dismiss="modal" 
+              [toggleable]="false"
+              *ngIf="editable"
+              (click)="validatefnforedit()" 
+              [disabled]="loginForm.invalid"> Update
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
 </div>
 
+
+
+
+<div class="example-wrapper">
+  <button kendoButton *ngIf="!opened" (click)="open()">Open dialog</button>
+  <kendo-dialog
+    *ngIf="opened"
+    autoFocusedElement="#username"
+    title="Please confirm"
+    (close)="close('cancel')"
+    [minWidth]="250"
+    [width]="450"
+  >
+    <div style="margin: 30px; text-align: center;">
+      <p>Enter your username below</p>
+
+      <input
+        kendoTextBox
+        id="username"
+        placeholder="Your username"
+        [style.width.px]="200"
+      />
+    </div>
+    <kendo-dialog-actions>
+      <button kendoButton (click)="close('no')">No</button>
+      <button kendoButton (click)="close('yes')" themeColor="primary">
+        Yes
+      </button>
+    </kendo-dialog-actions>
+  </kendo-dialog>
 </div>
-
-

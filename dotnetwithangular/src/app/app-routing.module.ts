@@ -15,18 +15,23 @@ import { AuthGuard } from './auth.guard';
 
 
 const routes: Routes = [
-  {path:"course",component:CourseComponent},
-  {path:"speccourse",component:SpeccourseComponent},
-  {path:"courseselection",component:CourseselectionComponent},
- {path:"admin",component:AdminComponent},
- {path:"spec", component:SpecificationComponent},
- {path:"dashboard",canActivate:[AuthGuard], component:DashboardComponent},
- {path:"user", component:UserComponent},
+  {path:'',
+  runGuardsAndResolvers:'always',
+  canActivate:[AuthGuard],
+  children:[  
+    {path:"course",component:CourseComponent},
+    {path:"speccourse",component:SpeccourseComponent},
+    {path:"courseselection",component:CourseselectionComponent},
+    {path:"updateprofile",component:UpdateprofileComponent},
+    {path:"spec",component:SpecificationComponent},
+    {path:"dashboard", component:DashboardComponent},
+    {path:"user", component:UserComponent},]
+  },
  {path:"login",component:LoginComponent},
  {path:"update",component:UpdatepwdComponent},
  {path:":value",component:UpdateprofileComponent},
  {path:"updateprofile",component:UpdateprofileComponent},
- {path:"",component:LoginComponent},
+ {path:"",component:LoginComponent}
 
 
 ]

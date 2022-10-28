@@ -19,7 +19,7 @@ export class UserComponent implements OnInit {
       Validators.minLength(2),
       Validators.maxLength(20),
     ]),
-    email: new FormControl({value:'',disabled:this.editable},[Validators.required,Validators.email]),
+    email: new FormControl('',[Validators.required,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]),
   });
   allusers:any;
   name: any;
@@ -31,6 +31,7 @@ export class UserComponent implements OnInit {
   flag: number=1;
   count: number=0;
   updateEmail: any;
+  studentid: any;
   
   
 
@@ -181,6 +182,7 @@ validatefn(){
     console.log(row);
     
     this.updateid=row.id
+    this.studentid=row.studentId
     this.name=row.studentName
     this.emailid=row.email
    
@@ -201,5 +203,4 @@ validatefn(){
 
     });
   }
-  
 }
