@@ -31,7 +31,9 @@ const routes: Routes = [
 
  {path:"login",component:LoginComponent},
  {path:"update",component:UpdatepwdComponent},
- {path:"",component:LoginComponent},
+ {path:":value",component:UpdateprofileComponent},
+ {path:"updateprofile",component:UpdateprofileComponent},
+ {path:"",component:LoginComponent}
 
 
 ]

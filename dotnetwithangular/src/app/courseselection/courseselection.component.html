@@ -9,14 +9,15 @@
   </button>
   </div>
 
-<kendo-grid [data]="stu"  >
-  <kendo-grid-column field="studentId" title="Student No" >
+
+<kendo-grid [data]="stu" class="kendo">
+  <kendo-grid-column field="studentId" title="Student No">
   </kendo-grid-column>
   <kendo-grid-column field="studentName" title="Student Name">
   </kendo-grid-column>
     <kendo-grid-column field="course" title="Course Name" >  
     </kendo-grid-column>
-    <kendo-grid-column field="spec" title="Specification Name" >  
+    <kendo-grid-column field="spec" title="Specification Name">  
     </kendo-grid-column>
     <kendo-grid-column field="Action" title="Action">
       <ng-template kendoGridCellTemplate let-dataItem="dataItem">
@@ -51,7 +52,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" *ngIf="Add" id="exampleModalLabel">Add Student</h5>
-        <h5 class="modal-title" *ngIf="!Add"id="exampleModalLabel">Edit Student </h5>
+        <h5 class="modal-title" *ngIf="!Add"id="exampleModalLabel">Edit Student Details</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -61,15 +62,16 @@
               <div class="example-wrapper">
                 <h6>Student Name</h6>
                 <kendo-autocomplete 
-                  [data]="data1" valueField="studentName"  [filterable]="true"
+                  [data]="data1"  valueField="ret" [filterable]="true" 
                   (filterChange)="handleFilter($event)"
                   placeholder="Select Name"
                  formControlName="studentName">
-                 <ng-template kendoAutoCompleteItemTemplate let-dataItem class="k-state-default" (click)="empSelected(dataItem)">
+                 <!-- <ng-template kendoAutoCompleteItemTemplate let-dataItem class="k-state-default">
                   <span class="k-state-default" (click)="empSelected(dataItem)" style="width: 500px;"> {{ dataItem.studentId+" - "+dataItem.studentName }}</span>
-              </ng-template>
-                </kendo-autocomplete>        
-              </div>
+                </ng-template>   -->
+                </kendo-autocomplete> 
+             </div>
+            
               <div class="example-wrapper">
                 <h6>Course Name</h6>
                 <kendo-autocomplete
@@ -110,7 +112,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Delete Student</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

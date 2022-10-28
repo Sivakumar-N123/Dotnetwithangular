@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { StudentAppserviceService } from '../Services/student-appservice.service';
 
@@ -8,7 +8,8 @@ import { StudentAppserviceService } from '../Services/student-appservice.service
   styleUrls: ['./courseselection.component.css']
 })
 export class CourseselectionComponent implements OnInit {
-
+  
+public text ="hello";
 stu:any;
 courses:any;
 stuname:any;
@@ -21,15 +22,17 @@ loginForm: any;
 studentAppserviceService: any;
 updateid:any;
 btnupdate=true;
-studentcourseId: any;
-studentselect: any;
-studentselect1: any;
-event={target:{value:""}};
-spec: string="";
-Add=true;
-studentname: any;
-coursename: any;
-specificationname: any;
+  studentcourseId: any;
+  studentselect: any;
+  studentselect1: any;
+  event={target:{value:""}};
+  spec: string="";
+  Add=true;
+  studentname: any;
+  coursename: any;
+  specificationname: any;
+  ret1: Array<number|string>[] = []; 
+  
 
 constructor(private fb:FormBuilder,private api:StudentAppserviceService)
 {
@@ -45,11 +48,10 @@ ngOnInit(): void {
   })
 
   this.api.getAllusers().subscribe((r:any)=>{
-    console.log(r);
     this.stuname=r;
+    this.ret1=this.stuname.map(((user: any) => user.studentId +" - " +user.studentName))
   })
   this.api.getAllCourses().subscribe((r:any)=>{
-    console.log(r);
     this.courses=r;
   })
 
@@ -59,32 +61,38 @@ ngOnInit(): void {
 getUsercourse()
 {
   this.api.GetUserCourseDet().subscribe((r:any)=>{
-    console.log(r);
     this.stu=r;
+    console.log(this.stu);
   })
 }
 
-flag = 0;
 
+flag = 0;
+public hideAfter = 1000;
 Addstudent(){
   this.courseform.reset();
   this.Add=true;
   this.btnupdate=true;
 }
 
+profilename="";
+
+splitId!:string[];
 AddCourse() 
   {
     this.flag=0;
     console.log(this.courseform.value);
+     this.profilename = this.courseform.value.studentName
+
+    this.splitId= this.profilename.split('-');
+    this.studentcourseId = this.splitId[0];
    
     let request:any ={
-      "studentId":this.studentcourseId,
-      "studentName": this.courseform.value.studentName,
+      "studentId":this.splitId[0],
+      "studentName": this.splitId[1],
       "Course": this.courseform.value.coursevalue,
-      "Spec": this.courseform.value.specvalue,      
+      "Spec": this.courseform.value.specvalue, 
     }
-    console.log(request);
-    console.log(this.stu);
     
     for(let i=0;i<this.stu.length;i++)
     {
@@ -97,14 +105,13 @@ AddCourse()
 
     if(this.flag==1)
     {
-      alert("User Already selected course");
       this.courseform.reset();
     }
     else
     {
-      this.api.PutUserCourseDet(request).subscribe((r:any)=>{
-      this.getUsercourse();
-    });
+      this.api.PutUserCourseDet(request).subscribe((r:any)=>{      
+        this.getUsercourse();
+      });
       let ref=document.getElementById('cancel');
       ref?.click();
       this.courseform.reset();
@@ -144,6 +151,14 @@ remove()
   this.courseform.reset();
 }
 
+
+
+
+
+
+
+
+
 dummyname:any;
 dummyId:any;
 EditCourse(det:any)
@@ -158,7 +173,7 @@ EditCourse(det:any)
   this.dummyname = det.studentName;
   this.event.target.value=det.course
   this.getspecData(this.event)
-  this.courseform.controls['studentName'].setValue(det.studentName);
+  this.courseform.controls['studentName'].setValue(det.studentId+"-"+det.studentName);
   this.courseform.controls['coursevalue'].setValue(det.course);
   this.courseform.controls['specvalue'].setValue(det.spec); 
 }
@@ -172,28 +187,38 @@ Update()
   this.flag1=0;
   this.count=0;
   this.record=0;
+
+
+  this.profilename = this.courseform.value.studentName
+
+    this.splitId= this.profilename.split('-');
+    this.studentcourseId = this.splitId[0];
+
   let request:any ={
-    "studentId":this.studentcourseId,
-    "studentName": this.courseform.value.studentName,
+    "studentId":this.splitId[0],
+    "studentName": this.splitId[1],
     "Course": this.courseform.value.coursevalue,
     "Spec": this.courseform.value.specvalue,  
   }
 
+
+  console.log(request);
   for(let i=0;i<this.stu.length;i++)
   {
     if(this.stu[i].studentId == this.studentcourseId)// same name
     {
       this.record++;
+   
       if(this.dummyId == this.studentcourseId)
       {
         this.api.UpdateUserCourse(this.updateid,request).subscribe((r:any)=>{
-        console.log(r)
-        this.getUsercourse();
-        })
-        this.flag1=1;
-        this.btnupdate=true;
-        break;
-      }      
+          console.log(r)
+          this.getUsercourse();
+          })
+          this.flag1=1;
+          this.btnupdate=true;
+          break;
+      }  
     }
     else
     {
@@ -203,18 +228,20 @@ Update()
 
   if(this.flag1==1)
   {
-    alert("Update Successfully");
-  
+    alert("Update Successfully in flag");
+
     this.getUsercourse();    
-    
+  
   }
   else if((this.count==this.stu.length)&&(this.record==0))
   {
+    console.log(this.count)
+    console.log(this.record)
     this.api.UpdateUserCourse(this.updateid,request).subscribe((r:any)=>{
       console.log(r);
       this.btnupdate=true;
       alert("Update Successfully");
-   
+
     this.getUsercourse();    
     
     }) 
@@ -223,8 +250,11 @@ Update()
   else
   {
     alert("User Already Exists");
- 
+    
   }
+      let ref=document.getElementById('cancel');
+      ref?.click();
+      this.courseform.reset();
 }
 
 resetspecvalue()
@@ -235,9 +265,11 @@ resetspecvalue()
 data1:any;
 rollno:any;
 handleFilter(value:any) {
-  this.data1 = this.stuname.filter((s:any) => s.studentName.toLowerCase().indexOf(value.toLowerCase()) !== -1);
+  console.log(typeof (this.ret1));
+  this.data1 = this.ret1.filter((s:any) => s.toLowerCase().indexOf(value.toLowerCase()) !== -1);
+  
 }
-data2:any;
+data2:any; 
 handleFilter1(value:any) {
   console.log(value);
   this.data2 = this.courses.filter((s:any) => s.courseName.toLowerCase().indexOf(value.toLowerCase()) !== -1);  
@@ -250,9 +282,11 @@ handleFilter2(value:any) {
 
 empSelected(dataItem:any)
 {
-  console.log(dataItem);
   this.studentcourseId=dataItem.studentId;
-  console.log(this.studentcourseId);
+  this.text=dataItem.studentId;
+  this.text=this.text +"-"+dataItem.studentName;
+  console.log("text"+this.text);
+  this.courseform.controls['studentName'].setValue(this.text);  
 }
 
 public opened = false;
@@ -270,5 +304,4 @@ public submit(): void {
   this.dataSaved = true;
   this.close();
 }
-
 }
