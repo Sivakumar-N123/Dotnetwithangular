@@ -124,7 +124,7 @@ export class CourseComponent implements OnInit {
       next: (response) => {
         console.log(response);
         this.getAllCourse();
-        alert ("deleted sucessfully");
+        alert ("Deleted sucessfully");
       }
     }); 
   }
@@ -173,7 +173,8 @@ export class CourseComponent implements OnInit {
 
   public opened = false;
 
-  public close(): void {
+  public close(status: string): void {
+    console.log(`Dialog result: ${status}`);
     this.opened = false;
   }
 

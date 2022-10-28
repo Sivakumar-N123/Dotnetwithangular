@@ -7,7 +7,7 @@
       [toggleable]="false"
       data-toggle="modal" class="div0"
       data-target="#exampleModal"
-      (click)="add()"> + Add 
+      (click)="add()"> + Add Course
     </button>
   </div>
   <!-- kendogrid -->
@@ -45,7 +45,8 @@
         </div>
         <form [formGroup]="loginForm">
           <div class="modal-body" >
-            <input type="text" #box placeholder="Course Name" formControlName="user"> <br><br>
+            <h6>Course Name</h6>
+            <input type="text" #box placeholder="Enter the Course Name" formControlName="user"> <br><br>
             <span *ngIf="user && user.invalid && user.touched" style="color:red;">*Course name is required</span>
           </div>
           <div class="modal-footer">
@@ -116,7 +117,7 @@
           </button>
         </div>
         <form [formGroup]="loginForm">
-          <div class="modal-body" >
+          <div class="modal-body" ><h6>Course Name</h6>
             <input type="text" #box placeholder="Course Name" formControlName="user"> <br><br>
           </div>
           <div class="modal-footer">
@@ -133,7 +134,7 @@
               [toggleable]="false"
               *ngIf="editable"
               (click)="validatefnforedit()" 
-              [disabled]="loginForm.invalid"> update
+              [disabled]="loginForm.invalid"> Update
             </button>
           </div>
         </form>
@@ -143,3 +144,33 @@
 </div>
 
 
+
+
+<div class="example-wrapper">
+  <button kendoButton *ngIf="!opened" (click)="open()">Open dialog</button>
+  <kendo-dialog
+    *ngIf="opened"
+    autoFocusedElement="#username"
+    title="Please confirm"
+    (close)="close('cancel')"
+    [minWidth]="250"
+    [width]="450"
+  >
+    <div style="margin: 30px; text-align: center;">
+      <p>Enter your username below</p>
+
+      <input
+        kendoTextBox
+        id="username"
+        placeholder="Your username"
+        [style.width.px]="200"
+      />
+    </div>
+    <kendo-dialog-actions>
+      <button kendoButton (click)="close('no')">No</button>
+      <button kendoButton (click)="close('yes')" themeColor="primary">
+        Yes
+      </button>
+    </kendo-dialog-actions>
+  </kendo-dialog>
+</div>

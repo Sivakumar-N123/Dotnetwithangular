@@ -140,6 +140,7 @@ DeleteCourse(det:any)
   this.studentname=det.studentName
   this.coursename=det.course
   this.specificationname=det.spec
+  this.studentId = det.studentId
 }
 
 remove()

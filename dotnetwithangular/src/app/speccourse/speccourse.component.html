@@ -5,7 +5,7 @@
       themeColor="info"
       [toggleable]="false"
       data-toggle="modal" class="div0"
-      data-target="#exampleModal"> + Add 
+      data-target="#exampleModal"> + Map Course 
     </button>
   </div>
 
@@ -45,19 +45,19 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header" >
-          <h5 class="modal-title" id="exampleModalLabel">Add Course</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Add Map Course</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <form [formGroup]="loginForm">
-         <label class="form-label" style="margin-left:20px;margin-top: 20px;">Select Course</label>
+         <label class="form-label" style="margin-left:20px;margin-top: 20px;"><h6>Select Course</h6></label>
           <select class="form-select" formControlName="Courselist" style="width: 400px;margin-left: 30px;">
             <option value="select Course" selected >Select Course</option>
             <option [ngValue]="course"  *ngFor="let course of allCourses">{{course.courseName}}</option>
           </select>
           <br>
-          <label class="form-label" style="margin-left:20px;">Select Specification</label>
+          <label class="form-label" style="margin-left:20px;"><h6>Select Specification</h6></label>
           <select class="form-select" formControlName="speclist" style="width: 400px;margin-left: 30px;margin-bottom: 20px;" >
             <option value="select specification" selected >Select Specification</option>
             <option [ngValue]="spec" *ngFor="let spec of allSpecification">{{spec.specificationName}}</option>
@@ -93,19 +93,19 @@
       <div class="modal-content">
         <div class="modal-header" >
 
-          <h5 class="modal-title" id="exampleModalLabel">Update Course</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Edit Map Course</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div> 
         <form [formGroup]="loginForm">
-        <label class="form-label" style="margin-left:20px;margin-top: 20px;">Select Course</label>
+        <label class="form-label" style="margin-left:20px;margin-top: 20px;"><h6>Select Course</h6></label>
         <select class="form-select" formControlName="Courselist" style="width: 400px;margin-left: 30px;">
           <option selected >select Course</option>
           <option [ngValue]="course"  *ngFor="let course of allCourses">{{course.courseName}}</option>
         </select>
         <br>
-        <label class="form-label" style="margin-left:20px;margin-top: 20px;">Select Specification</label>
+        <label class="form-label" style="margin-left:20px;margin-top: 20px;"><h6>Select Specification</h6></label>
         <select class="form-select" formControlName="speclist" style="width: 400px;margin-left: 30px;margin-bottom: 20px;" >
           <option selected >select specification</option>
           <option [ngValue]="spec" *ngFor="let spec of allSpecification">{{spec.specificationName}}</option>
@@ -138,7 +138,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel1">Delete Course</h5>
+          <h5 class="modal-title" id="exampleModalLabel1">Delete Map Course</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
