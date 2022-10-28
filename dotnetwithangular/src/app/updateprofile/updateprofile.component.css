@@ -4,7 +4,6 @@
     font-size: 16px;
     padding: 20px;
 }
-
 button{
     width: 200px;
     font-size: 18px;
@@ -12,8 +11,6 @@ button{
     margin-left: 300px;
     top:-25px;
 }
-
-   
 .imgbox
 {
     font-size: 150px;
@@ -25,16 +22,13 @@ button{
     text-align: center;
     padding-top: 5px;
 }
-  
 input{
     font-size: 20px;
     padding-left: 10px;
 }
-
 .row{
     padding: 50px;
 }
-
 .field{
     padding-top:50px
 }
@@ -44,29 +38,24 @@ input{
 .field label{
     padding-right:10px
 }
-
 kendo-card
 {
     margin-left: 350px;
     margin-top: 70px;
 }
-
 kendo-card-header div h1{
     background-color: blue;
     font-size: 22px;
 }
-
 kendo-card-header{
     background-color: blue;
 }
-
 label{
     font-size: 18px;
 }
-
 .buttons{
     margin-top: 60px;
     height: 40px;
     width: 120px;
-    
+    margin-left:50px;
 }

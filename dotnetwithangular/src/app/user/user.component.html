@@ -1,5 +1,4 @@
 <div class="head">
-
   <div class="name">
     <h3>User List</h3>
     <button kendoButton
@@ -9,8 +8,6 @@
       data-toggle="modal"
       data-target="#exampleModal" (click)="reset()"> + Add User 
     </button></div>
-    
-
   <kendo-grid [data]="allusers">
     <kendo-grid-column
       title="Student.No"
@@ -50,7 +47,10 @@
         <h5 *ngIf="!editable" class="modal-title" id="exampleModalLabel">
           Add User
         </h5>
-        <h5 *ngIf="editable" class="modal-title" id="exampleModalLabel">
+        <form #gfg = "ngForm">
+          Name: <input type="text" name = 'name' ngModel disabled>
+      </form>
+        <h5 *ngIf="editable"  class="modal-title" id="exampleModalLabel">
           Edit User
         </h5>
         <button type="button" class="close"

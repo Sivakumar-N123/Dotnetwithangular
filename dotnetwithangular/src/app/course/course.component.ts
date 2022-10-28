@@ -150,6 +150,8 @@ export class CourseComponent implements OnInit {
       this.AddCourse();
     }
   }
+
+  
   //adding course
   add()
 {
