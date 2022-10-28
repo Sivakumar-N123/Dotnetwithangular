@@ -1,6 +1,6 @@
 <div class="head">
   <div class="name">
-    <h3>User List</h3>
+    <h3>Users</h3>
     <button kendoButton
     class="adduser"
       themeColor="info"
@@ -47,9 +47,6 @@
         <h5 *ngIf="!editable" class="modal-title" id="exampleModalLabel">
           Add User
         </h5>
-        <form #gfg = "ngForm">
-          Name: <input type="text" name = 'name' ngModel disabled>
-      </form>
         <h5 *ngIf="editable"  class="modal-title" id="exampleModalLabel">
           Edit User
         </h5>
@@ -61,8 +58,8 @@
       <form [formGroup]="Form">
         <div class="modal-body">
           <div class="form-group">
-            <label for="exampleFormControlInput1" class="form-label">User Name</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="userName" placeholder=" Enter the name..."  [class.is-invalid]="userName.invalid && (userName.dirty || userName.touched)">
+            <label for="exampleFormControlInput1" class="form-label">Name</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="userName" placeholder="Enter the name"  [class.is-invalid]="userName.invalid && (userName.dirty || userName.touched)">
             <div *ngIf="userName.invalid && (userName.dirty || userName.touched)" class="text-danger">
               <div *ngIf="userName.errors?.['required']">
                   This field is required.
@@ -76,13 +73,13 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="exampleFormControlInput2" class="form-label">Email</label>
-            <input type="text" class="form-control" id="exampleFormControlInput2" formControlName="email" placeholder=" Enter Email ID..." [class.is-invalid]="email.invalid && (email.dirty || email.touched)" >
+            <label for="exampleFormControlInput2" class="form-label">Email Id</label>
+            <input type="text" class="form-control" id="exampleFormControlInput2" formControlName="email" placeholder="Enter Email Id" [class.is-invalid]="email.invalid && (email.dirty || email.touched)" >
             <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
               <div *ngIf="email.errors?.['required']">
                 This field is required.
               </div>
-              <div *ngIf="email.errors?.['email']">
+              <div *ngIf="email.errors?.['pattern']">
                 Enter Valid Email Id in This field.
               </div>
             </div>
@@ -93,13 +90,13 @@
             data-dismiss="modal" >
             Close
           </button>  
-          <button kendoButton type="submit" *ngIf="editable" themeColor="info" [disabled]="Form.controls['email' && 'userName'].invalid"  (click)="update()" data-dismiss="modal" >
+          <button kendoButton type="submit" *ngIf="editable" themeColor="info" [disabled]="Form.invalid"  (click)="update()" data-dismiss="modal" >
             Update
           </button>
           <button kendoButton
             *ngIf="!editable"
             themeColor="info"
-            [disabled]="Form.controls['email' && 'userName'].invalid"
+            [disabled]="Form.invalid"
             (click)="validatefn()"
             data-dismiss="modal"
             [toggleable]="false"
@@ -126,7 +123,7 @@
         </button>
       </div>
       <div class="modal-body">
-        Do you want to delete the Student <b>{{name}}</b> ?
+        Do you want to delete the Student <b>{{name}} ({{studentid}})</b> ?
       </div> 
       <div class="modal-footer">
         <button kendoButton type="submit" themeColor="info"  (click)="remove()" data-dismiss="modal" >
