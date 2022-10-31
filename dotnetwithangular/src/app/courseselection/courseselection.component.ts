@@ -145,9 +145,10 @@ DeleteCourse(det:any)
 
 remove()
 {
+  
   this.api.deleteUserCourse(this.DeleteId).subscribe((r:any)=>{ 
   this.getUsercourse();
-  alert("Delete Successfully");
+  this.opened=true;
   })
   this.courseform.reset();
 }
@@ -290,8 +291,7 @@ empSelected(dataItem:any)
   this.courseform.controls['studentName'].setValue(this.text);  
 }
 
-public opened = false;
-public dataSaved = false;
+public opened = true;
 
 public close(): void {
   this.opened = false;
@@ -299,10 +299,5 @@ public close(): void {
 
 public open(): void {
   this.opened = true;
-}
-
-public submit(): void {
-  this.dataSaved = true;
-  this.close();
 }
 }
