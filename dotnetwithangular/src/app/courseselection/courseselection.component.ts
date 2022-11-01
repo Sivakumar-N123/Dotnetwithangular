@@ -10,6 +10,7 @@ import { StudentAppserviceService } from '../Services/student-appservice.service
 export class CourseselectionComponent implements OnInit {
   
 public text ="hello";
+messagecontent:any;
 stu:any;
 courses:any;
 stuname:any;
@@ -105,10 +106,14 @@ AddCourse()
 
     if(this.flag==1)
     {
+      this.opened = true;
+      this.messagecontent="Student Already exists";
       this.courseform.reset();
     }
     else
     {
+      this.opened = true;
+      this.messagecontent="Added Successfully";
       this.api.PutUserCourseDet(request).subscribe((r:any)=>{      
         this.getUsercourse();
       });
@@ -148,6 +153,7 @@ remove()
   
   this.api.deleteUserCourse(this.DeleteId).subscribe((r:any)=>{ 
   this.getUsercourse();
+  this.messagecontent="Delete Successfully";
   this.opened=true;
   })
   this.courseform.reset();
@@ -160,8 +166,7 @@ EditCourse(det:any)
 {
   this.Add=false;
   console.log(det);
-  this.btnupdate=false;
-  this.opened = true;  
+  this.btnupdate=false;  
   this.updateid = det.id;
   this.studentcourseId =det.studentId;
   this.dummyId =det.studentId;
@@ -223,8 +228,8 @@ Update()
 
   if(this.flag1==1)
   {
-    alert("Update Successfully in flag");
-
+    this.opened = true;
+    this.messagecontent="Updated Successfully.";
     this.getUsercourse();    
   
   }
@@ -235,7 +240,8 @@ Update()
     this.api.UpdateUserCourse(this.updateid,request).subscribe((r:any)=>{
       console.log(r);
       this.btnupdate=true;
-      alert("Update Successfully");
+      this.opened = true;
+      this.messagecontent="Updated Successfully";
 
     this.getUsercourse();    
     
@@ -244,7 +250,8 @@ Update()
 
   else
   {
-    alert("User Already Exists");
+    this.opened = true;
+    this.messagecontent="Student Cannot Updated";
   }
       let ref=document.getElementById('cancel');
       ref?.click();
@@ -283,7 +290,7 @@ empSelected(dataItem:any)
   this.courseform.controls['studentName'].setValue(this.text);  
 }
 
-public opened = true;
+public opened = false;
 
 public close(): void {
   this.opened = false;
