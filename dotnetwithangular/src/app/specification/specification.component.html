@@ -118,6 +118,21 @@
 
 </div>
 
+<!-- alert -->
+<kendo-dialog
+  *ngIf="opened"
+  [minWidth]="250"
+  [width]="450"
+>
+  <h5 style="margin: 30px; text-align: center;">
+    {{messagecontent}}
+  </h5>
+  <kendo-dialog-actions>
+    <button kendoButton (click)="close()" themeColor="info">
+      OK
+    </button>
+  </kendo-dialog-actions>
+</kendo-dialog>
 
 
 

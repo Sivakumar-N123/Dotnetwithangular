@@ -154,13 +154,6 @@ remove()
 }
 
 
-
-
-
-
-
-
-
 dummyname:any;
 dummyId:any;
 EditCourse(det:any)
@@ -252,7 +245,6 @@ Update()
   else
   {
     alert("User Already Exists");
-    
   }
       let ref=document.getElementById('cancel');
       ref?.click();

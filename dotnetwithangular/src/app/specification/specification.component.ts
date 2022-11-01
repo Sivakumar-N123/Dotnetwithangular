@@ -20,8 +20,7 @@ export class SpecificationComponent implements OnInit {
   allSpecification: any;
    
   baseApiUrl:string = environment.baseApiUrl;
-
-
+  messagecontent:string="";
   specData: specData | undefined;
  
 
@@ -39,7 +38,11 @@ export class SpecificationComponent implements OnInit {
     return this.loginForm.get('user');
    } 
    
-  
+   opened:boolean= false;
+
+  close(): void {
+     this.opened = false;
+   }
 
 
   constructor(private studentAppserviceService:StudentAppserviceService) { 
@@ -68,12 +71,10 @@ export class SpecificationComponent implements OnInit {
       }
     }
   
-    if(this.flag==0)
-    
-  {
-      alert("Already "+this.loginForm.value.user +" is present");
-      window.location.reload();
-     
+    if(this.flag==0)   
+    {
+      this.opened = true;
+      this.messagecontent="Already "+this.loginForm.value.user +" is present";    
     }
     else {
       this.updateSpecification();
@@ -98,6 +99,8 @@ export class SpecificationComponent implements OnInit {
         next: (response) => {
           console.log(response);
           this.getAllSpecification();
+          this.opened = true;
+      this.messagecontent="Course added Successfully"
           alert("updated successfully");
         }
       });

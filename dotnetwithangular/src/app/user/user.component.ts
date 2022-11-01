@@ -32,6 +32,7 @@ export class UserComponent implements OnInit {
   count: number=0;
   updateEmail: any;
   studentid: any;
+  messagecontent:string="";
   
   
 
@@ -120,7 +121,8 @@ console.log(this.allusers);
       }
       this.studentAppserviceService.updateUser(this.updateid,request).subscribe((r:any)=>{
         console.log(r);
-  
+        this.opened = true;
+        this.messagecontent="User Updated Successfully"
         this.getAllUsers()
   
       });
@@ -141,11 +143,9 @@ validatefn(){
   }
 
   if(this.flag==0)
-  
-{
-    alert("Already "+this.Form.value.email +" is present");
-    window.location.reload();
-   
+  {
+      this.opened = true;
+      this.messagecontent="Already "+this.Form.value.email +" is present";
   }
   else {
     this.add();
@@ -169,7 +169,8 @@ validatefn(){
 
       this.studentAppserviceService.addUser(request).subscribe((r:any)=>{
         console.log(r);
-  
+        this.opened = true;
+        this.messagecontent="User added Successfully"
         this.getAllUsers()
   
       });
@@ -198,9 +199,19 @@ validatefn(){
 
     this.studentAppserviceService.deleteUser(this.updateid,request).subscribe((r:any)=>{
       console.log(r);
-
+      this.opened = true;
+      this.messagecontent="User Removed Successfully"
       this.getAllUsers()
 
     });
   }
+opened:boolean= false;
+
+public close(): void {
+  this.opened = false;
+}
+
+
+ 
+
 }

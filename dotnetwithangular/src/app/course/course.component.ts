@@ -24,6 +24,7 @@ export class CourseComponent implements OnInit {
   allCourses: any;
   baseApiUrl:string = environment.baseApiUrl;
   data: data | undefined;
+  messagecontent:string="";
 
    loginForm=new FormGroup({
     id : new FormControl(''),
@@ -48,7 +49,7 @@ export class CourseComponent implements OnInit {
      this.toggleText = this.show ? "Hide" : "Show";
    }
 
-
+   
   CourseDetails:data []= [];
 
   constructor(private studentAppserviceService:StudentAppserviceService) { 
@@ -78,9 +79,8 @@ export class CourseComponent implements OnInit {
   
     if(this.flag==0)
     {
-      alert("Already "+this.loginForm.value.user+" is present");
-      window.location.reload();
-     
+      this.opened = true;
+      this.messagecontent="Already "+this.loginForm.value.user+" is present"
     }
     else {
       this.updateCourse();
@@ -106,7 +106,9 @@ export class CourseComponent implements OnInit {
         next: (response) => {
           console.log(response);
           this.getAllCourse();
-          alert ("updated sucessfully");
+          this.opened = true;
+          this.messagecontent="Course Updated Successfully"
+          // alert ("updated sucessfully");
         }
       });
   }
@@ -124,7 +126,8 @@ export class CourseComponent implements OnInit {
       next: (response) => {
         console.log(response);
         this.getAllCourse();
-        alert ("Deleted sucessfully");
+        this.opened = true;
+        this.messagecontent="Course Deleted Successfully"
       }
     }); 
   }
@@ -142,8 +145,9 @@ export class CourseComponent implements OnInit {
 
     if(this.flag==0)
    {
-      alert("Already "+this.loginForm.value.user +" is present");
-      window.location.reload();
+      // alert("Already "+this.loginForm.value.user +" is present");
+      this.opened = true;
+      this.messagecontent="Already "+this.loginForm.value.user +" is present"
      
     }
     else {
@@ -167,19 +171,18 @@ export class CourseComponent implements OnInit {
     this.studentAppserviceService.addCourse(request).subscribe((r:any)=>{
       console.log(r);
       this.getAllCourse()
-      alert("added sucessfully");
+      this.opened = true;
+      this.messagecontent="Course added Successfully"
+   
     });
   }
 
-  public opened = false;
+  opened:boolean= false;
 
-  public close(status: string): void {
-    console.log(`Dialog result: ${status}`);
+  public close(): void {
     this.opened = false;
   }
+ 
 
-  public open(): void {
-    this.opened = true;
-  }
  
 }
