@@ -23,13 +23,18 @@ export class SpeccourseComponent implements OnInit {
   updateSpecCourse:any;
   user:any;
   flag : any;
+  messagecontent:string="";
+  opened:boolean= false;
+  public close(): void {
+    this.opened = false;
+  }
 
 
   baseApiUrl:string = environment.baseApiUrl;
 
    loginForm=new FormGroup({
-    Courselist : new FormControl('select Course',[Validators.required]),
-    speclist :new FormControl('select specification',[Validators.required]),
+    Courselist : new FormControl('',[Validators.required]),
+    speclist :new FormControl('',[Validators.required]),
    })
   AllSpeccourse: any;
   specificationName: any;
@@ -89,24 +94,22 @@ export class SpeccourseComponent implements OnInit {
 
     if(this.flag==0)
     {
+      this.opened = true;
+      this.messagecontent="Already "+this.loginForm.value.Courselist.courseName+" is associated with "+this.loginForm.value.speclist.specificationName
 
-      alert("Already "+this.loginForm.value.Courselist.courseName+" is associated with "+this.loginForm.value.speclist.specificationName);
-      window.location.reload();
-     
-      
     }
     else {
       this.AddCourse();
     }
   }
 
+  reset()
+  {
+    this.loginForm.reset();
+  }
   AddCourse() 
   {
     
-    console.log(
-      this.loginForm.value
-    );
-   
     let request:any ={
       "courseId": this.loginForm.value.Courselist.courseId,
       "courseName": this.loginForm.value.Courselist.courseName,
@@ -117,14 +120,14 @@ export class SpeccourseComponent implements OnInit {
     this.studentAppserviceService.addspecCourse(request).subscribe((r:any)=>{
       console.log(r);
       this.getAllSpeccourse();
-      window.location.reload();
-      alert ("Added sucessfully");
+      this.opened = true;
+      this.messagecontent="Course Mapping Added sucessfully"
+    
     });
   } 
 
   editSpecCourse(row:any){
     this.editable=true;
-    console.log(row);
     this.updateSpecCourse=row.specCourseId;
     this.loginForm.controls['Courselist'].patchValue(this.allCourses.find((i:any)=>i.courseId==row.courseId));
     this.loginForm.controls['speclist'].patchValue(this.allSpecification.find((i:any)=>i.specificationId==row.specificationId));
@@ -133,6 +136,7 @@ export class SpeccourseComponent implements OnInit {
   
 
   validatefnforupdate(){
+    
     this.flag=1;
     for(let i=0;i<this.AllSpeccourse.length;i++)
     {
@@ -144,16 +148,18 @@ export class SpeccourseComponent implements OnInit {
 
     if(this.flag==0)
     {
-      alert("Already "+this.loginForm.value.Courselist.courseName+" is associated with "+this.loginForm.value.speclist.specificationName);
-      // window.location.reload();
-      
+      this.opened = true;
+      this.messagecontent="Already "+this.loginForm.value.Courselist.courseName+" is associated with "+this.loginForm.value.speclist.specificationName
     }
     else {
       this.updateSpecCourses();
     }
   }
+
+
   updateSpecCourses() // updating course
   {
+
     let request:any ={
       courseId: this.loginForm.value.Courselist.courseId,
       courseName: this.loginForm.value.Courselist.courseName,
@@ -166,11 +172,12 @@ export class SpeccourseComponent implements OnInit {
       {
         next: (response) => {
           console.log(response);
-          window.location.reload();
+        
         }
       });
       this.editable=false;
-      alert ("Updated sucessfully");
+      this.opened = true;
+      this.messagecontent="Course Mapping Updated sucessfully"
   }
 
   delete(row:any)
@@ -181,6 +188,7 @@ export class SpeccourseComponent implements OnInit {
     this.courseName1=row.courseName
     this.specificationName1=row.specificationName
   }
+
   deleteSpecCourse()
   {
     console.log(this.updateSpecCourse); 
@@ -189,14 +197,10 @@ export class SpeccourseComponent implements OnInit {
       next: (response) => {
         console.log(response);
         this.getAllSpeccourse();
-        alert ("Deleted sucessfully");
+        this.opened = true;
+        this.messagecontent="Course Mapping Deleted sucessfully"
       }
     });
   }
-
-
-
-
-
 
 }

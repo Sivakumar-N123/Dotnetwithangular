@@ -100,8 +100,8 @@ export class SpecificationComponent implements OnInit {
           console.log(response);
           this.getAllSpecification();
           this.opened = true;
-      this.messagecontent="Course added Successfully"
-          alert("updated successfully");
+          this.messagecontent="Specification Updated Successfully"
+        
         }
       });
   }
@@ -119,7 +119,8 @@ export class SpecificationComponent implements OnInit {
       next: (response) => {
         console.log(response);
         this.getAllSpecification()
-        alert("Deleted successfully");
+        this.opened = true;
+        this.messagecontent="Specification Deleted Successfully";
       }
     });
   }
@@ -134,12 +135,10 @@ export class SpecificationComponent implements OnInit {
       }
     }
   
-    if(this.flag==0)
-    
-  {
-      alert("Already "+this.loginForm.value.user +" is present");
-      window.location.reload();
-     
+    if(this.flag==0)  
+   {
+    this.opened = true;
+    this.messagecontent="Already "+this.loginForm.value.user +" is present"
     }
     else {
       this.AddSpecification();
@@ -157,13 +156,11 @@ export class SpecificationComponent implements OnInit {
     let request={
       specificationName:this.loginForm.value.user
     }
-
     this.studentAppserviceService.addSpecification(request).subscribe((r:any)=>{
       console.log(r);
-
       this.getAllSpecification()
-      alert("Added successfully");
-
+      this.opened = true;
+      this.messagecontent="Specification Added Successfully";
     });
   }
  }
