@@ -1,4 +1,3 @@
-
 #navbarNav{
     text-align: right;
     margin-right: 35px;
@@ -8,7 +7,7 @@
 }
 .bg-primary
 {
-  background-color: rgb(132, 198, 218)!important;
+  background-color: rgb(119, 216, 235)!important;
 }
 .dropdown-menu{
   margin-top: 18px;
