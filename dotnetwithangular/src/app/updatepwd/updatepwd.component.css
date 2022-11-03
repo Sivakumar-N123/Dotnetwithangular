@@ -2,7 +2,6 @@ button{
     margin-top: 20px;
     width: 200px;
     font-size: 18px;
-    float: right;
     height: 50px;
     margin-bottom: 30px
 }
@@ -15,9 +14,14 @@ button{
 .card
 {
     margin-top: 100px;
+    min-width: 300px;
+    max-width: 992px;
+    margin-left: auto;
+    margin-right: auto;
 }
+
     
-h3,h1
+h3
 {
     background-color: #0d6efc;
     color: white;
@@ -27,7 +31,6 @@ h3,h1
 
 .form-group1 {
     position: relative;
-    width: 700px;
 }
 
 .form-group1 input {
@@ -45,20 +48,6 @@ h3,h1
     top: 5px;
     cursor: pointer;
     font-size: 22px;
-}
-kendo-card
-{
-    margin-left: 350px;
-    margin-top: 100px;
-}
-
-kendo-card-header div h1{
-    background-color: blue;
-    font-size: 22px;
-}
-
-kendo-card-header{
-    background-color: blue;
 }
 
 label{
