@@ -61,7 +61,7 @@ export class UpdateprofileComponent implements OnInit {
         this.profilename=this.det.studentName;
       this.name1= this.profilename.split(' ');
   
-      for(let i=0;i<this.name1.length;i++)
+      for(let i=0;i<2;i++)
       {
         this.final_profile = this.final_profile + this.name1[i].charAt(0).toUpperCase();
       }

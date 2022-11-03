@@ -4,7 +4,7 @@
     <h3 class="card-header">Update profile</h3>
     <form [formGroup]="profile">
     <div class="card-body row">  
-      <div class="col-lg-4 col-md-6 col-sm-12">
+      <div class="col-lg-4 col-md-6 col-sm-12 col1" >
         <div class="card-text">
           <img [src]="imageurl" *ngIf="imgtrue" style="background-color: white;" class="imgbox" />
           <div *ngIf="!imgtrue" class="imgbox">{{this.final_profile}}</div>
@@ -15,11 +15,11 @@
           <div class="textfield field" >
             <div class="form-group">
               <label for="exampleUserName" class="form-label">User Name</label>
-              <input type="text"  class="form-control" id="exampleUserName" aria-describedby="emailHelp"  value="{{data.studentName}}">
+              <input type="text"  class="form-control username" id="exampleUserName" aria-describedby="emailHelp"  value="{{data.studentName}}">
             </div>
               <div class="form-group">
                 <label for="exampleInputEmail1" class="form-label mt-4">Email address</label>
-                <input type="email" disabled class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{data.email}}">
+                <input type="email" disabled class="form-control email" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{data.email}}">
               </div>  
           </div> 
           
