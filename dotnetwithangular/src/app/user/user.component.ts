@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { userData } from '../model';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { StudentAppserviceService } from '../Services/student-appservice.service';
 
 
@@ -20,6 +19,8 @@ export class UserComponent implements OnInit {
       Validators.maxLength(20),
     ]),
     email: new FormControl('',[Validators.required,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]),
+    phone:  new FormControl('', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]),
+    gender: new FormControl('',[Validators.required])
   });
   allusers:any;
   name: any;
@@ -34,13 +35,18 @@ export class UserComponent implements OnInit {
   studentid: any;
   messagecontent:string="";
   
-  
+   
 
   constructor(private studentAppserviceService:StudentAppserviceService) { }
 
   ngOnInit(): void {
     this.getAllUsers()
+ 
   }
+ 
+
+
+
 
 //getting the user
   getAllUsers()
@@ -95,6 +101,9 @@ console.log(this.allusers);
     return this.Form.get('userName')!;
   }
 
+  get phone() {
+    return this.Form.get('phone')!;
+  }
  
 
   // updating the user

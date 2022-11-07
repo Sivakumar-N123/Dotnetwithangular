@@ -36,3 +36,9 @@
  {
   float:right;
  }
+ .datanumber{
+  width: 250px;
+ }
+ .datalabel{
+  font-weight: 300;
+ }

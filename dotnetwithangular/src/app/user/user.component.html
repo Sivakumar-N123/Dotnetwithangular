@@ -7,15 +7,14 @@
       [toggleable]="false"
       data-toggle="modal"
       data-target="#exampleModal" (click)="reset()"> + Add User 
-    </button></div>
-  <kendo-grid [data]="allusers">
+    </button>
+  </div>
+  <kendo-grid [data]="allusers" [pageable]="true" [pageSize]="5" [height]="350">
     <kendo-grid-column
-      title="Student.No"
-      field="studentId"
-      >
+      title="Identification No"
+      field="studentId">
     </kendo-grid-column>
-    <kendo-grid-column
-      title="Name">
+    <kendo-grid-column title="Name">
       <ng-template kendoGridCellTemplate let-dataItem>
         <div class="photo">
           <div *ngIf="!imgtrue" class="customer-photo">{{dataItem.profileImage}}</div>
@@ -23,9 +22,18 @@
         </div>
       </ng-template>
     </kendo-grid-column>
+    <kendo-grid-column 
+      title="Gender">
+    </kendo-grid-column>
     <kendo-grid-column
       title="Email Id"
       field="email">
+    </kendo-grid-column>
+    <kendo-grid-column 
+      title="Phone">
+    </kendo-grid-column>
+    <kendo-grid-column
+     title="Role">
     </kendo-grid-column>
     <kendo-grid-column
       field="Discontinued" title="Action" >
@@ -58,11 +66,11 @@
       <form [formGroup]="Form">
         <div class="modal-body">
           <div class="form-group">
-            <label for="exampleFormControlInput1" class="form-label">Name</label>
+            <label for="exampleFormControlInput1" class="form-label datalabel" ><h6 >Name :</h6></label>
             <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="userName" placeholder="Enter the name"  [class.is-invalid]="userName.invalid && (userName.dirty || userName.touched)">
             <div *ngIf="userName.invalid && (userName.dirty || userName.touched)" class="text-danger">
               <div *ngIf="userName.errors?.['required']">
-                  This field is required.
+                  Name is required.
               </div>
               <div *ngIf="userName.errors?.['minlength']">
                 This field must have at least 2 character.
@@ -72,19 +80,51 @@
               </div>
             </div>
           </div>
+          <div  class="form-group">
+            <h6>Gender :</h6>
+            <select class="form-select" aria-label="Default select example">
+              <option selected>Select the Gender</option>
+              <option value="1">Male</option>
+              <option value="2">Female</option>
+              <option value="3">Others</option>
+            </select>
+          </div>
           <div class="form-group">
-            <label for="exampleFormControlInput2" class="form-label">Email Id</label>
+            <label for="exampleFormControlInput2" class="form-label"><h6 >Email Id :</h6></label>
             <input type="text" class="form-control" id="exampleFormControlInput2" formControlName="email" placeholder="Enter Email Id" [class.is-invalid]="email.invalid && (email.dirty || email.touched)" >
             <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
               <div *ngIf="email.errors?.['required']">
-                This field is required.
+                Email Id is required.
               </div>
               <div *ngIf="email.errors?.['pattern']">
                 Enter Valid Email Id in This field.
               </div>
             </div>
           </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput3" class="form-label"><h6 >Phone Number :</h6></label>
+            <div class="input-group">
+              <span class="input-group-text" id="basic-addon1">( + 91 ) -</span>
+              <input type="text" class="form-control" placeholder="Phone" formControlName="phone" >
+            </div>
+            <div *ngIf="phone.touched && phone.invalid" class="text-danger">
+              <div *ngIf="phone.errors?.['required']">Mobile number is required</div>
+              <div *ngIf="phone.errors?.['pattern']">Provide 10 digit phone number</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <h6>Role :</h6>
+            <select class="form-select" aria-label="Default select example">
+              <option selected>Select Role </option>
+              <option value="1">Admin</option>
+              <option value="2">Staff</option>
+              <option value="3">Teacher</option>
+            </select>
+          </div>
+
         </div>
+    
+   
         <div class="modal-footer">
           <button kendoButton type="button" themeColor="error"
             data-dismiss="modal" >
@@ -145,7 +185,7 @@
   [minWidth]="250"
   [width]="450"
 >
-  <h5 style="margin: 30px; text-align: center;">
+  <h5 style="margin:30px; text-align: center;">
     {{messagecontent}}
   </h5>
   <kendo-dialog-actions>
@@ -154,3 +194,19 @@
     </button>
   </kendo-dialog-actions>
 </kendo-dialog>
+
+
+
+<!-- <form [formGroup]="" (ngSubmit)="onFormSubmit()" novalidate>
+  <div class="form-group mb-3">
+    <label>Phone/Mobile No.</label>
+    <input type="text" formControlName="phone" class="form-control mb-3">
+
+    <div *ngIf="p.phone.touched && p.phone.invalid" class="alert alert-danger">
+      <div *ngIf="p.phone.errors?.required">Mobile number is required</div>
+      <div *ngIf="p.phone.errors?.pattern">Provide 10 digit phone number</div>
+    </div>
+  </div>
+
+  <button class="btn btn-primary" type="submit" [disabled]="!fg.valid">Submit</button>
+</form> -->
